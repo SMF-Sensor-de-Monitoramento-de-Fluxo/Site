@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="login.html">
+</head>
+
+<body class="body-cadastro">
+    <h1>Vamos realizar seu cadastro?</h1>
+    <div class="caixa-cadastro">
+        <h2>CADASTRAR</h2>
+        <div class="pai">
+            <div class="filho">
+                <p class="subtitulo">Nome do responsavel</p>
+                <input id="input_nome_responsavel" type="text">
+
+                <p class="subtitulo">Nome da sua empresa</p>
+                <input id="input_nome_empresa" type="text">
+
+                <p class="subtitulo">E-mail</p>
+                <input id="input_email" type="text" oninput="anaEmail()"><br>
+                <span id="span_email"></span>
+
+                <p class="subtitulo">CEP</p>
+                <input id="input_CEP" type="text">
+
+                <p class="subtitulo">RUA</p>
+                <input id="input_RUA" type="text">
+
+                <p class="subtitulo">Bairro</p>
+                <input id="input_Bairro" type="text">
+
+                <p class="subtitulo">Cidade</p>
+                <input id="input_Cidade" type="text">
+            </div>
+            
+            <div class="filho">
+                <p class="subtitulo">UF</p>
+                <select name="" id="select_UF">
+                    <option value=""select disabled></option>
+                    <option value="1">AC</option>
+                    <option value="2">AL</option>
+                    <option value="3">AP</option>
+                    <option value="4">AM</option>
+                    <option value="5">BA</option>
+                    <option value="6">CE</option>
+                    <option value="7">ES</option>
+                    <option value="8">GO</option>
+                    <option value="9">MA</option>
+                    <option value="10">MT</option>
+                    <option value="11">MS</option>
+                    <option value="12">MG</option>
+                    <option value="13">PA</option>
+                    <option value="14">PB</option>
+                    <option value="15">PR</option>
+                    <option value="16">PE</option>
+                    <option value="17">PI</option>
+                    <option value="18">RJ</option>
+                    <option value="19">RN</option>
+                    <option value="20">RS</option>
+                    <option value="21">RO</option>
+                    <option value="22">RR</option>
+                    <option value="23">SC</option>
+                    <option value="24">SP</option>
+                    <option value="25">SE</option>
+                    <option value="26">TO</option>
+                    <option value="27">DF</option>
+                </select>
+
+                <p class="subtitulo">CNPJ</p>
+                <input id="input_CNPJ" type="text">
+
+                <p class="subtitulo">Telefone 1</p>
+                <input id="input_numero_1" type="text">
+
+                <p class="subtitulo">Telefone 2 (opcional)</p>
+                <input id="input_numero_2" type="text"> <br>
+
+                <p class="subtitulo">Senha</p>
+                <input id="input_senha" type="password" oninput="anaSenha()">
+                    <p>
+                        <span id="span_tamanho">Crie uma senha com mais de 8 caractéres</span> <br>
+                        <span id="span_num">Utilize números para deixar a senha mais forte</span> <br>
+                        <span id="span_caracEsp">Utilize caractéres especiais 
+                        <span style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                    </p>
+                
+                
+
+                <p class="subtitulo">Confirme sua senha</p>
+                <input id="input_senha_confirmacao" type="password" oninput="senhaConf()"> <br> <br>
+                <button class="button" onclick="cadastrar()">Cadastre-se</button>
+            </div>
+        </div>        
+    </div>
+</body>
+
+<script>
+    var veriEmail = '';
+    var veriSenha = '';
+
+    var nome = '';
+    var email = '';
+    var senha = '';
+    var senha_confirmacao;
+
+    function anaEmail(){
+        email = input_email.value;
+        var emailMin = email.toLowerCase();
+
+        if (emailMin.includes('@')) {
+            if (emailMin.endsWith('.com')) {
+                span_email.innerHTML = ` Email válido`;
+                span_email.style.color = `green`;
+                veriEmail = true;
+            }
+
+        }else {
+            span_email.innerHTML = ` Email inválido`;
+            span_email.style.color = `red`;
+        }
+    }
+
+    function anaSenha(){
+        senha = input_senha.value;
+        
+        if (senha.length >= 8) {
+            span_tamanho.style.color = `green`;
+            veriSenha = true;
+
+        }else {
+            span_tamanho.style.color = `red`;
+            veriSenha = false;
+        }
+            
+        if (senha.includes(0) || senha.includes(1) || senha.includes(2) || senha.includes(3) || senha.includes(4)
+            || senha.includes(5) || senha.includes(6) || senha.includes(7) || senha.includes(8) || senha.includes(9)) {
+                span_num.style.color = `green`;
+                veriSenha = true;
+
+        }else {
+            span_num.style.color = `red`;
+            veriSenha = false;
+        }
+
+        if (senha.includes('!') || senha.includes('%') || senha.includes('*') || senha.includes('.') 
+            || senha.includes('&') || senha.includes('#') || senha.includes('$')) {
+                 span_caracEsp.style.color = `green`;
+                 veriSenha = true;
+
+        }else {
+            span_caracEsp.style.color = `red`;
+            veriSenha = false;
+        }
+    }
+
+    function senhaConf(){
+        senha_confirmacao = input_senha_confirmacao.value;
+
+    }
+
+    function cadastrar(){
+        if (veriEmail == false) {
+            alert('O email inserido é inválido')
+
+        }else if (veriSenha == false) {
+            alert('A senha inserida é inválido')
+
+        }else if (senha != senha_confirmacao){
+            alert (`A senha da confirmação tem que ser igual a senha original`)
+
+        }else {
+            alert('Usuário cadastrado com sucesso!')
+            var nome_responsavel = input_nome_responsavel.value
+            var nome_empresa = input_nome_empresa.value
+            var email = input_email.value
+            var CEP = input_CEP.value
+            var RUA = input_RUA.value
+            var Bairro = input_Bairro.value
+            var Cidade = input_Cidade.value
+            var UF = select_UF.value
+            var CNPJ = input_CNPJ.value
+            var telefone_1 = input_numero_1.value
+            var telefone_2 = input_numero_2.value
+            var senha = input_senha.value
+            var senha_confirmacao = input_senha_confirmacao.value
+        }
+
+    }
+</script>
+</html>
