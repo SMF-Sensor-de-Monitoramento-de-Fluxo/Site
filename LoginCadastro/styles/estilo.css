@@ -51,6 +51,7 @@ input{
     border-radius: 20px;
     border: 2px #08a4bd solid;
     padding: 5px;
+    padding-left: 10px;
     margin-bottom: 5px;
     display: flex;
     align-self: center;
@@ -59,12 +60,13 @@ input{
     justify-content: center;
 }
 
-input::placeholder{
-    text-align: center;
+input::placeholder {
+    padding-left: 5px;
 }
 
 .button{
     width: 95%;
+    cursor: pointer;
     height: 40px;
     display: flex;
     align-self: center;
@@ -77,6 +79,12 @@ input::placeholder{
     color: white;
     font-weight: bolder;
     padding: 0;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    color: rgb(32, 32, 32);
+    font-size: 15px;
 }
 
 .subtitulo{

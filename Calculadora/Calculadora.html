@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Financeiro</title>
+<link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
+</head>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 8px 0 4px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      background: #eef;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+</style>
+
+<body>
+  <h1>📊 Calculadora Financeira - Supermercado</h1>
+
+  <div class="card">
+    <h2>Entradas básicas</h2>
+    <label for="trafego">Estimativa de clientes (por dia)</label>
+    <input type="number" id="input_fluxo" placeholder="Ex: 550">
+
+    <label for="setores">Quantidade de setores no mercado</label>
+    <input type="number" id="input_setores" placeholder="Ex: 12">
+
+    <label for="metragemSetores">Tamanho médio dos setores no mercado (em m²)</label>
+    <input type="number" id="input_metros" placeholder="Ex: 13.5">
+
+    <label for="compras">Faturamento (por dia)</label>
+    <input type="number" id="input_faturamento" placeholder="Ex: 7400">
+
+    <button onclick="calcular()">Calcular 📈</button>
+  </div>
+
+  <div class="card result" id="resultados"></div>
+
+
+
+    
+</body>
+</html>
+<script>
+  function calcular() {
+  // Pega os valores
+    var fluxo = Number(input_fluxo.value);
+    var numSetores = Number(input_setores.value);
+    var faturamento = Number(input_faturamento.value);
+    var metragem = Number(input_metros.value)
+
+    if(fluxo <= 0 || numSetores <= 0 || faturamento <= 0){
+      resultados.innerHTML = `Insira valores válidos para que o calculo sejá realizado!`
+    }else{
+        // Ticket médio do dia
+      var ticketMedio = faturamento / fluxo
+      var ticketMedioSet = (faturamento / numSetores)
+      var ticketMedioSetMes = ticketMedioSet * 30
+      // Estimativa de vendas pós reajuste
+      // margem de lucro de 4% a 6% para atacadistas
+      var newFaturamento = faturamento * 1.197
+      var newTicketMedio = newFaturamento / fluxo
+      var newTicketMedioSet = newFaturamento / numSetores
+     
+      // Valor estimado para fazer um reajuste
+      var reajuste = 275 * metragem
+
+      // Lift de vendas
+      var aumento = (newFaturamento - faturamento)
+
+      // Payback
+      var payback = reajuste / aumento
+
+      // Mostra resultados
+      resultados.innerHTML = `
+        <h2>Estimativa de Resultados</h2>
+        <p><b>Seu ticket médio por setor pré ajuste:</b> R$${ticketMedioSet.toFixed(2)}</p>
+        <p><b>Seu novo ticket médio por setor pós ajuste:</b> R$${newTicketMedioSet.toFixed(2)}</p>
+        <p><b>Estimativa de aumento do faturamento com ajuste baseado nas informações analisadas:</b> R$${aumento.toFixed(2)}</p>
+        <p><b>Payback:</b> ${payback.toFixed(1)} dias</p>
+        `
+    }
+        
+  }
+    </script>
