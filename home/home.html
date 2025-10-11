@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMF-HOME</title>
+    <title>SMF | Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
 </head>
 <body>
 <div class="header">
@@ -14,11 +15,11 @@
              </div>
         <div class="navbar">
             <ul>
-                <li>Home</li>
-                <li>Sobre nós</li>
-                <li>Simulador financeiro</li>
-                <li>Entre em contato</li>
-                <button class="button-login" onclick="">Login</button>
+                <li> <a href="home.html">Home</a></li>
+                <li> <a href="sobrenos.html">Sobre nós</a></li>
+                <li> <a href="../Calculadora/Calculadora.html">Simulador financeiro </a> </li>
+                <li> <a href="contato.html">Entre em contato</a></li>
+                <button class="button-login" onclick="irLogin()">Login</button>
             </ul>
         </div>
     </div>
@@ -81,3 +82,9 @@
 </div>
     </body>
     </html>
+
+    <script>
+        function irLogin() {
+            window.location.href = '../LoginCadastro/login.html'
+        }
+    </script>

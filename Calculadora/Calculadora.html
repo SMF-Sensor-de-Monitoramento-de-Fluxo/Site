@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulador Financeiro</title>
-<link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financeiro</title>
+    <link
+      rel="shortcut icon"
+      href="../Assets/SMF-Icon.png"
+      type="image/x-icon"
+    />
+  </head>
 
-<style>
+  <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -21,7 +25,7 @@
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
     label {
       display: block;
@@ -51,74 +55,160 @@
       border-radius: 6px;
       margin-top: 10px;
     }
-</style>
 
-<body>
-  <h1>📊 Calculadora Financeira - Supermercado</h1>
+    .header {
+      background-color: #005975;
+      padding: 10px 0;
+      top: 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-  <div class="card">
-    <h2>Entradas básicas</h2>
-    <label for="trafego">Estimativa de clientes (por dia)</label>
-    <input type="number" id="input_fluxo" placeholder="Ex: 550">
+    body {
+      margin: 0;
+    }
 
-    <label for="setores">Quantidade de setores no mercado</label>
-    <input type="number" id="input_setores" placeholder="Ex: 12">
+    .header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    <label for="metragemSetores">Tamanho médio dos setores no mercado (em m²)</label>
-    <input type="number" id="input_metros" placeholder="Ex: 13.5">
+    .logo-header img {
+      height: 50px;
+      width: auto;
+      display: block;
+      margin: auto;
+    }
 
-    <label for="compras">Faturamento (por dia)</label>
-    <input type="number" id="input_faturamento" placeholder="Ex: 7400">
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
 
-    <button onclick="calcular()">Calcular 📈</button>
-  </div>
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
 
-  <div class="card result" id="resultados"></div>
+    .navbar li {
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+    }
 
+    .button-login {
+      background-color: #00bff3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
+    .button-login:hover {
+      background-color: #0056b3;
+    }
 
-    
-</body>
+    a {
+    color: inherit;
+    text-decoration: none;
+    }
+
+  </style>
+
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="logo-header">
+          <img src="../home/imagens/logo_png.png" alt="" />
+        </div>
+        <div class="navbar">
+          <ul>
+            <li><a href="../home/home.html">Home</a></li>
+            <li><a href="../home/sobrenos.html">Sobre nós</a></li>
+            <li><a href="Calculadora.html"> Simulador financeiro</a></li>
+            <li><a href="../home/contato.html">Entre em contato</a></li>
+            <button class="button-login" onclick="">Login</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1>📊 Calculadora Financeira - Supermercado</h1>
+
+    <div class="card">
+      <h2>Entradas básicas</h2>
+      <label for="trafego">Estimativa de clientes (por dia)</label>
+      <input type="number" id="input_fluxo" placeholder="Ex: 550" />
+
+      <label for="setores">Quantidade de setores no mercado</label>
+      <input type="number" id="input_setores" placeholder="Ex: 12" />
+
+      <label for="metragemSetores"
+        >Tamanho médio dos setores no mercado (em m²)</label
+      >
+      <input type="number" id="input_metros" placeholder="Ex: 13.5" />
+
+      <label for="compras">Faturamento (por dia)</label>
+      <input type="number" id="input_faturamento" placeholder="Ex: 7400" />
+
+      <button onclick="calcular()">Calcular 📈</button>
+    </div>
+
+    <div class="card result" id="resultados"></div>
+  </body>
 </html>
 <script>
   function calcular() {
-  // Pega os valores
+    // Pega os valores
     var fluxo = Number(input_fluxo.value);
     var numSetores = Number(input_setores.value);
     var faturamento = Number(input_faturamento.value);
-    var metragem = Number(input_metros.value)
+    var metragem = Number(input_metros.value);
 
-    if(fluxo <= 0 || numSetores <= 0 || faturamento <= 0){
-      resultados.innerHTML = `Insira valores válidos para que o calculo sejá realizado!`
-    }else{
-        // Ticket médio do dia
-      var ticketMedio = faturamento / fluxo
-      var ticketMedioSet = (faturamento / numSetores)
-      var ticketMedioSetMes = ticketMedioSet * 30
+    if (fluxo <= 0 || numSetores <= 0 || faturamento <= 0) {
+      resultados.innerHTML = `Insira valores válidos para que o calculo sejá realizado!`;
+    } else {
+      // Ticket médio do dia
+      var ticketMedio = faturamento / fluxo;
+      var ticketMedioSet = faturamento / numSetores;
+      var ticketMedioSetMes = ticketMedioSet * 30;
       // Estimativa de vendas pós reajuste
       // margem de lucro de 4% a 6% para atacadistas
-      var newFaturamento = faturamento * 1.197
-      var newTicketMedio = newFaturamento / fluxo
-      var newTicketMedioSet = newFaturamento / numSetores
-     
+      var newFaturamento = faturamento * 1.197;
+      var newTicketMedio = newFaturamento / fluxo;
+      var newTicketMedioSet = newFaturamento / numSetores;
+
       // Valor estimado para fazer um reajuste
-      var reajuste = 275 * metragem
+      var reajuste = 275 * metragem;
 
       // Lift de vendas
-      var aumento = (newFaturamento - faturamento)
+      var aumento = newFaturamento - faturamento;
 
       // Payback
-      var payback = reajuste / aumento
+      var payback = reajuste / aumento;
 
       // Mostra resultados
       resultados.innerHTML = `
         <h2>Estimativa de Resultados</h2>
-        <p><b>Seu ticket médio por setor pré ajuste:</b> R$${ticketMedioSet.toFixed(2)}</p>
-        <p><b>Seu novo ticket médio por setor pós ajuste:</b> R$${newTicketMedioSet.toFixed(2)}</p>
-        <p><b>Estimativa de aumento do faturamento com ajuste baseado nas informações analisadas:</b> R$${aumento.toFixed(2)}</p>
+        <p><b>Seu ticket médio por setor pré ajuste:</b> R$${ticketMedioSet.toFixed(
+          2
+        )}</p>
+        <p><b>Seu novo ticket médio por setor pós ajuste:</b> R$${newTicketMedioSet.toFixed(
+          2
+        )}</p>
+        <p><b>Estimativa de aumento do faturamento com ajuste baseado nas informações analisadas:</b> R$${aumento.toFixed(
+          2
+        )}</p>
         <p><b>Payback:</b> ${payback.toFixed(1)} dias</p>
-        `
+        `;
     }
-        
   }
-    </script>
+</script>
