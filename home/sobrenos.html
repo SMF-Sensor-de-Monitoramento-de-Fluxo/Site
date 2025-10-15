@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
 </head>
 <body>
-<div class="header">
+<header>
     <div class="container">
              <div class="logo-header">
                  <img src="imagens\logo_png.png" alt="">
@@ -16,12 +16,20 @@
         <div class="navbar">
             <ul>
                 <li> <a href="home.html">Home</a></li>
-                <li> <a href="sobrenos.html">Sobre nós</a></li>
+                <li> <a href="sobrenos.html"><span style="color:#08a4bd;">Sobre nós</span></a></li>
                 <li> <a href="../Calculadora/Calculadora.html">Simulador financeiro </a> </li>
                 <li> <a href="contato.html">Entre em contato</a></li>
-                <button class="button-login" onclick="">Login</button>
+                <button class="button-login" onclick="irLogin()">Login</button>
             </ul>
         </div>
+    </div>
+</header>
+<div class="titulo-sobre-nos">
+    <div class="titulo-meio2">
+        <center>
+            <h3>Conheça a </h3>
+            <img src="./imagens/SMFlogoFull.png" alt="">
+        </center>
     </div>
 </div>
 <div class="container-nos1">
@@ -29,8 +37,7 @@
         <h3>Nossa missão</h3>
     </div>
     <div class="texto-nos1">
-            <p>Na SMF, nossa missão é revolucionar a gestão de fluxo de pessoas em supermercados por meio da tecnologia. Buscamos oferecer soluções inteligentes e acessíveis, que transformam dados em informações estratégicas, ajudando nossos clientes a otimizar processos, reduzir custos e aprimorar a experiência do consumidor.</p>
-            <p>Acreditamos que cada dado é crucial para formarmos nossa história, e é com inovação e comprometimento que transformamos essas informações em decisões inteligentes que fazem a diferença no seu negócio.</p>
+            <p>     Na SMF, nossa missão é revolucionar a gestão de fluxo de pessoas em supermercados por meio da tecnologia. Buscamos oferecer soluções inteligentes e acessíveis, que transformam dados em informações estratégicas, ajudando nossos clientes a otimizar processos, reduzir custos e aprimorar a experiência do consumidor.<br>       Acreditamos que cada dado é crucial para formarmos nossa história, e é com inovação e comprometimento que transformamos essas informações em decisões inteligentes que fazem a diferença no seu negócio.</p>
     </div>
     <div class="titulo-nos1">
         <h3>Nossa história</h3>
@@ -49,19 +56,31 @@
     <div class="texto-nos1">
         <p>Por trás da SMF está uma equipe unida por um propósito em comum: transformar o varejo por meio da tecnologia.</p>
         <p>Nosso grupo é formado por:</p>
-        <div class="texto-fotos">
-            <img src="imagens\minha foto.png" alt="">
-            <p>Isabela Teixeira Rodrigues</p>
-            <img src="imagens\foto-arthur.jpg" alt="">
-            <p>Arthur Rodrigues Bernardes</p>
-            <img src="imagens\foto-joao.jpeg" alt="">
-            <p>João Vitor Stipanic Almeida</p>
-            <img src="imagens\foto_renan.jpeg" alt="">
-            <p>Renan Minosso Silva</p>
-            <img src="imagens\foto-richard.png" alt="">
-            <p>Richard Diez Araújo</p>
-            <img src="imagens\guilherme-foto.jpeg" alt="">
-            <p>Guilherme Ornaghi</p>
+        <div class="nossa-equipe">    
+            <div class="texto-fotos">
+                <img src="imagens\minha foto.png" alt="">
+                <p class="nomes">Isabela Teixeira Rodrigues</p>
+            </div>
+            <div class="texto-fotos">
+                <img src="imagens\foto-arthur.jpg" alt="">
+                <p class="nomes">Arthur Rodrigues Bernardes</p>
+            </div>
+            <div class="texto-fotos">
+                <img src="imagens\foto-joao.jpeg" alt="">
+                <p class="nomes">João Vitor Stipanic Almeida</p>
+            </div>
+            <div class="texto-fotos">
+                <img src="imagens\foto_renan.jpeg" alt="">
+                <p class="nomes">Renan Minosso Silva</p>
+            </div>
+            <div class="texto-fotos">
+                <img src="imagens\foto-richard.png" alt="">
+                <p class="nomes">Richard Diez Araújo</p>
+            </div>
+            <div class="texto-fotos">
+                <img src="imagens\guilherme-foto.jpeg" alt="">
+                <p class="nomes">Guilherme Ornaghi</p>
+            </div>
         </div>
         <p>movidos pela curiosidade, pela vontade de aprender e pelo compromisso de criar soluções que gerem impacto real nos supermercados brasileiros.</p>
         <p>Cada membro da nossa equipe contribui com suas habilidades e ideias para que a SMF continue crescendo com criatividade, precisão e inovação. Juntos, acreditamos que dados e tecnologia acessível podem transformar o modo como o varejo enxerga o seu próprio potencial.</p>
@@ -78,3 +97,8 @@
 </div>
 </body>
 </html>
+<script>
+    function irLogin() {
+        window.location.href = '../LoginCadastro/login.html'
+    }
+</script>
