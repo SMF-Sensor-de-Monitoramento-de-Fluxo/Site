@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/estilo.css">
+    <link rel="stylesheet" href="../home/style.css">
     <link rel="stylesheet" href="login.html">
 </head>
 
@@ -16,178 +17,161 @@
             <h2>CADASTRAR</h2>
             <div class="pai">
                 <div class="filho">
-                    <p class="subtitulo">Nome do responsavel</p>
+                    <p class="subtitulo">Nome Completo:</p>
                     <input id="input_nome_responsavel" type="text">
 
-                    <p class="subtitulo">Nome da sua empresa</p>
+                    <p class="subtitulo">Nome da sua empresa:</p>
                     <input id="input_nome_empresa" type="text">
 
-                    <p class="subtitulo">E-mail</p>
-                    <input id="input_email" type="text" oninput="anaEmail()"><br>
-                    <span id="span_email"></span>
+                    <p class="subtitulo">E-mail 1:</p>
+                    <input id="input_email1" type="text" oninput="anaEmail1()"><br>
+                    <span id="span_email1"></span>
+
+                    <p class="subtitulo">E-mail 2 (opcional):</p>
+                    <input id="input_email2" type="text" oninput="anaEmail2()"><br>
+                    <span id="span_email2"></span>
+
+                    <p class="subtitulo"> Cargo do Usuário:</p>
+                    <input type="text" id="input_usuario">
+                    <p>
+                        <span id="span_usuario"> Funcionario, Gerente, Colaborador ou Administrador </span> <br>
+                    </p>
 
                     <p class="subtitulo">CEP</p>
                     <input id="input_CEP" type="text">
-
-                    <p class="subtitulo">RUA</p>
-                    <input id="input_RUA" type="text">
-
-                    <p class="subtitulo">Bairro</p>
-                    <input id="input_Bairro" type="text">
-
-                    <p class="subtitulo">Cidade</p>
-                    <input id="input_Cidade" type="text">
-                    
-                    <p class="subtitulo">UF</p>
-                    <select name="" id="select_UF">
-                        <option value=""select disabled></option>
-                        <option value="1">AC</option>
-                        <option value="2">AL</option>
-                        <option value="3">AP</option>
-                        <option value="4">AM</option>
-                        <option value="5">BA</option>
-                        <option value="6">CE</option>
-                        <option value="7">ES</option>
-                        <option value="8">GO</option>
-                        <option value="9">MA</option>
-                        <option value="10">MT</option>
-                        <option value="11">MS</option>
-                        <option value="12">MG</option>
-                        <option value="13">PA</option>
-                        <option value="14">PB</option>
-                        <option value="15">PR</option>
-                        <option value="16">PE</option>
-                        <option value="17">PI</option>
-                        <option value="18">RJ</option>
-                        <option value="19">RN</option>
-                        <option value="20">RS</option>
-                        <option value="21">RO</option>
-                        <option value="22">RR</option>
-                        <option value="23">SC</option>
-                        <option value="24">SP</option>
-                        <option value="25">SE</option>
-                        <option value="26">TO</option>
-                        <option value="27">DF</option>
-                    </select>
                 </div>
-                
+
                 <div class="filho">
-                    <p class="subtitulo">CNPJ</p>
+                    <p class="subtitulo">CNPJ:</p>
                     <input id="input_CNPJ" type="text">
 
-                    <p class="subtitulo">Telefone 1</p>
+                    <p class="subtitulo">Telefone 1:</p>
                     <input id="input_numero_1" type="text">
 
-                    <p class="subtitulo">Telefone 2 (opcional)</p>
+                    <p class="subtitulo">Telefone 2 (opcional):</p>
                     <input id="input_numero_2" type="text"> <br>
 
-                    <p class="subtitulo">Senha</p>
+                    <p class="subtitulo">Senha:</p>
                     <input id="input_senha" type="password" oninput="anaSenha()">
-                        <p>
-                            <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
-                            <span id="span_num">Utilize números</span> <br>
-                            <span id="span_caracEsp">Utilize caractéres especiais: <br>
-                            <span style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
-                        </p>
-                    
-                    
+                    <p>
+                        <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
+                        <span id="span_num">Utilize números</span> <br>
+                        <span id="span_caracEsp">Utilize caractéres especiais: <br>
+                            <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                    </p>
 
-                    <p class="subtitulo">Confirme sua senha</p>
+
+
+                    <p class="subtitulo">Confirme sua senha:</p>
                     <input id="input_senha_confirmacao" type="password" oninput="senhaConf()"> <br> <br>
-                    <button class="button" onclick="cadastrar()">Cadastre-se</button>
+                    <button class="button-lc" onclick="cadastrar()">Cadastre-se</button>
 
                     <p class="link">Já tem conta? &nbsp<a href="login.html">Faça o login</a></p>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
 
 </body>
 
 <script>
-    var veriEmail = '';
+    var veriEmail1 = '';
+    var veriEmail2 = true;
     var veriSenha = '';
 
     var nome = '';
-    var email = '';
+    var email1 = '';
+    var email2 = '';
     var senha = '';
     var senha_confirmacao;
 
-    function anaEmail(){
-        email = input_email.value;
-        var emailMin = email.toLowerCase();
+    function anaEmail1() {
+        var email1 = input_email1.value;
+        var emailMin1 = email1.toLowerCase();
 
-        if (emailMin.includes('@')) {
-            if (emailMin.endsWith('.com')) {
-                span_email.innerHTML = ` Email válido`;
-                span_email.style.color = `green`;
-                veriEmail = true;
-            }
+            if (emailMin1.includes('@') && emailMin1.endsWith('.com')) {
+                span_email1.innerHTML = ` Email válido`;
+                span_email1.style.color = `green`;
+                veriEmail1 = true;
+            } else {
+            span_email1.innerHTML = ` Email inválido`;
+            span_email1.style.color = `red`;
+        }
+    }
+    
+    function anaEmail2() {
+        var email2 = input_email2.value;
+        var emailMin2 = email2.toLowerCase();
 
-        }else {
-            span_email.innerHTML = ` Email inválido`;
-            span_email.style.color = `red`;
+        if (emailMin2 == '') {
+            span_email2.innerHTML = ''
+            veriEmail2 = true
+        } else if (emailMin2.includes('@') && emailMin2.endsWith('.com')) {
+                span_email2.innerHTML = ` Email válido`;
+                span_email2.style.color = `green`;
+                veriEmail2 = true;
+            } else {
+            span_email2.innerHTML = ` Email inválido`;
+            span_email2.style.color = `red`;
+            veriEmail2 = false
         }
     }
 
-    function anaSenha(){
+
+    function anaSenha() {
         senha = input_senha.value;
-        
+
         if (senha.length >= 8) {
             span_tamanho.style.color = `green`;
             veriSenha = true;
 
-        }else {
+        } else {
             span_tamanho.style.color = `red`;
             veriSenha = false;
         }
-            
+
         if (senha.includes(0) || senha.includes(1) || senha.includes(2) || senha.includes(3) || senha.includes(4)
             || senha.includes(5) || senha.includes(6) || senha.includes(7) || senha.includes(8) || senha.includes(9)) {
-                span_num.style.color = `green`;
-                veriSenha = true;
+            span_num.style.color = `green`;
+            veriSenha = true;
 
-        }else {
+        } else {
             span_num.style.color = `red`;
             veriSenha = false;
         }
 
-        if (senha.includes('!') || senha.includes('%') || senha.includes('*') || senha.includes('.') 
+        if (senha.includes('!') || senha.includes('%') || senha.includes('*') || senha.includes('.')
             || senha.includes('&') || senha.includes('#') || senha.includes('$')) {
-                 span_caracEsp.style.color = `green`;
-                 veriSenha = true;
+            span_caracEsp.style.color = `green`;
+            veriSenha = true;
 
-        }else {
+        } else {
             span_caracEsp.style.color = `red`;
             veriSenha = false;
         }
     }
 
-    function senhaConf(){
+    function senhaConf() {
         senha_confirmacao = input_senha_confirmacao.value;
 
     }
 
-    function cadastrar(){
-        if (veriEmail == false) {
-            alert('O email inserido é inválido')
-
-        }else if (veriSenha == false) {
+    function cadastrar() {
+        if (veriEmail1 == false) {
+            alert('O email 1 inserido é inválido')
+        } else if(veriEmail2 == false){
+            alert('O email 2 inserido é inválido')
+        } else if (veriSenha == false) {
             alert('A senha inserida é inválido')
-
-        }else if (senha != senha_confirmacao){
-            alert (`A senha da confirmação tem que ser igual a senha original`)
-
-        }else {
+        } else if (senha != senha_confirmacao) {
+            alert(`A senha da confirmação tem que ser igual a senha original`)
+        } else {
             alert('Usuário cadastrado com sucesso!')
             var nome_responsavel = input_nome_responsavel.value
             var nome_empresa = input_nome_empresa.value
-            var email = input_email.value
+            var email1 = input_email1.value
+            var email2 = input_email2.value
             var CEP = input_CEP.value
-            var RUA = input_RUA.value
-            var Bairro = input_Bairro.value
-            var Cidade = input_Cidade.value
-            var UF = select_UF.value
             var CNPJ = input_CNPJ.value
             var telefone_1 = input_numero_1.value
             var telefone_2 = input_numero_2.value
@@ -197,4 +181,5 @@
 
     }
 </script>
+
 </html>

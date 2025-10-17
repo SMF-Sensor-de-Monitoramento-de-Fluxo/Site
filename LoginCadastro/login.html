@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/estilo.css">
+    <link rel="stylesheet" href="../home/style.css">
     <link rel="stylesheet" href="cadastro.html">
 </head>
 <body class="body-cadastro">
     <h1>Vamos realizar seu cadastro?</h1>
     <div class="caixa-login">
         <h2>Login</h2>
-        <div class="filho_login">
+    
+        <div class="filhol_login">
             <p class="subtitulo">Digite seu email:</p>
             <input id="input_email_or_cnpj" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
 
@@ -20,7 +21,7 @@
             <input id="input_senha" type="password" placeholder="********" class="input input"> <br> <br>
             <p class="link"><a href="">Lembrar de mim</a></p>
             <p class="link"><a href="">Esqueci minha senha</a></p>
-            <button onclick="entrar()" class="button">Entrar</button> <br>
+            <button onclick="entrar()" class="button-lc">Entrar</button> <br>
             <p class="link">Novo por aqui? &nbsp <a href="cadastro.html"> Crie uma conta</a></p>
         </div>
 
@@ -43,6 +44,10 @@
             window.location.href = '../home/home.html'
         } else {
             alert(mensagem)
+        }
+        
+        if (login == 'nascimento.varejo@outlook.com' && senha == 'luana2025') {
+            window.location.href = '../Dashboard/dashboard.html'
         }
     }
 </script>

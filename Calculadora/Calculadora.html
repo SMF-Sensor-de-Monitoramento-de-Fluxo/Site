@@ -68,15 +68,14 @@
     }
 
     .header .container {
-      max-width: 1200px;
-      margin: 0 auto;
+      margin: 0.5vh 4vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo-header img {
-      height: 50px;
+      height: 8vh;
       width: auto;
       display: block;
       margin: auto;
@@ -99,21 +98,39 @@
     .navbar li {
       color: white;
       cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+      font-size: 2vh;
       font-weight: 500;
+      transition: 300ms;
+    }
+
+    .navbar li:hover {
+    transition: 200ms;
+    font-weight: 600;
+    scale: 1.05;
     }
 
     .button-login {
-      background-color: #00bff3;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    background-color: #08a4bd;
+    color: antiquewhite;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 500ms;
+    font-family: "Montserrat", sans-serif;
+    font-weight:400;
+    letter-spacing: 2px;
+}
 
     .button-login:hover {
-      background-color: #0056b3;
+      background-color: #005975;
+      border: solid 2px;
+      border-color: antiquewhite;
+      color: none;
+      scale: 1.05;
+      transition: 100ms;
+      font-weight: 700;
     }
 
     a {
@@ -135,7 +152,7 @@
             <li><a href="../home/sobrenos.html">Sobre nós</a></li>
             <li><a href="Calculadora.html"><span style="color:#08a4bd;">Simulador financeiro</span></a></li>
             <li><a href="../home/contato.html">Entre em contato</a></li>
-            <button class="button-login" onclick="">Login</button>
+            <button class="button-login" onclick="irLogin()">Login</button>
           </ul>
         </div>
       </div>
@@ -211,4 +228,8 @@
         `;
     }
   }
+        function irLogin() {
+            window.location.href = '../LoginCadastro/login.html'
+        }
+  
 </script>

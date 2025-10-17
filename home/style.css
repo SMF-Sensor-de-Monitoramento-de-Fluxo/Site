@@ -1,32 +1,33 @@
-/* == fonts == */
+/*----- FONTS -----*/
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
+
+/* -----INICIO CSS HOME -----*/
 html{
-min-height: 100vh;
+    min-height: 100vh;
 }
 
 body {
-margin: 0;
-font-family: "Lexend", sans-serif;
-font-weight: 300;
-background-image: url('imagens/mercado_fundo.PNG');
-background-size:cover;
-background-attachment: fixed;
-background-position: center;
-min-height: 100%;
+    margin: 0;
+    font-family: "Lexend", sans-serif;
+    font-weight: 300;
+    background-image: url('imagens/mercado_fundo.PNG');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
-
-
-@media (max-width:1150px){
-    .topicos-funciona{
+@media (max-width:1150px) {
+    .topicos-funciona {
         flex-direction: column;
     }
+
 }
 
-footer {
+.footer {
     bottom: 0;
     width: 100%;
     background-color: #333;
@@ -35,17 +36,15 @@ footer {
     padding: 4vh 0;
     height: 10vh;
     margin: 0;
-    margin-top: 20vh;
+    margin-top: 5vh;
 }
 
-/* ========== navbar ============ */
-
-
+/*----- NAVBAR -----*/
 header {
     background-color: #005a75e5;
     padding: 0.8vw 0;
     top: 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -53,7 +52,7 @@ header {
 }
 
 header .container {
-    margin: 0.5vw 4vw;
+    margin: 0.5vh 4vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,21 +73,21 @@ header .container {
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 2vw;
+    gap: 30px;
     align-items: center;
     margin: 0;
     padding: 0;
 }
 
 .navbar li {
-    color: #f1f3e8;
+    color: white;
     cursor: pointer;
     font-family: "Montserrat", sans-serif;
     font-size: 2vh;
     font-weight: 500;
     transition: 300ms;
 }
- 
+
 .navbar li:hover {
     transition: 200ms;
     font-weight: 600;
@@ -97,29 +96,28 @@ header .container {
 
 .button-login {
     background-color: #08a4bd;
-    color: #f1f3e8;
+    color: antiquewhite;
     border: none;
-    border-radius: .5vh;
-    padding: .6vw 1vw;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: 100ms;
     font-family: "Montserrat", sans-serif;
-    font-weight:400;
-    letter-spacing: 2.5px;
-    font-size: .7vw;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 .button-login:hover {
     background-color: #005975;
     border: solid 2px;
-    border-color: #f1f3e8;
+    border-color: antiquewhite;
     color: none;
     scale: 1.05;
     transition: 100ms;
     font-weight: 700;
 }
 
-/* ============ Container 1 ============ */
+/* -----CONTAINER 1----- */
 .container-meio1 {
     padding: 18.5%;
     text-shadow: 2px 3px 2px #00000065;
@@ -127,36 +125,35 @@ header .container {
 }
 
 .titulo-meio1 {
-    color: #f1f3e8;
+    color: white;
     font-size: 3.3vh;
     font-weight: 800;
-    text-shadow: 2px 3px 2px #0000006e;
+    text-shadow: 2px 3px 2px #000;
     font-family: "Montserrat", sans-serif;
+
 }
 
 .texto-meio1 {
-    color: #f1f3e8;
+    color: white;
     font-size: 2.7vh;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
+
 }
 
-/* ============ Container 2 ============ */
-
-
-
+/* -----CONTAINER 2----- */
 .container-meio2 {
-    background-color: #f1f3e8;
-    padding: 4% 8% ;
+    background-color: #F5F5DC;
+    padding: 4% 8%;
     max-width: 80vw;
     margin: 0 auto;
     border-radius: 30px;
-    margin-top: 0px; 
-    margin-bottom: 2%; 
+    margin-top: 0px;
+    margin-bottom: 2%;
 }
 
 .titulo-funciona {
-    color: #005975;
+    color:#005975;
     font-size: 5vh;
     font-weight: 800;
     text-align: center;
@@ -165,22 +162,22 @@ header .container {
 
 .topicos-funciona {
     display: flex;
-    gap: 20px; 
+    gap: 20px;
     margin-top: 20px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .topico {
-    flex: 1; 
-    min-width: 250px; 
-    background-color: rgba(255, 255, 255, 0.05); 
+    flex: 1;
+    min-width: 250px;
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 1.5vh;
-    border-radius: 0.5vh;
+    border-radius: 5px;
 }
 
 .topico h3 {
-    margin-bottom: 1vh;
+    margin-bottom: 8px;
     font-size: 2.5vh;
     font-weight: bold;
     color: #005975;
@@ -193,41 +190,40 @@ header .container {
     color: #000;
 }
 
-.imagem-meio2{
+.imagem-meio2 {
     display: flex;
     justify-content: center;
     margin: 10px 0;
 }
 
-.imagem-meio2 img{
+.imagem-meio2 img {
     width: 17vh;
     height: auto;
     display: block;
 }
 
-/* =============== Container 3 ============== */
-
+/* -----CONTAINER 3----- */
 .container-meio3 {
     background-color: #005975;
     padding: 3% 8% 5% 8%;
     width: 80vw;
     border-radius: 3vh;
     margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-top: 0px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
 }
 
 .titulo-meio3 h3 {
-    color: #f1f3e8;
+    color: white;
     font-size: 4vh;
     font-weight: 700;
     margin-bottom: 6vh;
     display: flex;
 }
 
-.texto-meio3{
+.texto-meio3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -236,22 +232,22 @@ header .container {
 .texto-meio3 ul {
     list-style: disc;
     padding-left: 2vw;
-    color: #f1f3e8;
+    color: white;
     font-size: 2.7vh;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
 }
 
-.texto-meio3 img{
+.texto-meio3 img {
     height: 40vh;
     border-radius: 2vh;
 }
 
 
+/* ----- FINAL CSS HOME ----- */
 
-/* =========== pag.Sobre Nós ========== */
-
+/*----- INICIO CSS SOBRE NÓS ----- */
 .titulo-sobre-nos{
     padding: 15.6% 0 0 0;
 }
@@ -271,15 +267,14 @@ header .container {
     margin: 2vh auto 18vh auto;
     padding: 2.5vw 3vw;
     border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    font-family: "Poppins", sans-serif;
     color: #333;
     background-color: #f1f3e8;
 }
 
-.container-nos1 h3{
+.container-nos1 h3 {
     text-align: center;
     font-size: 1.8vw;
     color: #005975;
@@ -312,7 +307,6 @@ header .container {
     gap: 35px;
     margin: 30px 0;
     width: 19vw;
-
 }
 
 .texto-fotos img{
@@ -333,6 +327,27 @@ header .container {
     color: #005975;
 }
 
+.texto-fotos img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+}
+
+.texto-fotos p {
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 h1 {
     font-size: 3.6vh;
     color: #005975;
@@ -346,15 +361,9 @@ h2 {
     text-align: center;
     margin-bottom: 30px;
 }
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
+/*----- FINAL CSS SOBRE NÓS ----- */
 
 /*----- INICIO CSS CONTATO ----- */
-
 .titulo-contato {
     margin-top: 25vh;
     margin-bottom: 10vh;
@@ -458,12 +467,13 @@ button[type="submit"]:hover {
     color: rgb(32, 32, 32);
     font-size: 15px;
 }
+
 /*----- FINAL CSS CONTATO ----- */
 
 /*----- INICIO CSS CADASTRO ----- */
 .body-cadastro h1 {
     font-size: 33px;
-    color: #f1f3e8;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 15px;
 }
@@ -493,9 +503,9 @@ button[type="submit"]:hover {
 
 .caixa-cadastro {
     width: 70%;
-    border: 20px solid #f1f3e8;
+    border: 20px solid #ffffff;
     border-radius: 10px;
-    background-color: #f1f3e8;
+    background-color: #ffffff;
     display: block;
     font-size: 13px;
     color: #000000;
@@ -528,7 +538,6 @@ input {
     justify-self: center;
     align-items: center;
     justify-content: center;
-    background-color: #f1f3e8;
 }
 
 #span_usuario {
@@ -568,9 +577,9 @@ input::placeholder {
 /*----- INICIO CSS LOGIN ----- */
 .caixa-login {
     width: 40%;
-    border: 20px solid #f1f3e8;
+    border: 20px solid #ffffff;
     border-radius: 10px;
-    background-color: #f1f3e8;
+    background-color: #ffffff;
     display: block;
     justify-self: center;
     align-self: center;
@@ -611,3 +620,4 @@ input::placeholder {
     justify-self: center;
 }
 /*----- FINAL CSS LOGIN ----- */
+
