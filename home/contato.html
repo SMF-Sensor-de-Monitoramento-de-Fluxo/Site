@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="../Assets/SMF-Icon.png" type="image/x-icon">
 </head>
+<style>
+    html{background-image: url('imagens/mercado_fundo.PNG');}
+</style>
 <body>
 <header>
     <div class="container">
@@ -19,7 +22,7 @@
                 <li> <a href="sobrenos.html">Sobre nós</a></li>
                 <li> <a href="../Calculadora/Calculadora.html">Simulador financeiro </a> </li>
                 <li> <a href="contato.html"><span style="color:#08a4bd;">Entre em contato</span></a></li>
-                <button class="button-login" onclick="irLogin()">Login</button>
+                <a href="../LoginCadastro/login.html"><button class="button-login">Login</button></a>
             </ul>
         </div>
     </div>
@@ -46,11 +49,10 @@
         <button type="submit">Enviar</button>
     </form>
 </div>
-</div>
 </body>
+<footer>
+    <p>Contato (SMF@OUTLOOK.COM, 1194111-1106(WhatsApp)).</p>
+    <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
+    <p>© 2025 SMF. Todos os direitos reservados.</p>
+</footer>
 </html>
-<script>
-        function irLogin() {
-            window.location.href = '../LoginCadastro/login.html'
-        }
-</script>
