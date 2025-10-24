@@ -629,12 +629,12 @@ input::placeholder {
     margin-top: 20px;
 }
 
-.link a {
+.link a, .caixa-checkbox {
     color: #08a4bd;
     transition: all 0.5s ease;
 }
 
-.link a:hover {
+.link a:hover, .caixa-checkbox:hover {
     font-weight: 800;
     transform: scale(1);
 }
