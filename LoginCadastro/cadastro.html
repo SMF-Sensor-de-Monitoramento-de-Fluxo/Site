@@ -18,53 +18,80 @@
             <h2>CADASTRAR</h2>
             <div class="pai">
                 <div class="filho">
-                    <p class="subtitulo">Nome Completo:</p>
+                    <p class="subtitulo">Nome Completo: *</p>
                     <input id="input_nome_responsavel" type="text">
 
-                    <p class="subtitulo">Nome da sua empresa:</p>
+                    <p class="subtitulo">Nome Empresa: *</p>
                     <input id="input_nome_empresa" type="text">
 
-                    <p class="subtitulo">E-mail 1:</p>
+                    <p class="subtitulo">E-mail 1: *</p>
                     <input id="input_email1" type="text" oninput="anaEmail1()"><br>
+                    <select id="select_tipoEmail1">
+                        <option value="#" selected disabled>Selecione um tipo de E-mail</option>
+                        <option>Pessoal</option>
+                        <option>Corporativo</option>
+                    </select> &nbsp
                     <span id="span_email1"></span>
 
                     <p class="subtitulo">E-mail 2 (opcional):</p>
                     <input id="input_email2" type="text" oninput="anaEmail2()"><br>
+                    <select id="select_tipoEmail2">
+                        <option value="#" selected disabled>Selecione um tipo de E-mail</option>
+                        <option>Pessoal</option>
+                        <option>Corporativo</option>
+                    </select> &nbsp
                     <span id="span_email2"></span>
 
-                    <p class="subtitulo"> Cargo do Usuário:</p>
-                    <input type="text" id="input_usuario">
-                    <p>
-                        <span id="span_usuario"> Funcionario, Gerente, Colaborador ou Administrador </span> <br>
-                    </p>
+                    <p class="subtitulo"> Cargo do Usuário: *</p>
+                    <select id="select_cargo">
+                        <option value="#" selected disabled>Selecione uma opção</option>
+                        <option>Funcionário</option>
+                        <option>Gerente</option>
+                        <option>Colaborador</option>
+                        <option>Administrador</option>
+                    </select>
 
-                    <p class="subtitulo">CEP</p>
-                    <input id="input_CEP" type="text">
+                    <p class="subtitulo">CEP: *</p>
+                    <input id="input_CEP" type="number" placeholder="Digite sem o traço" oninput="anaCep()">
+                    <span id="span_cep"></span>
                 </div>
 
                 <div class="filho">
-                    <p class="subtitulo">CNPJ:</p>
-                    <input id="input_CNPJ" type="text">
+                    <p class="subtitulo">CNPJ: *</p>
+                    <input id="input_CNPJ" type="number" placeholder="Digite sem os pontos e traço" oninput="anaCnpj()">
+                    <span id="span_cnpj"></span>
 
-                    <p class="subtitulo">Telefone 1:</p>
-                    <input id="input_numero_1" type="text">
+                    <p class="subtitulo">Telefone 1: *</p>
+                    <input id="input_tel_1" type="number" placeholder="Digite com o DDD e sem espaço e traço" oninput="anaTel1()">
+                    <select id="select_tipoTel1">
+                        <option value="#" selected disabled>Selecione um tipo de telefone</option>
+                        <option>Pessoal</option>
+                        <option>Corporativo</option>
+                    </select> &nbsp
+                    <span id="span_tel1"></span>
 
                     <p class="subtitulo">Telefone 2 (opcional):</p>
-                    <input id="input_numero_2" type="text"> <br>
+                    <input id="input_tel_2" type="number" placeholder="Digite com o DDD e sem espaço e traço" oninput="anaTel2()"> <br>
+                    <select id="select_tipoTel2">
+                        <option value="#" selected disabled>Selecione um tipo de telefone</option>
+                        <option>Pessoal</option>
+                        <option>Corporativo</option>
+                    </select> &nbsp
+                    <span id="span_tel2"></span>
 
-                    <p class="subtitulo">Senha:</p>
+                    <p class="subtitulo">Senha: *</p>
                     <input id="input_senha" type="password" oninput="anaSenha()">
                     <p>
                         <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
                         <span id="span_num">Utilize números</span> <br>
                         <span id="span_caracEsp">Utilize caractéres especiais: <br>
-                            <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                        <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
                     </p>
 
-
-
-                    <p class="subtitulo">Confirme sua senha:</p>
+                    <p class="subtitulo">Confirme sua senha: *</p>
                     <input id="input_senha_confirmacao" type="password" oninput="senhaConf()"> <br> <br>
+                    <span id="span_senhaConfirm"></span>
+
                     <button class="button-lc" onclick="cadastrar()">Cadastre-se</button>
 
                     <p class="link">Já tem conta? &nbsp<a href="login.html">Faça o login</a></p>
@@ -80,108 +107,240 @@
 </footer>
 </html>
 <script>
-    var veriEmail1 = '';
-    var veriEmail2 = true;
-    var veriSenha = '';
-
-    var nome = '';
-    var email1 = '';
+    // Criando variávei globais
+    var veriEmail1 = false;
     var email2 = '';
+    var veriEmail2 = false;
+    var veriCep = false;
+    var veriCnpj = false;
+    var veriTel1 = false;
+    var telefone_2 = '';
+    var veriTel2 = false;
     var senha = '';
-    var senha_confirmacao;
+    var veriSenha = false;
+    var veriSenhaConfirmacao = false;
 
-    function anaEmail1() {
+    function anaEmail1() { // Analizando o email 1 enquanto o usuário digita
         var email1 = input_email1.value;
         var emailMin1 = email1.toLowerCase();
 
-            if (emailMin1.includes('@') && emailMin1.endsWith('.com')) {
-                span_email1.innerHTML = ` Email válido`;
-                span_email1.style.color = `green`;
-                veriEmail1 = true;
-            } else {
+        if (emailMin1.includes('@') && emailMin1.endsWith('.com')) { // Verificando se o email 1 possui @ e .com
+            span_email1.innerHTML = ` Email válido`;
+            span_email1.style.color = `green`;
+            veriEmail1 = true;
+
+        } else {
             span_email1.innerHTML = ` Email inválido`;
             span_email1.style.color = `red`;
+            veriEmail1 = false
         }
     }
     
-    function anaEmail2() {
-        var email2 = input_email2.value;
+    function anaEmail2() { // Analizando o email 2 enquanto o usuário digita
+        email2 = input_email2.value;
         var emailMin2 = email2.toLowerCase();
 
-        if (emailMin2 == '') {
-            span_email2.innerHTML = ''
-            veriEmail2 = true
-        } else if (emailMin2.includes('@') && emailMin2.endsWith('.com')) {
-                span_email2.innerHTML = ` Email válido`;
-                span_email2.style.color = `green`;
-                veriEmail2 = true;
-            } else {
+        if (emailMin2.includes('@') && emailMin2.endsWith('.com')) { // Verificando se o email 2 possui @ e .com
+            span_email2.innerHTML = ` Email válido`;
+            span_email2.style.color = `green`;
+            veriEmail2 = true;
+
+        } else if (emailMin2 == '') { // Verificando se o email 2, que é opcional, foi preenchido
+            span_email2.innerHTML = ``;
+
+        } else {
             span_email2.innerHTML = ` Email inválido`;
             span_email2.style.color = `red`;
-            veriEmail2 = false
+            veriEmail2 = false;
         }
     }
 
+    function anaCep() { // Analizando o CEP enquanto o usuário digita
+        var cep = input_CEP.value;
 
-    function anaSenha() {
+        if (cep.length == 8) { // Verificando se o CEP possui 8 dígitos
+            span_cep.innerHTML = ' CEP válido';
+            span_cep.style.color = `green`;
+            veriCep = true;
+
+        } else {
+            span_cep.innerHTML = ' CEP inválido';
+            span_cep.style.color = `red`;
+            veriCep = false;
+        }
+    }
+
+    function anaCnpj() { // Analizando o CNPJ enquanto o usuário digita
+        var cnpj = input_CNPJ.value;
+
+        if (cnpj.length == 14) { // Verificando se o CNPJ possui 14 dígitos
+            span_cnpj.innerHTML = ' CNPJ válido';
+            span_cnpj.style.color = `green`;
+            veriCnpj = true;
+
+        } else {
+            span_cnpj.innerHTML = ' CNPJ inválido';
+            span_cnpj.style.color = `red`;
+            veriCnpj = false;
+        }
+    }
+
+    function anaTel1() { // Analizando o telefone 1 enquanto o usuário digita
+        var telefone_1 = input_tel_1.value;
+
+        if (telefone_1.length == 11) { // Verificando se o telefone 1 possui 11 dígitos
+            span_tel1.innerHTML = ' Telefone válido';
+            span_tel1.style.color = `green`;
+            veriTel1 = true;
+
+        } else {
+            span_tel1.innerHTML = ' Telefone inválido';
+            span_tel1.style.color = `red`;
+            veriTel1 = false;
+        }
+    }
+
+    function anaTel2() { // Analizando o telefone 2 enquanto o usuário digita
+        telefone_2 = input_tel_2.value;
+
+        if (telefone_2.length == 11) { // Verificando se o telefone 2 possui 11 dígitos
+            span_tel2.innerHTML = ' Telefone válido';
+            span_tel2.style.color = `green`;
+            veriTel2 = true;
+
+        } else if (telefone_2 == '') { // Verificando se o telefone 2, que é opcional, foi preenchido
+            span_tel2.innerHTML = ``;
+
+        } else {
+            span_tel2.innerHTML = ' Telefone inválido';
+            span_tel2.style.color = `red`;
+            veriTel2 = false;
+        }
+    }
+
+    function anaSenha() { // Analizando a senha enquanto o usuário digita
         senha = input_senha.value;
+        var veriTam = false;
+        var veriNum = false;
+        var veriCarc = false
 
-        if (senha.length >= 8) {
+        if (senha.length >= 8) { // Verificando se a senha possui mais ou 8 dígitos
             span_tamanho.style.color = `green`;
-            veriSenha = true;
+            veriTam = true;
 
         } else {
             span_tamanho.style.color = `red`;
-            veriSenha = false;
+            veriTam = false;
         }
 
         if (senha.includes(0) || senha.includes(1) || senha.includes(2) || senha.includes(3) || senha.includes(4)
-            || senha.includes(5) || senha.includes(6) || senha.includes(7) || senha.includes(8) || senha.includes(9)) {
+            || senha.includes(5) || senha.includes(6) || senha.includes(7) || senha.includes(8) || senha.includes(9)) { // Verificando se a senha possui números
             span_num.style.color = `green`;
-            veriSenha = true;
+            veriNum = true;
 
         } else {
             span_num.style.color = `red`;
-            veriSenha = false;
+            veriNum = false;
         }
 
         if (senha.includes('!') || senha.includes('%') || senha.includes('*') || senha.includes('.')
-            || senha.includes('&') || senha.includes('#') || senha.includes('$')) {
+            || senha.includes('&') || senha.includes('#') || senha.includes('$')) { // Verificando se a senha possui caractéres especiais
             span_caracEsp.style.color = `green`;
-            veriSenha = true;
+            veriCarc = true;
 
         } else {
             span_caracEsp.style.color = `red`;
-            veriSenha = false;
+            veriCarc = false;
+        }
+
+        if (veriTam == false) { // Verificando se o tamanho esta maior ou igual a 8 dígitos
+            
+        } else if (veriNum == false) { // Verificando se possui pelo menos 1 número
+            
+        } else if (veriCarc == false){ // Verificando se possui pelo menos 1caractér especial
+
+        }else { //Se a senha possui mais de 8 dígitos, possuir número e possuir caractér especial, a senha é válida
+            veriSenha = true;
         }
     }
 
-    function senhaConf() {
-        senha_confirmacao = input_senha_confirmacao.value;
+    function senhaConf() { // Analizando a confirmação de senha enquanto o usuário digita
+        var senha_confirmacao = input_senha_confirmacao.value;
 
+        if (senha_confirmacao == senha) { // Verificando se a confirmação de senha é igual a senha
+            span_senhaConfirm.innerHTML = ``;
+            veriSenhaConfirmacao = true;
+            
+        } else {
+            span_senhaConfirm.innerHTML = ` Senha incompatível`;
+            span_senhaConfirm.style.color = `red`;
+            veriSenhaConfirmacao = false;
+            
+        }
     }
 
-    function cadastrar() {
-        if (veriEmail1 == false) {
-            alert('O email 1 inserido é inválido')
-        } else if(veriEmail2 == false){
-            alert('O email 2 inserido é inválido')
-        } else if (veriSenha == false) {
-            alert('A senha inserida é inválido')
-        } else if (senha != senha_confirmacao) {
-            alert(`A senha da confirmação tem que ser igual a senha original`)
-        } else {
+    function cadastrar() { // Cadastrando o usuário
+        var nome_responsavel = input_nome_responsavel.value;
+        var nome_empresa = input_nome_empresa.value;
+        var tipoEmail1 = select_tipoEmail1.value;
+        var tipoEmail2 = select_tipoEmail2.value;
+        var cargo = select_cargo.value;
+        var tipoTel1 = select_tipoTel1.value;
+        var tipoTel2 = select_tipoTel2.value;
+
+        if (input_nome_responsavel.value == '' || // Verificando se as inputs estão vazias
+            input_nome_empresa.value == '' ||
+            input_email1.value == '' ||
+            input_CEP.value == '' ||
+            input_CNPJ.value == '' ||
+            input_tel_1.value == '' ||
+            input_senha.value == '' ||
+            input_senha_confirmacao.value == ''
+        ) {
+            alert('Preencha todos os campos obrigatórios');
+            
+        } else if (veriEmail1 == false) { // Verificando se o email 1 foi digitado com @ e .com
+            alert('O E-mail 1 inserido é inválido');
+
+        } else if (tipoEmail1 == '#') { // Verificando se o tipo do email 1 foi selecionado
+            alert('Selecione o tipo do E-mail 1');
+
+        } else if (email2 != '' && veriEmail2 == false) { // Verificando se o email 2 foi digitado e se sim, verifica se o email 2 foi digitado com @ e .com
+            alert('O E-mail 2 inserido é inválido');
+            
+        } else if (email2 != '' && tipoEmail2 == '#') { // Verificando se o email 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
+            alert('Selecione o tipo do E-mail 2');
+
+        } else if (cargo == '#') { // Verificando se o cargo foi selecionado
+            alert('Selecione um cargo');
+
+        } else if (veriCep == false) { // Verificando se o cep é válido, sendo igual a 8 números
+            alert('O CEP inserido é inválido');
+            
+        } else if (veriCnpj == false) { // Verificando se o cnpj é válido, sendo igual a 14 números
+            alert('O CNPJ inserido é inválido');
+
+        } else if (veriTel1 == false) { // Verificando se o telefone 1 é válido, sendo igual a 11 números
+            alert('O Telefone 1 inserido é inválido');
+
+        } else if (tipoTel1 == '#') { // Verificando se o tipo do telefone 1 foi selecionado
+            alert('Selecione o tipo do telefone 1');
+
+        } else if (telefone_2 != '' && veriTel2 == false) { // Verificando se o telefone 2 foi digitado e se sim, verifica se o telefone 2 é válido, sendo igual a 11 números
+             alert('O Telefone 2 inserido é inválido');
+            
+        } else if (telefone_2 != '' && tipoTel2 == '#') { // Verificando se o telefone 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
+            alert('Selecione o tipo do telefone 2'); 
+        
+        } else if (veriSenha == false) { // Verificando se a senha inclui todos as restrições
+            alert('A senha inserida é inválida');
+
+        } else if (veriSenhaConfirmacao == false) { // Verificando se a senha é igual a senha de confirmação
+            alert('A senha da confirmação deve ser igual a senha definida');
+
+        } else { // Cadastrando o usuário caso as verificações anteriores derem falso e redirecionando ele para a tela de login
             alert('Usuário cadastrado com sucesso!')
-            var nome_responsavel = input_nome_responsavel.value
-            var nome_empresa = input_nome_empresa.value
-            var email1 = input_email1.value
-            var email2 = input_email2.value
-            var CEP = input_CEP.value
-            var CNPJ = input_CNPJ.value
-            var telefone_1 = input_numero_1.value
-            var telefone_2 = input_numero_2.value
-            var senha = input_senha.value
-            var senha_confirmacao = input_senha_confirmacao.value
+            window.location = "login.html"
         }
 
     }
