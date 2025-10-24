@@ -20,9 +20,16 @@
             <input id="input_email_or_cnpj" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
 
             <p class="subtitulo">Digite sua senha:</p> 
-            <input id="input_senha" type="password" placeholder="********" class="input input"> <br> <br>
-            <p class="link"><a href="">Lembrar de mim</a></p>
-            <p class="link"><a href="">Esqueci minha senha</a></p>
+            <input id="input_senha" type="password" placeholder="********" class="input input"> <br>
+            <div class="links">
+                <div class="caixa-checkbox">
+                    <p class="link">Lembrar de mim</p> 
+                    <input class="caixa-checkagem" type="checkbox">
+                </div>
+                <div class="caixa-link">
+                    <p class="link"><a href="">Esqueci minha senha</a></p>
+                </div>
+            </div>
             <button onclick="entrar()" class="button-lc">Entrar</button> <br>
             <p class="link">Novo por aqui? &nbsp <a href="cadastro.html"> Crie uma conta</a></p>
         </div>
@@ -41,9 +48,9 @@
         var senha = input_senha.value
         var mensagem = `Algo está errado nos campos: \n`;
 
-        if (login != 'brandao.juli@gmail.com') {
+        if (login != 'nascimento.varejo@outlook.com') {
             mensagem += 'Campo de Login Incorreto! \n'
-        } if (senha != 'PI2025') {
+        } if (senha != 'luana2025') {
             mensagem += 'Campo de Senha Incorreto! \n'
         }
 

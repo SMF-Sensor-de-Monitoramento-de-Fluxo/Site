@@ -124,7 +124,7 @@ input:hover{
     border-radius: 5px;
     padding: .5vw .9vw;
     cursor: pointer;
-    transition: 100ms;
+    transition: all 0.3s ease;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     letter-spacing: 2px;
@@ -133,11 +133,10 @@ input:hover{
 
 .button-login:hover {
     background-color: #005a75e5;
-    border: solid 2px;
+    border: solid 1px;
     border-color: antiquewhite;
     color: none;
     scale: 1.05;
-    transition: 100ms;
     font-weight: 700;
 }
 
@@ -630,6 +629,16 @@ input::placeholder {
     margin-top: 20px;
 }
 
+.link a {
+    color: #08a4bd;
+    transition: all 0.5s ease;
+}
+
+.link a:hover {
+    font-weight: 800;
+    transform: scale(1);
+}
+
 /*----- FINAL CSS CADASTRO ----- */
 
 /*----- INICIO CSS LOGIN ----- */
@@ -675,6 +684,45 @@ input::placeholder {
     margin-right: 2%;
     width: 80%;
     justify-self: center;
+    gap: 0;
 }
+
+.caixa-checkbox {
+    color: #08a4bd;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 2vw;
+    width: fit-content;
+    height: 100%;
+    padding: 0;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 6;
+    align-items: center;
+}
+
+.caixa-checkbox p, .caixa-checkbox input, .caixa-link p {
+    margin: 0;
+}
+
+.caixa-link {
+    width: fit-content;
+}
+
+/*----- CARACTERISTICAS DA CAIXA MARCADOR ----------*/
+
+.caixa-checkagem {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    
+}
+
 /*----- FINAL CSS LOGIN ----- */
 
