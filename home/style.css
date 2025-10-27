@@ -716,13 +716,7 @@ input::placeholder {
 
 /*----- CARACTERISTICAS DA CAIXA MARCADOR ----------*/
 
-.caixa-checkagem {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
-    
-}
+
 
 /*----- FINAL CSS LOGIN ----- */
 
