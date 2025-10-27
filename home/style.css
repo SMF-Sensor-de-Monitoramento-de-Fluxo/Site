@@ -148,10 +148,10 @@ input:hover{
 
 .titulo-meio1 {
     color: white;
-    font-size: 3.3vh;
+    font-size: 6.3vh;
     font-weight: 800;
     font-family: "Montserrat", sans-serif;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 
 }
 
@@ -160,7 +160,7 @@ input:hover{
     font-size: 2.7vh;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 
 }
 
@@ -205,12 +205,14 @@ input:hover{
     font-weight: bold;
     color: #005975;
     justify-self: center;
+    font-size: 30px;
 }
 
 .topico p {
     font-size: 2vh;
     margin: 0;
     color: #000;
+    text-align: center;
 }
 
 .imagem-meio2 {
@@ -387,17 +389,17 @@ h2 {
 .titulo-contato {
     margin-top: 25vh;
     margin-bottom: 10vh;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
 .titulo-contato h1{
     color: #ddf8fc;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
 .titulo-contato h2{
     color: #ddf8fc;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
 .form-container {
@@ -506,7 +508,7 @@ button[type="submit"]:hover {
     display: flex;
     width: 70%;
     justify-content: flex-start;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 .subtitulo-calc{
     color: #f1f3e8;
@@ -516,14 +518,15 @@ button[type="submit"]:hover {
     justify-content: flex-start;
     padding: 0 15%;
     text-align: left;
-    text-shadow: 5px 5px 7px black;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 .container_cards{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     width: 100%;
+
 }
 .card-input{
     display: block;
@@ -538,7 +541,6 @@ button[type="submit"]:hover {
     border-color: #ccc;
     margin: .8vw 3vw .5vw 3vw;
 }
-.card-input
 /*----- FINAL CSS SIMULADOR FINANCEIRO ----- */
 
 /*----- INICIO CSS CADASTRO ----- */

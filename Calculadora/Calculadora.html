@@ -29,7 +29,7 @@
   </header>
 
   <h1 class="titulo-calc">Calculadora Financeira</h1>
-  <h2 class="subtitulo-calc">Teste nossa calculadora financeira, que te da a possíbilidade de simular apenas com alguns dados, quanto a aplicação do nosso sistema é importante para seu negócio!</h2>
+  <h2 class="subtitulo-calc">Teste nossa calculadora financeira, que te da a possíbilidade de simular apenas com alguns dados o quanto a aplicação do nosso sistema é importante para seu negócio!</h2>
   <div class="container_cards">
     <div class="card-input">  
       <h2>Entradas básicas</h2>
@@ -116,10 +116,31 @@
 
       resultados.innerHTML = `
         <h2>Estimativa de Resultados</h2>
-        <p><b>Esse seria seu ticket médio por setor pré ajuste atual sem nossos sensores, ou seja, o quanto seu mercado está faturando por dia sem dados precisos sobre o fluxo:</b><br> <br>R$${ticketMedioSet.toFixed(2)}</p>
-        <p><b>Com nossos sensores instalados e nossa dashboard te mostrando em tempo real dados precisos e inteligentes sobre o fluxo esse seria seu novo ticket médio por setor pós ajuste (margem de lucro de 4% a 6% para varejistas): </b><br> <br> R$${newTicketMedioSet.toFixed(2)}</p>
-        <p><b>E por fim, esse seria sua nova estimativa de aumento do faturamento por mês com ajustes baseados nas informações analisadas:</b> <br><br>R$${aumento.toFixed(2)}</p>
-        <p><b>Esse é seu Payback, ou seja, em quanto tempo esse investimento retornaria para você!:</b> <br>${payback.toFixed(0)} dias</p>`;
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          ticket médio por setor pré ajuste<br>
+        <abbr title="Este é o seu faturamento diário sem dados precisos sobre o fluxo."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+         <br><br>R$${ticketMedioSet.toFixed(2)}
+         </p>
+        <p>
+        <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+        Novo ticket médio pós ajuste
+        <abbr title="Este é o seu novo ticket médio, já com nossos sensores capturando dados precisos e inteligentes, juntamente com nosso dashboard."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+        <br> <br> R$${newTicketMedioSet.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Nova estimativa de faturamento mensal 
+          <abbr title="Esta é a sua nova estimativa de faturamento mensal, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+          <br><br>R$${aumento.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Payback 
+          <abbr title="Este é o seu payback, ou seja, em quanto tempo esse investimento retornaria para você."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+          </span>
+          <br><br>${payback.toFixed(0)} dias</p>`;
     }
 }
 </script>
