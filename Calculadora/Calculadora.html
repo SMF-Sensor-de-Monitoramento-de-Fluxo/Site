@@ -71,7 +71,7 @@
       var ticketMedioSet = faturamento / numSetores;
       var ticketMedioSetMes = ticketMedioSet * 30;
       // Estimativa de vendas pós reajuste
-      // margem de lucro de 4% a 6% para atacadistas
+      // margem de lucro de 4% a 6% para varejistas
       var newFaturamento = faturamento * 1.197;
       var newTicketMedio = newFaturamento / fluxo;
       var newTicketMedioSet = newFaturamento / numSetores;
@@ -79,14 +79,30 @@
       // Valor estimado para fazer um reajuste
       var reajuste = 30 *(Math.sqrt(metragem)/2);
 
+      // CustoPessoal é o calculo das nossas horas de trabalho 6 pessoas x 160h de trabalho (4 semanas) x R$50 /h
+
+      var CustoPessoal = 6*160*50
+
+      // O custo do hardware seria o custo do sensor + jumper + mao de obra de instalação x numero de setores + o Arduino UNO R3
+
+      var CustoHardware = (15+10+80)*numSetores + 120 
+
+      // Valor hospedagem do site 
+
+      var Hospedagem = 300
+
+      // O investimento inicial seria o quanto nosso projeto custa para o cliente, que será pago somente uma vez.
+
+      var InvestimentoInicial = CustoPessoal + CustoHardware + Hospedagem + reajuste
+
       // Lift de vendas
       var aumento = newFaturamento - faturamento;
 
       // Payback
-      var payback = reajuste / aumento;
+      var payback = InvestimentoInicial /aumento
 
       // Mostra resultados
-      Object.assign(document.querySelector('.card-output').style,{
+      Object.assign(document.querySelector('.card-output').style,{ // atribuindo estilo para a div
         display: 'block',
         background: '#f1f3e8', 
         borderRadius: '30px',
@@ -95,15 +111,15 @@
         height: '100%',
         alignSelf: 'flex-start'
       });
-      document.querySelector(".container_cards").style.gap="2vw";
-      document.querySelector(".container_cards").style.justifyContent="space-evenly";
+      document.querySelector(".container_cards").style.gap="2vw";// atribuindo estilo para a div
+      document.querySelector(".container_cards").style.justifyContent="space-evenly";// atribuindo estilo para a div
 
       resultados.innerHTML = `
         <h2>Estimativa de Resultados</h2>
-        <p><b>Seu ticket médio por setor pré ajuste:</b> R$${ticketMedioSet.toFixed(2)}</p>
-        <p><b>Seu novo ticket médio por setor pós ajuste:</b> R$${newTicketMedioSet.toFixed(2)}</p>
-        <p><b>Estimativa de aumento do faturamento com ajuste baseado nas informações analisadas:</b> R$${aumento.toFixed(2)}</p>
-        <p><b>Payback:</b> ${payback.toFixed(0)} dias</p>`;
+        <p><b>Esse seria seu ticket médio por setor pré ajuste atual sem nossos sensores, ou seja, o quanto seu mercado está faturando por dia sem dados precisos sobre o fluxo:</b><br> <br>R$${ticketMedioSet.toFixed(2)}</p>
+        <p><b>Com nossos sensores instalados e nossa dashboard te mostrando em tempo real dados precisos e inteligentes sobre o fluxo esse seria seu novo ticket médio por setor pós ajuste (margem de lucro de 4% a 6% para varejistas): </b><br> <br> R$${newTicketMedioSet.toFixed(2)}</p>
+        <p><b>E por fim, esse seria sua nova estimativa de aumento do faturamento por mês com ajustes baseados nas informações analisadas:</b> <br><br>R$${aumento.toFixed(2)}</p>
+        <p><b>Esse é seu Payback, ou seja, em quanto tempo esse investimento retornaria para você!:</b> <br>${payback.toFixed(0)} dias</p>`;
     }
 }
 </script>
