@@ -68,7 +68,7 @@ input{
     padding: .5vw;
     margin-bottom: 1vw;
     border-radius: 10px;
-    background-color: #f1f3e8;
+    background-color: #f9faf6;
 }
 
 input:hover{
@@ -166,7 +166,7 @@ input:hover{
 
 /* -----CONTAINER 2----- */
 .container-meio2 {
-    background-color: #F5F5DC;
+    background-color: #f1f3e8;
     padding: 4% 8%;
     max-width: 80vw;
     margin: 0 auto;
@@ -566,6 +566,7 @@ button[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     gap: 5.5vw;
+    margin-top: 150px;
 }
 
 .caixa-cadastro {
@@ -802,6 +803,7 @@ input::placeholder {
 
     main{
         width: 100%;
+        justify-content: center;
         align-content: center;
         display: flex;
         flex-direction: column;
@@ -811,7 +813,15 @@ input::placeholder {
     .titulo_dash{
         text-align: center;
         margin-bottom: 1.3vw;
-    }    
+    }
+    
+    .pai_dash{
+        display: flex;
+        justify-content: center;
+        height: 90%;
+        margin: 0 3vw;
+        height: fit-content;
+    }
 
     .cardsD {
         display: flex;
@@ -840,24 +850,45 @@ input::placeholder {
         color: #777;
     }
 
-    .charts {
+    .graficos {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
+        gap: 50px;
         margin-top: 20px;
     }
 
     .chart:last-child {
         grid-column: 1 / -1;
-        width: 35%;
+        
 
     }
 
     .chart {
         background: white;
+        width: 40%;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
+    .button-dash {
+    width: 40%;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 20px;
+    background-color: #09879a;
+    color: antiquewhite;
+    font-weight: bolder;
+    margin: 1vw 0 2vw 0;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-size: 1.1vw;
+}

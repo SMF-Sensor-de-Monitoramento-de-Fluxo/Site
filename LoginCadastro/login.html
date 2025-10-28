@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,43 @@
     <link rel="stylesheet" href="../home/style.css">
 </head>
 <style>
-    html{background-image: url('../LoginCadastro/assets/corredor.png');}
+    html {
+        background-image: url('../LoginCadastro/assets/corredor.png');
+    }
 </style>
+
 <body class="body-cadastro">
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="logo-header">
+                    <img src="assets/logo_png.png" alt="">
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li> <a href="../home/home.html">Home</a></li>
+                        <li> <a href="sobrenos.html"><span style="color:#08a4bd;">Sobre nós</span></a></li>
+                        <li> <a href="../Calculadora/Calculadora.html">Simulador financeiro </a> </li>
+                        <li> <a href="contato.html">Entre em contato</a></li>
+                        <a href="../LoginCadastro/login.html"><button class="button-login">Login</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     <h1 style="color: #f1f3e8; margin-top: 1.5vw;">Faça seu login</h1>
     <div class="caixa-login">
         <h2>Login</h2>
-    
+
         <div class="filhol_login">
             <p class="subtitulo">Digite seu email:</p>
             <input id="input_email_or_cnpj" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
 
-            <p class="subtitulo">Digite sua senha:</p> 
+            <p class="subtitulo">Digite sua senha:</p>
             <input id="input_senha" type="password" placeholder="********" class="input input"> <br>
             <div class="links">
                 <div class="caixa-checkbox">
-                    <p class="link">Lembrar de mim</p> 
+                    <p class="link">Lembrar de mim</p>
                     <input class="caixa-checkagem" type="checkbox">
                 </div>
                 <div class="caixa-link">
@@ -41,9 +63,10 @@
     <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
     <p>© 2025 SMF. Todos os direitos reservados.</p>
 </footer>
+
 </html>
 <script>
-    function entrar(){
+    function entrar() {
         var login = input_email_or_cnpj.value
         var senha = input_senha.value
         var mensagem = `Algo está errado nos campos: \n`;
@@ -54,12 +77,12 @@
             mensagem += 'Campo de Senha Incorreto! \n'
         }
 
-        if(mensagem == 'Algo está errado nos campos: \n'){
+        if (mensagem == 'Algo está errado nos campos: \n') {
             window.location.href = '../home/home.html'
         } else {
             alert(mensagem)
         }
-        
+
         if (login == 'nascimento.varejo@outlook.com' && senha == 'luana2025') {
             window.location.href = '../Dashboard/dashboard.html'
         }

@@ -9,9 +9,30 @@
     <link rel="stylesheet" href="../home/style.css">
 </head>
 <style>
-    html{background-image: url('../LoginCadastro/assets/corredor.png');}
+    html {
+        background-image: url('../LoginCadastro/assets/corredor.png');
+    }
 </style>
+
 <body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="logo-header">
+                    <img src="assets/logo_png.png" alt="">
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li> <a href="../home/home.html">Home</a></li>
+                        <li> <a href="sobrenos.html"><span style="color:#08a4bd;">Sobre nós</span></a></li>
+                        <li> <a href="../Calculadora/Calculadora.html">Simulador financeiro </a> </li>
+                        <li> <a href="contato.html">Entre em contato</a></li>
+                        <a href="../LoginCadastro/login.html"><button class="button-login">Login</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="body-cadastro">
         <h1 style="color: #f1f3e8; margin-top: 1.5vw;">Vamos realizar seu cadastro?</h1>
         <div class="caixa-cadastro">
@@ -64,7 +85,8 @@
                     <span id="span_cnpj"></span>
 
                     <p class="subtitulo">Telefone 1: *</p>
-                    <input id="input_tel_1" type="number" placeholder="Digite com o DDD e sem espaço e traço" oninput="anaTel1()">
+                    <input id="input_tel_1" type="number" placeholder="Digite com o DDD e sem espaço e traço"
+                        oninput="anaTel1()">
                     <select id="select_tipoTel1">
                         <option value="#" selected disabled>Selecione um tipo de telefone</option>
                         <option>Pessoal</option>
@@ -73,7 +95,8 @@
                     <span id="span_tel1"></span>
 
                     <p class="subtitulo">Telefone 2 (opcional):</p>
-                    <input id="input_tel_2" type="number" placeholder="Digite com o DDD e sem espaço e traço" oninput="anaTel2()"> <br>
+                    <input id="input_tel_2" type="number" placeholder="Digite com o DDD e sem espaço e traço"
+                        oninput="anaTel2()"> <br>
                     <select id="select_tipoTel2">
                         <option value="#" selected disabled>Selecione um tipo de telefone</option>
                         <option>Pessoal</option>
@@ -87,7 +110,7 @@
                         <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
                         <span id="span_num">Utilize números</span> <br>
                         <span id="span_caracEsp">Utilize caractéres especiais: <br>
-                        <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                            <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
                     </p>
 
                     <p class="subtitulo">Confirme sua senha: *</p>
@@ -107,6 +130,7 @@
     <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
     <p>© 2025 SMF. Todos os direitos reservados.</p>
 </footer>
+
 </html>
 <script>
     // Criando variávei globais
@@ -137,7 +161,7 @@
             veriEmail1 = false
         }
     }
-    
+
     function anaEmail2() { // Analizando o email 2 enquanto o usuário digita
         email2 = input_email2.value;
         var emailMin2 = email2.toLowerCase();
@@ -256,12 +280,12 @@
         }
 
         if (veriTam == false) { // Verificando se o tamanho esta maior ou igual a 8 dígitos
-            
-        } else if (veriNum == false) { // Verificando se possui pelo menos 1 número
-            
-        } else if (veriCarc == false){ // Verificando se possui pelo menos 1caractér especial
 
-        }else { //Se a senha possui mais de 8 dígitos, possuir número e possuir caractér especial, a senha é válida
+        } else if (veriNum == false) { // Verificando se possui pelo menos 1 número
+
+        } else if (veriCarc == false) { // Verificando se possui pelo menos 1caractér especial
+
+        } else { //Se a senha possui mais de 8 dígitos, possuir número e possuir caractér especial, a senha é válida
             veriSenha = true;
         }
     }
@@ -272,12 +296,12 @@
         if (senha_confirmacao == senha) { // Verificando se a confirmação de senha é igual a senha
             span_senhaConfirm.innerHTML = ``;
             veriSenhaConfirmacao = true;
-            
+
         } else {
             span_senhaConfirm.innerHTML = ` Senha incompatível`;
             span_senhaConfirm.style.color = `red`;
             veriSenhaConfirmacao = false;
-            
+
         }
     }
 
@@ -300,7 +324,7 @@
             input_senha_confirmacao.value == ''
         ) {
             alert('Preencha todos os campos obrigatórios');
-            
+
         } else if (veriEmail1 == false) { // Verificando se o email 1 foi digitado com @ e .com
             alert('O E-mail 1 inserido é inválido');
 
@@ -309,7 +333,7 @@
 
         } else if (email2 != '' && veriEmail2 == false) { // Verificando se o email 2 foi digitado e se sim, verifica se o email 2 foi digitado com @ e .com
             alert('O E-mail 2 inserido é inválido');
-            
+
         } else if (email2 != '' && tipoEmail2 == '#') { // Verificando se o email 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
             alert('Selecione o tipo do E-mail 2');
 
@@ -318,7 +342,7 @@
 
         } else if (veriCep == false) { // Verificando se o cep é válido, sendo igual a 8 números
             alert('O CEP inserido é inválido');
-            
+
         } else if (veriCnpj == false) { // Verificando se o cnpj é válido, sendo igual a 14 números
             alert('O CNPJ inserido é inválido');
 
@@ -329,11 +353,11 @@
             alert('Selecione o tipo do telefone 1');
 
         } else if (telefone_2 != '' && veriTel2 == false) { // Verificando se o telefone 2 foi digitado e se sim, verifica se o telefone 2 é válido, sendo igual a 11 números
-             alert('O Telefone 2 inserido é inválido');
-            
+            alert('O Telefone 2 inserido é inválido');
+
         } else if (telefone_2 != '' && tipoTel2 == '#') { // Verificando se o telefone 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
-            alert('Selecione o tipo do telefone 2'); 
-        
+            alert('Selecione o tipo do telefone 2');
+
         } else if (veriSenha == false) { // Verificando se a senha inclui todos as restrições
             alert('A senha inserida é inválida');
 
