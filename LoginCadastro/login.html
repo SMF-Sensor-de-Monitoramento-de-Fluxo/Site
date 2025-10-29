@@ -69,22 +69,14 @@
     function entrar() {
         var login = input_email_or_cnpj.value
         var senha = input_senha.value
-        var mensagem = `Algo está errado nos campos: \n`;
-
-        if (login != 'nascimento.varejo@outlook.com') {
-            mensagem += 'Campo de Login Incorreto! \n'
-        } if (senha != 'luana2025') {
-            mensagem += 'Campo de Senha Incorreto! \n'
-        }
-
-        if (mensagem == 'Algo está errado nos campos: \n') {
-            window.location.href = '../home/home.html'
-        } else {
-            alert(mensagem)
-        }
-
+        var mensagem = `Digite o email ou a senha corretamente \n`;
+        
         if (login == 'ferBrandao.varejo@outlook.com' && senha == 'ferBrandao12') {
             window.location.href = '../Dashboard/dashboard.html'
+            
+        } else {
+            alert(mensagem)
+
         }
     }
 </script>
