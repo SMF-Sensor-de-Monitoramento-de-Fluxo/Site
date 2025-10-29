@@ -16,7 +16,6 @@ body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-
     height: 100%;
 }
 /* -----INICIO CSS HOME -----*/
@@ -279,7 +278,8 @@ input:hover{
 .titulo-meio2 h3{
     font-size: 2.5vw;
     margin: 1.5vw auto -3vw auto;
-    color: #59b4cf;
+    color: #f1f3e8;
+    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
 .titulo-sobre-nos img{
@@ -290,6 +290,9 @@ input:hover{
 .container-nos1 {
     width: 85vw;
     margin: 2vh auto 0 auto;
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
     padding: 2.5vw 3vw;
     border-radius: 10px;
     font-family: "Poppins", sans-serif;
@@ -313,14 +316,20 @@ input:hover{
     margin-bottom: 15px;
 }
 
+.caixa-integrantes{
+    display: grid;
+
+    justify-self: center;
+}
+
 .nossa-equipe {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;  
     justify-content: space-evenly;
     width: 70%;
-    align-self: center;
-    justify-self: center;
+    margin: 0 auto;
+    
 }
 
 .texto-fotos {
@@ -393,12 +402,12 @@ h2 {
 }
 
 .titulo-contato h1{
-    color: #ddf8fc;
+    color: #f1f3e8;
     text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
 .titulo-contato h2{
-    color: #ddf8fc;
+    color: #f1f3e8;
     text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
 }
 
@@ -658,7 +667,8 @@ input::placeholder {
     border: 2vw;
     border-radius: 20px;
     background-color: #f1f3e8;
-    display: block;
+    display: grid;
+    flex-direction: column;
     justify-self: center;
     align-self: center;
     font-size: 13px;
@@ -667,7 +677,7 @@ input::placeholder {
     padding: 10px;
 }
 
-.caixa-login h2 {
+#subtitulo-login {
     font-size: 20px;
     color: #333;
     text-align: center;

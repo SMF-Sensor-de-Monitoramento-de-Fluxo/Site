@@ -34,7 +34,7 @@
     <div class="card-input">  
       <h2>Entradas básicas</h2>
       <label for="input_fluxo" class="label-calc">Estimativa de clientes (por dia)</label>
-      <input type="number" id="input_fluxo" placeholder="Ex: 550" />
+      <input type="number" id="input_fluxo" placeholder="Ex: 213" />
       <label for="input_setores" class="label-calc">Quantidade de setores no mercado</label>
       <input type="number" id="input_setores" placeholder="Ex: 12" />
       <label for="input_metros" class="label-calc">Tamanho médio dos setores no mercado (em m²)</label>
@@ -68,16 +68,16 @@
     } else {
       // Ticket médio do dia
       var ticketMedio = faturamento / fluxo;
-      var ticketMedioSet = ticketMedio / numSetores;
-      var ticketMedioSetMes = ticketMedioSet * 30;
+      var faturamentoMedioSet = faturamento / numSetores;
+      var faturamentoMedioSetMes = faturamentoMedioSet * 30;
       // Estimativa de vendas pós reajuste
       // margem de lucro de 4% a 6% para varejistas
       var novoFaturamento = faturamento * 1.197;
       var novoTicketMedio = novoFaturamento / fluxo;
-      var novoTicketMedioSet = novoFaturamento / numSetores;
+      var novoFaturamentoMedioSet = novoFaturamento / numSetores;
 
       // Valor estimado para fazer um reajuste
-      var reajuste = 30 *(Math.sqrt(metragem)/2);
+      var reajuste = 18.4*(Math.sqrt(metragem)/2);
 
       // CustoPessoal é o calculo das nossas horas de trabalho 6 pessoas x 160h de trabalho (4 semanas) x R$50 /h
 
@@ -118,23 +118,36 @@
         <h2>Estimativa de Resultados</h2>
         <p>
           <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
-          ticket médio por setor pré ajuste<br>
+          faturamento médio por setor pré ajuste<br>
         <abbr title="Este é o seu faturamento diário sem dados precisos sobre o fluxo."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
         </span>
-         <br><br>R$${ticketMedioSet.toFixed(2)}
+         <br><br>R$${faturamentoMedioSet.toFixed(2)}
+         </p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          faturamento médio por setor pós ajuste<br>
+        <abbr title="Este é o seu novo faturamento diario já com nossos sensores monitorando o fluxo"><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+         <br><br>R$${novoFaturamentoMedioSet.toFixed(2)}
          </p>
         <p>
         <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
         Novo ticket médio pós ajuste
         <abbr title="Este é o seu novo ticket médio, já com nossos sensores capturando dados precisos e inteligentes, juntamente com nosso dashboard."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
         </span>
-        <br> <br> R$${novoTicketMedioSet.toFixed(2)}</p>
+        <br> <br> R$${novoTicketMedio.toFixed(2)}</p>
         <p>
           <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
-          Nova estimativa de faturamento mensal 
-          <abbr title="Esta é a sua nova estimativa de faturamento mensal, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+          Aumento do faturamento mensal 
+          <abbr title="Esta é o aumento estimado do seu faturamento mensal, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
         </span>
           <br><br>R$${aumento.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Novo faturamento mensal 
+          <abbr title="Esta é o aumento estimado do seu faturamento mensal, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+          <br><br>R$${novoFaturamento.toFixed(2)}</p>
         <p>
           <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
           Payback 
