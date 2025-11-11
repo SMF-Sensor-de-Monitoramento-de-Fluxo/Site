@@ -42,28 +42,21 @@
                     <p class="subtitulo">Nome Completo: *</p>
                     <input id="input_nome_responsavel" type="text">
 
-                    <p class="subtitulo">Nome Empresa: *</p>
-                    <input id="input_nome_empresa" type="text">
-
                     <p class="subtitulo">E-mail 1: *</p>
                     <input id="input_email1" type="text" oninput="anaEmail1()"><br>
-                    <select id="select_tipoEmail1">
-                        <option value="#" selected disabled>Selecione um tipo de E-mail</option>
-                        <option>Pessoal</option>
-                        <option>Corporativo</option>
-                    </select> &nbsp
+                    
                     <span id="span_email1"></span>
 
                     <p class="subtitulo">E-mail 2 (opcional):</p>
-                    <div class="select">
-                        <input id="input_email2" type="text" oninput="anaEmail2()"><br>
-                        <select id="select_tipoEmail2">
-                            <option value="#" selected disabled>Selecione um tipo de E-mail</option>
-                            <option>Pessoal</option>
-                            <option>Corporativo</option>
-                        </select> &nbsp
-                        <span id="span_email2"></span>
-                    </div>
+                    <input id="input_email2" type="text" oninput="anaEmail2()"><br>
+                       
+                    <span id="span_email2"></span>
+
+                    <p class="subtitulo">Código de Verificação:</p>
+                    <input id="input_codigo" type="text" oninput="anaCodigo()"><br>
+                       
+                    <span id="span_codigo"></span>
+
 
                     <p class="subtitulo"> Cargo do Usuário: *</p>
                     <select id="select_cargo">
@@ -73,35 +66,19 @@
                         <option>Colaborador</option>
                         <option>Administrador</option>
                     </select>
-
-                    <p class="subtitulo">CEP: *</p>
-                    <input id="input_CEP" type="number" placeholder="Digite sem o traço" oninput="anaCep()">
-                    <span id="span_cep"></span>
                 </div>
 
                 <div class="filho">
-                    <p class="subtitulo">CNPJ: *</p>
-                    <input id="input_CNPJ" type="number" placeholder="Digite sem os pontos e traço" oninput="anaCnpj()">
-                    <span id="span_cnpj"></span>
-
                     <p class="subtitulo">Telefone 1: *</p>
                     <input id="input_tel_1" type="number" placeholder="Digite com o DDD e sem espaço e traço"
                         oninput="anaTel1()">
-                    <select id="select_tipoTel1">
-                        <option value="#" selected disabled>Selecione um tipo de telefone</option>
-                        <option>Pessoal</option>
-                        <option>Corporativo</option>
-                    </select> &nbsp
+                   
                     <span id="span_tel1"></span>
 
                     <p class="subtitulo">Telefone 2 (opcional):</p>
                     <input id="input_tel_2" type="number" placeholder="Digite com o DDD e sem espaço e traço"
                         oninput="anaTel2()"> <br>
-                    <select id="select_tipoTel2">
-                        <option value="#" selected disabled>Selecione um tipo de telefone</option>
-                        <option>Pessoal</option>
-                        <option>Corporativo</option>
-                    </select> &nbsp
+                   
                     <span id="span_tel2"></span>
 
                     <p class="subtitulo">Senha: *</p>
@@ -137,14 +114,13 @@
     var veriEmail1 = false;
     var email2 = '';
     var veriEmail2 = false;
-    var veriCep = false;
-    var veriCnpj = false;
     var veriTel1 = false;
     var telefone_2 = '';
     var veriTel2 = false;
     var senha = '';
     var veriSenha = false;
     var veriSenhaConfirmacao = false;
+    var codigoVeri = false;
 
     function anaEmail1() { // Analizando o email 1 enquanto o usuário digita
         var email1 = input_email1.value;
@@ -178,36 +154,6 @@
             span_email2.innerHTML = ` Email inválido`;
             span_email2.style.color = `red`;
             veriEmail2 = false;
-        }
-    }
-
-    function anaCep() { // Analizando o CEP enquanto o usuário digita
-        var cep = input_CEP.value;
-
-        if (cep.length == 8) { // Verificando se o CEP possui 8 dígitos
-            span_cep.innerHTML = ' CEP válido';
-            span_cep.style.color = `green`;
-            veriCep = true;
-
-        } else {
-            span_cep.innerHTML = ' CEP inválido';
-            span_cep.style.color = `red`;
-            veriCep = false;
-        }
-    }
-
-    function anaCnpj() { // Analizando o CNPJ enquanto o usuário digita
-        var cnpj = input_CNPJ.value;
-
-        if (cnpj.length == 14) { // Verificando se o CNPJ possui 14 dígitos
-            span_cnpj.innerHTML = ' CNPJ válido';
-            span_cnpj.style.color = `green`;
-            veriCnpj = true;
-
-        } else {
-            span_cnpj.innerHTML = ' CNPJ inválido';
-            span_cnpj.style.color = `red`;
-            veriCnpj = false;
         }
     }
 
@@ -305,6 +251,10 @@
         }
     }
 
+    function anaCodigo(){
+
+    }
+
     function cadastrar() { // Cadastrando o usuário
         var nome_responsavel = input_nome_responsavel.value;
         var nome_empresa = input_nome_empresa.value;
@@ -313,6 +263,7 @@
         var cargo = select_cargo.value;
         var tipoTel1 = select_tipoTel1.value;
         var tipoTel2 = select_tipoTel2.value;
+        var codigoVeri = input_codigo.value;
 
         if (input_nome_responsavel.value == '' || // Verificando se as inputs estão vazias
             input_nome_empresa.value == '' ||
@@ -321,42 +272,28 @@
             input_CNPJ.value == '' ||
             input_tel_1.value == '' ||
             input_senha.value == '' ||
-            input_senha_confirmacao.value == ''
+            input_senha_confirmacao.value == ''||
+            input_codigo.value == ''
         ) {
             alert('Preencha todos os campos obrigatórios');
 
         } else if (veriEmail1 == false) { // Verificando se o email 1 foi digitado com @ e .com
             alert('O E-mail 1 inserido é inválido');
 
-        } else if (tipoEmail1 == '#') { // Verificando se o tipo do email 1 foi selecionado
-            alert('Selecione o tipo do E-mail 1');
-
         } else if (email2 != '' && veriEmail2 == false) { // Verificando se o email 2 foi digitado e se sim, verifica se o email 2 foi digitado com @ e .com
             alert('O E-mail 2 inserido é inválido');
-
-        } else if (email2 != '' && tipoEmail2 == '#') { // Verificando se o email 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
-            alert('Selecione o tipo do E-mail 2');
 
         } else if (cargo == '#') { // Verificando se o cargo foi selecionado
             alert('Selecione um cargo');
 
-        } else if (veriCep == false) { // Verificando se o cep é válido, sendo igual a 8 números
-            alert('O CEP inserido é inválido');
-
-        } else if (veriCnpj == false) { // Verificando se o cnpj é válido, sendo igual a 14 números
-            alert('O CNPJ inserido é inválido');
-
         } else if (veriTel1 == false) { // Verificando se o telefone 1 é válido, sendo igual a 11 números
             alert('O Telefone 1 inserido é inválido');
-
-        } else if (tipoTel1 == '#') { // Verificando se o tipo do telefone 1 foi selecionado
-            alert('Selecione o tipo do telefone 1');
 
         } else if (telefone_2 != '' && veriTel2 == false) { // Verificando se o telefone 2 foi digitado e se sim, verifica se o telefone 2 é válido, sendo igual a 11 números
             alert('O Telefone 2 inserido é inválido');
 
-        } else if (telefone_2 != '' && tipoTel2 == '#') { // Verificando se o telefone 2 foi digitado e se sim, verifica se o tipo do email 2 foi selecionado
-            alert('Selecione o tipo do telefone 2');
+        } else if ( codigoVeri == false) { // Verificando se o Código de Verificação foi digitado
+            alert('O Código de Verificação é inválido');
 
         } else if (veriSenha == false) { // Verificando se a senha inclui todos as restrições
             alert('A senha inserida é inválida');
