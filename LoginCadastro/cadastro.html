@@ -42,45 +42,22 @@
                     <p class="subtitulo">Nome Completo: *</p>
                     <input id="input_nome_responsavel" type="text">
 
-                    <p class="subtitulo">E-mail 1: *</p>
+                    <p class="subtitulo">E-mail: *</p>
                     <input id="input_email1" type="text" oninput="anaEmail1()"><br>
                     
                     <span id="span_email1"></span>
-
-                    <p class="subtitulo">E-mail 2 (opcional):</p>
-                    <input id="input_email2" type="text" oninput="anaEmail2()"><br>
-                       
-                    <span id="span_email2"></span>
 
                     <p class="subtitulo">Código de Verificação:</p>
                     <input id="input_codigo" type="text" oninput="anaCodigo()"><br>
                        
                     <span id="span_codigo"></span>
-
-
-                    <p class="subtitulo"> Cargo do Usuário: *</p>
-                    <select id="select_cargo">
-                        <option value="#" selected disabled>Selecione uma opção</option>
-                        <option>Funcionário</option>
-                        <option>Gerente</option>
-                        <option>Colaborador</option>
-                        <option>Administrador</option>
-                    </select>
-                </div>
-
-                <div class="filho">
-                    <p class="subtitulo">Telefone 1: *</p>
+                
+                    <p class="subtitulo">Telefone : *</p>
                     <input id="input_tel_1" type="number" placeholder="Digite com o DDD e sem espaço e traço"
                         oninput="anaTel1()">
                    
                     <span id="span_tel1"></span>
-
-                    <p class="subtitulo">Telefone 2 (opcional):</p>
-                    <input id="input_tel_2" type="number" placeholder="Digite com o DDD e sem espaço e traço"
-                        oninput="anaTel2()"> <br>
-                   
-                    <span id="span_tel2"></span>
-
+                    
                     <p class="subtitulo">Senha: *</p>
                     <input id="input_senha" type="password" oninput="anaSenha()">
                     <p>
@@ -112,11 +89,7 @@
 <script>
     // Criando variávei globais
     var veriEmail1 = false;
-    var email2 = '';
-    var veriEmail2 = false;
     var veriTel1 = false;
-    var telefone_2 = '';
-    var veriTel2 = false;
     var senha = '';
     var veriSenha = false;
     var veriSenhaConfirmacao = false;
@@ -138,25 +111,6 @@
         }
     }
 
-    function anaEmail2() { // Analizando o email 2 enquanto o usuário digita
-        email2 = input_email2.value;
-        var emailMin2 = email2.toLowerCase();
-
-        if (emailMin2.includes('@') && emailMin2.endsWith('.com')) { // Verificando se o email 2 possui @ e .com
-            span_email2.innerHTML = ` Email válido`;
-            span_email2.style.color = `green`;
-            veriEmail2 = true;
-
-        } else if (emailMin2 == '') { // Verificando se o email 2, que é opcional, foi preenchido
-            span_email2.innerHTML = ``;
-
-        } else {
-            span_email2.innerHTML = ` Email inválido`;
-            span_email2.style.color = `red`;
-            veriEmail2 = false;
-        }
-    }
-
     function anaTel1() { // Analizando o telefone 1 enquanto o usuário digita
         var telefone_1 = input_tel_1.value;
 
@@ -169,24 +123,6 @@
             span_tel1.innerHTML = ' Telefone inválido';
             span_tel1.style.color = `red`;
             veriTel1 = false;
-        }
-    }
-
-    function anaTel2() { // Analizando o telefone 2 enquanto o usuário digita
-        telefone_2 = input_tel_2.value;
-
-        if (telefone_2.length == 11) { // Verificando se o telefone 2 possui 11 dígitos
-            span_tel2.innerHTML = ' Telefone válido';
-            span_tel2.style.color = `green`;
-            veriTel2 = true;
-
-        } else if (telefone_2 == '') { // Verificando se o telefone 2, que é opcional, foi preenchido
-            span_tel2.innerHTML = ``;
-
-        } else {
-            span_tel2.innerHTML = ' Telefone inválido';
-            span_tel2.style.color = `red`;
-            veriTel2 = false;
         }
     }
 
@@ -258,18 +194,11 @@
     function cadastrar() { // Cadastrando o usuário
         var nome_responsavel = input_nome_responsavel.value;
         var nome_empresa = input_nome_empresa.value;
-        var tipoEmail1 = select_tipoEmail1.value;
-        var tipoEmail2 = select_tipoEmail2.value;
-        var cargo = select_cargo.value;
         var tipoTel1 = select_tipoTel1.value;
-        var tipoTel2 = select_tipoTel2.value;
         var codigoVeri = input_codigo.value;
 
         if (input_nome_responsavel.value == '' || // Verificando se as inputs estão vazias
-            input_nome_empresa.value == '' ||
             input_email1.value == '' ||
-            input_CEP.value == '' ||
-            input_CNPJ.value == '' ||
             input_tel_1.value == '' ||
             input_senha.value == '' ||
             input_senha_confirmacao.value == ''||
@@ -280,17 +209,11 @@
         } else if (veriEmail1 == false) { // Verificando se o email 1 foi digitado com @ e .com
             alert('O E-mail 1 inserido é inválido');
 
-        } else if (email2 != '' && veriEmail2 == false) { // Verificando se o email 2 foi digitado e se sim, verifica se o email 2 foi digitado com @ e .com
-            alert('O E-mail 2 inserido é inválido');
-
         } else if (cargo == '#') { // Verificando se o cargo foi selecionado
             alert('Selecione um cargo');
 
         } else if (veriTel1 == false) { // Verificando se o telefone 1 é válido, sendo igual a 11 números
             alert('O Telefone 1 inserido é inválido');
-
-        } else if (telefone_2 != '' && veriTel2 == false) { // Verificando se o telefone 2 foi digitado e se sim, verifica se o telefone 2 é válido, sendo igual a 11 números
-            alert('O Telefone 2 inserido é inválido');
 
         } else if ( codigoVeri == false) { // Verificando se o Código de Verificação foi digitado
             alert('O Código de Verificação é inválido');
