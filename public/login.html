@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="./assets/imgs/SMF-Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<style>
+    html {
+        background-image: url('./assets/imgs/corredor.png');
+    }
+</style>
+
+<body class="body-cadastro">
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="logo-header">
+                    <img src="./assets/imgs/logo_png.png" alt="">
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li> <a href="./index.html">Home</a></li>
+                        <li> <a href="./sobrenos.html"><span>Sobre nós</span></a></li>
+                        <li> <a href="./Calculador.html">Simulador financeiro </a> </li>
+                        <li> <a href="./contato.html">Entre em contato</a></li>
+                        <a href="./login.html"><button class="button-login">Login</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h1 style="color: #f1f3e8; margin-top: 1.5vw;">Faça seu login</h1>
+    <div class="caixa-login">
+        <h2 id="subtitulo-login">Login</h2>
+
+        <div class="filhol_login">
+            <p class="subtitulo">Digite seu email:</p>
+            <input id="input_email_or_cnpj" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
+
+            <p class="subtitulo">Digite sua senha:</p>
+            <input id="input_senha" type="password" placeholder="********" class="input input"> <br>
+            <div class="links">
+                <div class="caixa-checkbox">
+                    <p class="link">Lembrar de mim</p>
+                    <input class="caixa-checkagem" type="checkbox">
+                </div>
+                <div class="caixa-link">
+                    <p class="link"><a href="">Esqueci minha senha</a></p>
+                </div>
+            </div>
+            <button onclick="entrar()" class="button-lc">Entrar</button> <br>
+            <p class="link">Novo por aqui? &nbsp <a href="cadastro.html"> Crie uma conta</a></p>
+        </div>
+
+    </div>
+</body>
+<footer>
+    <p>Contato (SMF@OUTLOOK.COM, 1194111-1106(WhatsApp)).</p>
+    <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
+    <p>© 2025 SMF. Todos os direitos reservados.</p>
+</footer>
+
+</html>
+<script>
+    function entrar() {
+        var login = input_email_or_cnpj.value
+        var senha = input_senha.value
+        var mensagem = `Digite o email ou a senha corretamente \n`;
+        
+        if (login == 'ferBrandao.varejo@outlook.com' && senha == 'ferBrandao12') {
+            window.location.href = '../Dashboard/dashboard.html'
+            
+        } else {
+            alert(mensagem)
+
+        }
+    }
+</script>

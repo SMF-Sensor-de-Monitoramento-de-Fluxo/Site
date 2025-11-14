@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/estilo.css">
+  <link rel="shortcut icon" href="./assets/imgs/SMF-Icon.png" type="image/x-icon"/>
+  <title>SMF | Simulador Financeiro</title>
+</head>
+<style>
+    html{background-image: url('./assets/imgs/mercado_fundo.PNG');}
+</style>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo-header">
+        <img src="./assets/imgs/logo_png.png" alt="" />
+      </div>
+      <div class="navbar">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./sobrenos.html">Sobre nós</a></li>
+          <li><a href="./Calculador.html"><span style="color:#08a4bd;">Simulador financeiro</span></a></li>
+          <li><a href="./contato.html">Entre em contato</a></li>
+          <a href="./login.html"><button class="button-login">Login</button></a>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h1 class="titulo-calc">Calculadora Financeira</h1>
+  <h2 class="subtitulo-calc">Teste nossa calculadora financeira, que te da a possíbilidade de simular apenas com alguns dados o quanto a aplicação do nosso sistema é importante para seu negócio!</h2>
+  <div class="container_cards">
+    <div class="card-input">  
+      <h2>Entradas básicas</h2>
+      <label for="input_fluxo" class="label-calc">Estimativa de clientes (por dia)</label>
+      <input type="number" id="input_fluxo" placeholder="Ex: 213" />
+      <label for="input_setores" class="label-calc">Quantidade de setores no mercado</label>
+      <input type="number" id="input_setores" placeholder="Ex: 12" />
+      <label for="input_metros" class="label-calc">Tamanho médio dos setores no mercado (em m²)</label>
+      <input type="number" id="input_metros" placeholder="Ex: 13.5" />
+      <label for="input_faturamento" class="label-calc">Faturamento (por dia)</label>
+      <input type="number" id="input_faturamento" placeholder="Ex: 7400" />
+      <button class="button-lc" onclick="calcular()">Calcular</button>
+    </div>
+    <div class="card">
+      <div class="card-output" id="resultados"></div>
+    </div>
+  </div>
+
+</body>
+<footer>
+    <p>Contato (SMF@OUTLOOK.COM, 1194111-1106(WhatsApp)).</p>
+    <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
+    <p>© 2025 SMF. Todos os direitos reservados.</p>
+</footer>
+</html>
+<script>
+  function calcular() {
+    // Pega os valores
+    var fluxo = Number(input_fluxo.value);
+    var numSetores = Number(input_setores.value);
+    var faturamento = Number(input_faturamento.value);
+    var metragem = Number(input_metros.value);
+
+    if (fluxo < 0 || numSetores <= 1 || faturamento < 0) {
+      alert(`Insira valores válidos para que o calculo sejá realizado!`);
+    } else if (fluxo == 0 || faturamento == 0) {
+      alert(`Que tal adquirir nossos serviços? Com nosso sistema de monitoramento de fluxo, você pode analisar os dados de movimentação no seu negócio para posicionar seus produtos de maneira mais atrativa para o consumidor. Venha conosco ver seu négocio prosperar!`)
+    } else{
+      // Ticket médio do dia
+      var ticketMedio = faturamento / fluxo;
+      var faturamentoMedioSet = faturamento / numSetores;
+      var faturamentoMedioSetMes = faturamentoMedioSet * 30;
+      // Estimativa de vendas pós reajuste
+      // margem de lucro de 4% a 6% para varejistas
+      var novoFaturamento = faturamento * 1.197;
+      var novoTicketMedio = novoFaturamento / fluxo;
+      var novoFaturamentoMedioSet = novoFaturamento / numSetores;
+
+      // Valor estimado para fazer um reajuste
+      var reajuste = 18.4*(Math.sqrt(metragem)/2);
+
+      // CustoPessoal é o calculo das nossas horas de trabalho 6 pessoas x 160h de trabalho (4 semanas) x R$50 /h
+
+      var CustoPessoal = 6*160*50
+
+      // O custo do hardware seria o custo do sensor + jumper + mao de obra de instalação x numero de setores + o Arduino UNO R3
+
+      var CustoHardware = (15+10+80)*numSetores + 120 
+
+      // Valor hospedagem do site 
+
+      var Hospedagem = 300
+
+      // O investimento inicial seria o quanto nosso projeto custa para o cliente, que será pago somente uma vez.
+
+      var InvestimentoInicial = CustoPessoal + CustoHardware + Hospedagem + reajuste
+
+      // Lift de vendas
+      var aumento = novoFaturamento - faturamento;
+
+      // Payback
+      var payback = InvestimentoInicial /aumento
+
+      // Mostra resultados
+      Object.assign(document.querySelector('.card-output').style,{ // atribuindo estilo para a div
+        display: 'block',
+        background: '#f1f3e8', 
+        borderRadius: '10px',
+        background: '#f1f3e8',
+        padding: '2vw',
+        height: '100%',
+        alignSelf: 'flex-start'
+      });
+      document.querySelector(".container_cards").style.gap="2vw";// atribuindo estilo para a div
+      document.querySelector(".container_cards").style.justifyContent="space-evenly";// atribuindo estilo para a div
+
+      resultados.innerHTML = `
+        <h2>Estimativa de Resultados</h2>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          faturamento médio por setor pré ajuste<br>
+        <abbr title="Este é o seu faturamento diário sem dados precisos sobre o fluxo."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+         <br><br>R$${faturamentoMedioSet.toFixed(2)}
+         </p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          faturamento médio por setor pós ajuste<br>
+        <abbr title="Este é o seu novo faturamento diario já com nossos sensores monitorando o fluxo"><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+         <br><br>R$${novoFaturamentoMedioSet.toFixed(2)}
+         </p>
+        <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+        Novo ticket médio pós ajuste
+        <abbr title="Este é o seu ticket médio atuaç, sem nossos sensores e dashboard para a análise de dados."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+        <br> <br> R$${ticketMedio.toFixed(2)}</p>
+        <p>
+        <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+        Novo ticket médio pós ajuste
+        <abbr title="Este é o seu novo ticket médio, já com nossos sensores capturando dados precisos e inteligentes, juntamente com nosso dashboard."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+        <br> <br> R$${novoTicketMedio.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Aumento do faturamento diário
+          <abbr title="Esta é o aumento estimado do seu faturamento diário, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+          <br><br>R$${aumento.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Novo faturamento diário 
+          <abbr title="Este é o aumento estimado do seu faturamento diário, baseada nas informações analisadas."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+        </span>
+          <br><br>R$${novoFaturamento.toFixed(2)}</p>
+        <p>
+          <span style="font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+          Payback 
+          <abbr title="Este é o seu payback, ou seja, em quanto tempo esse investimento retornaria para você."><img src="https://cdn-icons-png.flaticon.com/512/1/1176.png" alt="" style="width:16px; height:16px; vertical-align:middle; margin-left:5px;"></abbr>
+          </span>
+          <br><br>${payback.toFixed(0)} dias</p>`;
+    }
+}
+</script>

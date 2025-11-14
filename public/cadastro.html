@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="shortcut icon" href="./assets/imgs/SMF-Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<style>
+    html {
+        background-image: url('./assets/imgs/corredor.png');
+    }
+</style>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="logo-header">
+                    <img src="./assets/imgs/logo_png.png" alt="">
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li> <a href="./index.html">Home</a></li>
+                        <li> <a href="./sobrenos.html">Sobre nós</a></li>
+                        <li> <a href="./Calculador.html">Simulador financeiro </a> </li>
+                        <li> <a href="./contato.html">Entre em contato</a></li>
+                        <a href="./login.html"><button class="button-login">Login</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="body-cadastro">
+        <h1 style="color: #f1f3e8; margin-top: 1.5vw;">Vamos realizar seu cadastro?</h1>
+        <div class="caixa-cadastro">
+            <h2>CADASTRAR</h2>
+            <div class="pai">
+                <div class="filho">
+                    <p class="subtitulo">Nome Completo: *</p>
+                    <input id="input_nome" type="text">
+
+                    <p class="subtitulo">E-mail: *</p>
+                    <input id="input_email" type="text" oninput="anaEmail1()"><br>
+                    
+                    <span id="span_email1"></span>
+
+                    <p class="subtitulo">Código de Verificação:</p>
+                    <input id="input_codigo" type="text" oninput="anaCodigo()"><br>
+                       
+                    <span id="span_codigo"></span>
+                
+                    <p class="subtitulo">Telefone : *</p>
+                    <input id="input_tel" type="number" placeholder="Digite com o DDD e sem espaço e traço"
+                        oninput="anaTel1()">
+                   
+                    <span id="span_tel1"></span>
+                    
+                    <p class="subtitulo">Senha: *</p>
+                    <input id="input_senha" type="password" oninput="anaSenha()">
+                    <p>
+                        <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
+                        <span id="span_num">Utilize números</span> <br>
+                        <span id="span_caracEsp">Utilize caractéres especiais: <br>
+                            <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                    </p>
+
+                    <p class="subtitulo">Confirme sua senha: *</p>
+                    <input id="input_senha_confirmacao" type="password" oninput="senhaConf()"> <br> <br>
+                    <span id="span_senhaConfirm"></span>
+
+                    <button class="button-lc" onclick="cadastrar()">Cadastre-se</button>
+
+                    <p class="link">Já tem conta? &nbsp<a href="./login.html">Faça o login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <p>Contato (SMF@OUTLOOK.COM, 1194111-1106(WhatsApp)).</p>
+    <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
+    <p>© 2025 SMF. Todos os direitos reservados.</p>
+</footer>
+
+</html>
+<script>
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = input_nome.value;
+    var nomeValid = false;
+    var emailVar = input_email.value;
+    var emailValid = false;
+    var senhaVar = input_senha.value;
+    var senhaValid = false;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = input_codigo.value;
+    var codigoValid = false;
+    var idEmpresaVincular;
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+    ){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Existem campos em branco!";
+
+      finalizarAguardar();
+      return false;
+    } else if(
+      nomeValid == false || 
+      emailValid == false || 
+      senhaValid == false || 
+      codigoValid == false
+    ){
+        cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Existem campos com formatação inválida!";
+
+      finalizarAguardar();
+    } else{
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Código inválido";
+        finalizarAguardar();
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
