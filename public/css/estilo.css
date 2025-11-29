@@ -1,904 +1,362 @@
-/*----- FONTS -----*/
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-
-/*----- GERAL -----*/
-
-html{    
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    height: 100%;
-}
-/* -----INICIO CSS HOME -----*/
-
-
-@media (max-width:1150px) {
-    .topicos-funciona {
-        flex-direction: column;
-    }
-
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
 }
 
-footer {
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1vw 0;
-    height: 6vw;
-    margin: 0;
-    margin-top: 8vh;
-    font-size: .8vw;
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
 }
 
-/*----- NAVBAR -----*/
-header {
-    background-color: #005a75e5;
-    padding: 0.8vw 0;
-    top: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    backdrop-filter: blur(3px);
-    font-size: 1vw;
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
 }
 
-header .container {
-    margin: 0.3vw 4vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  height: var(--tamanho-header);
+  border-bottom: 2px solid #32b9cd;
 }
 
-input{
-    transition: 150ms;
-    width: 100%;
-    padding: .5vw;
-    margin-bottom: 1vw;
-    border-radius: 10px;
-    background-color: #f9faf6;
+.header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
-input:hover{
-    border: solid 2px;
-    border-color: #09879a;
-    color: #09879a;
-    scale: 1.02;
-    transition: 200ms;
-    font-weight: 700;
-    background-color: #00405100;
+.header a {
+  text-decoration: none;
+  color: #e3b062;
 }
 
-.logo-header img {
-    height: 4rem;
-    width: auto;
-    display: block;
-    margin: auto;
+.agora {
+  font-weight: 800;
 }
 
 .navbar {
-    display: flex;
-    align-items: center;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  color: #e3b062;
 }
 
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+.titulo {
+  color: #32b9cd;
+  width: fit-content;
+  font-weight: 500;
 }
 
-.navbar li {
-    color: white;
-    cursor: pointer;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1vw;
-    font-weight: 500;
-    transition: 300ms;
+.header h1 {
+  margin: 0;
 }
 
-.navbar li:hover {
-    transition: 200ms;
-    font-weight: 600;
-    scale: 1.05;
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: white;
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
 }
 
-.button-login {
-    background-color: #08a5bd;
-    color: antiquewhite;
-    border: none;
-    border-radius: 5px;
-    padding: .5vw .9vw;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    letter-spacing: 2px;
-    font-size: .7vw;
+.banner .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.button-login:hover {
-    background-color: #005a75e5;
-    border: solid 1px;
-    border-color: antiquewhite;
-    color: none;
-    scale: 1.05;
-    font-weight: 700;
+.banner .container p {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
 }
 
-/* -----CONTAINER 1----- */
-.container-meio1 {
-    padding: 18.5%;
-    margin: 0;
+.banner .container span {
+  font-weight: 800;
 }
 
-.titulo-meio1 {
-    color: white;
-    font-size: 6.3vh;
-    font-weight: 800;
-    font-family: "Montserrat", sans-serif;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
+/* MISSÃO VISÃO VALORES */
 
+.social {
+  background-color: #e5e5e5;
+  display: flex;
 }
 
-.texto-meio1 {
-    color: white;
-    font-size: 2.7vh;
-    font-weight: 700;
-    font-family: "Montserrat", sans-serif;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-
+.social .container {
+  justify-content: center;
 }
 
-/* -----CONTAINER 2----- */
-.container-meio2 {
-    background-color: #f1f3e8;
-    padding: 4% 8%;
-    max-width: 80vw;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-top: 0px;
-    margin-bottom: 2%;
+.box img {
+  width: 170px;
 }
 
-.titulo-funciona {
-    color:#005975;
-    font-size: 5vh;
-    font-weight: 800;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
+.social .container .boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
 }
 
-.topicos-funciona {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.social p {
+  text-align: center;
 }
 
-.topico {
-    flex: 1;
-    min-width: 250px;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 1.5vh;
-    border-radius: 10px;
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.topico h3 {
-    margin-bottom: 8px;
-    font-size: 2.5vh;
-    font-weight: bold;
-    color: #005975;
-    justify-self: center;
-    font-size: 30px;
+/* FOOTER */
+
+.footer {
+  background-color: #32b9cd;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
 }
 
-.topico p {
-    font-size: 2vh;
-    margin: 0;
-    color: #000;
-    text-align: center;
+.footer .container {
+  justify-content: center;
+  text-align: center;
 }
 
-.imagem-meio2 {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
+.footer .container .version {
+  font-size: 12px;
 }
 
-.imagem-meio2 img {
-    width: 17vw;
-    height: auto;
-    display: block;
+/* LOGIN */
+
+.login {
+  height: var(--tamanho-login);
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
 }
 
-/* -----CONTAINER 3----- */
-.container-meio3 {
-    background-color: #005975;
-    padding: 3% 8% 5% 8%;
-    width: 80vw;
-    border-radius: 10px;
-    margin: 0 auto;
-    margin-top: 0px;
-    display: flex;
-    flex-direction: column;
+.login .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.titulo-meio3 h3 {
-    color: white;
-    font-size: 4vh;
-    font-weight: 700;
-    margin-bottom: 6vh;
-    display: flex;
+.card {
+  width: 50%;
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: palevioletred;
+  flex-direction: column;
+  height: fit-content;
+  padding: 20px 0;
 }
 
-.texto-meio3 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card h2 {
+  margin: 0;
+  font-size: 30px;
 }
 
-.texto-meio3 ul {
-    list-style: disc;
-    padding-left: 2vw;
-    color: white;
-    font-size: 2.7vh;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
+.formulario {
+  display: flex;
+  height: 90%;
+  width: 80%;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
-.texto-meio3 img {
-    height: 40vh;
-    border-radius: 2vh;
+.formulario span {
+  font-size: 15px;
+  font-weight: 800;
 }
 
-
-/* ----- FINAL CSS HOME ----- */
-
-/*----- INICIO CSS SOBRE NÓS ----- */
-.titulo-sobre-nos{
-    padding: 15.6% 0 0 0;
+.formulario input {
+  border: 2px solid #32b9cd;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
 }
 
-.titulo-meio2 h3{
-    font-size: 2.5vw;
-    margin: 1.5vw auto -3vw auto;
-    color: #f1f3e8;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
+.formulario select {
+  border: 2px solid #32b9cd;
+  background-color: white;
+  color: gray;
+  height: 36px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
 }
 
-.titulo-sobre-nos img{
-    width: 23vw;
-    filter: contrast(100%);
+.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px 0;
 }
 
-.container-nos1 {
-    width: 85vw;
-    margin: 2vh auto 0 auto;
-    display: grid;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2.5vw 3vw;
-    border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    color: #333;
-    background-color: #f1f3e8;
+.botao {
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  background-color: #ED145B;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
 }
 
-.container-nos1 h3 {
-    text-align: center;
-    font-size: 1.8vw;
-    color: #005975;
-    margin-bottom: 4vw;
-    margin-top: 3vw;
-    position: relative;
+.loading-div {
+  width: 50px;
+  display: none;
 }
 
-.container-nos1 p{
-    text-align: justify;
-    font-size: .98vw;
-    margin-bottom: 15px;
+.loading-div img {
+  height: 50px;
+  width: 50px;
 }
 
-.caixa-integrantes{
-    display: grid;
-
-    justify-self: center;
+#div_erros_login {
+  display: none
 }
 
-.nossa-equipe {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;  
-    justify-content: space-evenly;
-    width: 70%;
-    margin: 0 auto;
-    
+/* FORMULARIO */
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
 }
 
-.texto-fotos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
-    margin: 30px 0;
-    width: 19vw;
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
 }
 
-.texto-fotos img{
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
 }
 
-.texto-fotos p {
-    font-family: "Poppins", sans-serif;
-    text-align: justify;
-    font-size: 1vw;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #005975;
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
 }
 
-.texto-fotos img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.texto-fotos p {
-    text-align: justify;
-    font-size: 18px;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    color: #444;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-h1 {
-    font-size: 3.6vh;
-    color: #005975;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 2.4vh;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-}
-/*----- FINAL CSS SOBRE NÓS ----- */
-
-/*----- INICIO CSS CONTATO ----- */
-.titulo-contato {
-    margin-top: 25vh;
-    margin-bottom: 10vh;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-}
-
-.titulo-contato h1{
-    color: #f1f3e8;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-}
-
-.titulo-contato h2{
-    color: #f1f3e8;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-}
-
-.form-container {
-    background-color: #f1f3e8;
-    padding: 30px 25px;
-    border-radius: 10px;
-    max-width: 27vw;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-alinhamento {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.form-container h1 {
-    font-size: 2.5vh;
-    color: #005975;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.form-content {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-.form-content label {
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: #000000;
-}
-
-.form-content input {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.form-content input:focus {
-    border-color: #005975;
-    outline: none;
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #005975;
-    color: #f1f3e8;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
-}
-
-button[type="submit"]:hover {
-    background-color: #003f51;
-}
-
-.button-lc {
-    width: 95%;
-    cursor: pointer;
-    height: 40px;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 20px;
-    background-color: #09879a;
-    color: antiquewhite;
-    font-weight: bolder;
-    margin-top: 2vw;
-    padding: 0;
-    transition: all 0.3s ease;
-    font-size: 1.1vw;
-}
-
-.button-lc:hover {
-    border: solid 2px;
-    border-color: #09879a;
-    color: #09879a;
-    scale: 1.02;
-    transition: 200ms;
-    font-weight: 700;
-    background-color: #00405100;
-}
-
-/*----- FINAL CSS CONTATO ----- */
-
-/*----- INICIO CSS SIMULADOR FINANCEIRO ----- */
-
-.titulo-calc{
-    color: #f1f3e8;
-    margin: 10vw auto 1vw auto;
-    display: flex;
-    width: 70%;
-    justify-content: flex-start;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-}
-.subtitulo-calc{
-    color: #f1f3e8;
-    display: flex;
-    width: 50%;
-    margin: 0 0 3vw 0;
-    justify-content: flex-start;
-    padding: 0 15%;
-    text-align: left;
-    text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.582);
-}
-.container_cards{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-}
-.card-input{
-    display: block;
-    background: #f1f3e8;
-    padding: 2vw;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    max-width: 60%;
-}
-.label-calc{
-    display: flex;
-    border-color: #ccc;
-    margin: .8vw 3vw .5vw 3vw;
-}
-/*----- FINAL CSS SIMULADOR FINANCEIRO ----- */
-
-/*----- INICIO CSS CADASTRO ----- */
-.body-cadastro h1 {
-    font-size: 3vw;
-    color: #f1f3e8;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.body-cadastro h2 {
-    font-size: 1.45vw;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-    justify-self: center;
-}
-
-.body-cadastro{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 5.5vw;
-    margin-top: 150px;
-}
-
-.caixa-cadastro {
-    width: 40%;
-    border: 2vw;
-    border-radius: 20px;
-    background-color: #f1f3e8;
-    display: block;
-    font-size: 13px;
-    color: #000000;
-    text-align: left;
-    padding: 10px;
-}
-
-.pai {
-    display: flex;
-    justify-content: space-around;
-}
-
-.filho {
-    margin-left: 1%;
-    margin-right: 1%;
-    width: 80%;
+.formulario {
+  display: flex;
+  flex-direction: column;
 }
 
 input {
-    height: 25px;
-    width: 90%;
-    border-radius: 20px;
-    border: 2px #08a4bd solid;
-    padding: 5px;
-    padding-left: 10px;
-    margin-bottom: 5px;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
 }
 
-#span_usuario {
-    margin-left: 25px;
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #ED145B;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
 }
 
-#span_tamanho,
-#span_num,
-#span_caracEsp,
-#span_caracESP {
-    margin-left: 25px;
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
 }
 
-input::placeholder {
-    padding-left: 5px;
-    color: #44444472;
+.loading-div img {
+  height: 50px;
+  width: 50px;
 }
 
-.subtitulo {
-    font-weight: bolder;
-    font-size: 14px;
-    margin-bottom: 5px;
-    margin-top: 20px;
-    justify-items: left;
+/* SIMULADOR */
+
+.simulador {
+  color: white;
 }
 
-.link {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    margin-top: 20px;
+.simulador .container {
+  flex-direction: column;
+  overflow: scroll; 
+  height: var(--tamanho-simulador);
 }
 
-.link a, .caixa-checkbox {
-    color: #08a4bd;
-    transition: 200ms;
+/* ALERTA */
+
+#alerta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
-.link a:hover, .caixa-checkbox:hover {
-    font-weight: 800;
-    transform: scale(1);
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-/*----- FINAL CSS CADASTRO ----- */
-
-/*----- INICIO CSS LOGIN ----- */
-.caixa-login {
-    width: 40%;
-    border: 2vw;
-    border-radius: 20px;
-    background-color: #f1f3e8;
-    display: grid;
-    flex-direction: column;
-    justify-self: center;
-    align-self: center;
-    font-size: 13px;
-    color: #000000;
-    text-align: left;
-    padding: 10px;
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
 }
 
-#subtitulo-login {
-    font-size: 20px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-    justify-self: center;
+.mensagem-alarme .informacao {
+  width: 66%;
 }
 
-.titulo h1 {
-    font-size: 28px;
-    color: #f1f3e8;
-    text-align: center;
-    margin-bottom: 20px;
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
 }
 
-.titulo h2 {
-    font-size: 20px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
-    justify-self: center;
-}
-
-.filhol_login {
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 80%;
-    justify-self: center;
-    gap: 0;
-}
-
-.caixa-checkbox {
-    color: #08a4bd;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    gap: 2vw;
-    width: fit-content;
-    height: 100%;
-    padding: 0;
-}
-
-.links {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 6;
-    align-items: center;
-}
-
-.caixa-checkbox p, .caixa-checkbox input, .caixa-link p {
-    margin: 0;
-}
-
-.caixa-link {
-    width: fit-content;
-}
-
-/*----- CARACTERISTICAS DA CAIXA MARCADOR ----------*/
-
-
-
-/*----- FINAL CSS LOGIN ----- */
-
-
-
-/*----- INICIO CSS DASHBOARD ----- */
-    .dash_body{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        margin: 0;
-        min-height: 100vh;
-    }
-    aside{
-        background-color: #003f51;
-        color: #f1f3e8;
-        display: flex;
-        flex-direction: column;
-        width: 17vw;
-        margin: 0;
-    }
-
-    aside h2{
-        color: #08a4bd;
-        font-size: 1.2;
-    }
-    
-    aside a{
-        display: flex;
-        justify-content: center;
-        align-content: center;
-    }
-
-    aside img{
-        width: 10vw;
-        justify-self: center;
-        align-self: center;
-        transition: 200ms;
-    }
-    aside img:hover{
-        scale: 1.06;
-        transition: 150ms;
-    }
-
-    aside li{
-        margin-left: -1vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-    }
-    aside li ul{
-        margin: 0;
-        padding: 1vw;
-        border:  #08a5bd;
-        font-size: 1vw;
-        text-align: center;
-        transition: 100ms;
-    }
-    aside li ul:hover{
-        scale: 1.04;
-        transition: 200ms;
-        background-color: #045064; 
-        color: #08a4bd;
-    }
-    .bt_vermelho:hover{
-        color: crimson;
-        background-color: rgb(67, 10, 10);
-        font-weight: 600;
-        transition: 200ms;
-    }
-
-
-    main{
-        width: 100%;
-        justify-content: center;
-        align-content: center;
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .titulo_dash{
-        text-align: center;
-        margin-bottom: 1.3vw;
-    }
-    
-    .pai_dash{
-        display: flex;
-        justify-content: center;
-        height: 90%;
-        margin: 0 3vw;
-        height: fit-content;
-    }
-
-    .cardsD {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin: 1.7vw 0;
-    }
-
-    .cardD {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        width: 180px;
-    }
-
-    .cardD h2 {
-        margin: 0;
-        font-size: 24px;
-        color: #333;
-    }
-
-    .cardD p {
-        font-size: 14px;
-        color: #777;
-    }
-
-    .graficos {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 50px;
-        margin-top: 20px;
-    }
-
-    .chart:last-child {
-        grid-column: 1 / -1;
-        
-
-    }
-
-    .chart {
-        background: white;
-        width: 40%;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .button-dash {
-    width: 40%;
-    cursor: pointer;
-    height: 40px;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 20px;
-    background-color: #09879a;
-    color: antiquewhite;
-    font-weight: bolder;
-    margin: 1vw 0 2vw 0;
-    padding: 0;
-    transition: all 0.3s ease;
-    font-size: 1.1vw;
+@keyframes bell {
+  0%   {transform: rotate(25deg)}
+  25%  {transform: rotate(-25deg)}
+  50%  {transform: rotate(25deg)}
+  75%  {transform: rotate(-25deg)}
+  100% {transform: rotate(25deg)}
 }

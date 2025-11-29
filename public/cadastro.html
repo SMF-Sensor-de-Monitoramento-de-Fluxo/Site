@@ -2,19 +2,20 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="shortcut icon" href="./assets/imgs/SMF-Icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/estilo.css">
-</head>
-<style>
-    html {
-        background-image: url('./assets/imgs/corredor.png');
-    }
-</style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
+  <title>AquaTech | Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body onload="listar()">
     <header>
         <div class="header">
             <div class="container">
@@ -40,26 +41,26 @@
             <div class="pai">
                 <div class="filho">
                     <p class="subtitulo">Nome Completo: *</p>
-                    <input id="input_nome" type="text">
+                    <input id="nome_input" type="text">
 
                     <p class="subtitulo">E-mail: *</p>
-                    <input id="input_email" type="text" oninput="anaEmail1()"><br>
+                    <input id="email_input" type="text" oninput="anaEmail1()"><br>
                     
                     <span id="span_email1"></span>
 
                     <p class="subtitulo">Código de Verificação:</p>
-                    <input id="input_codigo" type="text" oninput="anaCodigo()"><br>
+                    <input id="codigo_input" type="text" oninput="anaCodigo()"><br>
                        
                     <span id="span_codigo"></span>
                 
                     <p class="subtitulo">Telefone : *</p>
-                    <input id="input_tel" type="number" placeholder="Digite com o DDD e sem espaço e traço"
+                    <input id="tel_input" type="number" placeholder="Digite com o DDD e sem espaço e traço"
                         oninput="anaTel1()">
                    
                     <span id="span_tel1"></span>
                     
                     <p class="subtitulo">Senha: *</p>
-                    <input id="input_senha" type="password" oninput="anaSenha()">
+                    <input id="senha_input" type="password" oninput="anaSenha()">
                     <p>
                         <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
                         <span id="span_num">Utilize números</span> <br>
@@ -68,7 +69,7 @@
                     </p>
 
                     <p class="subtitulo">Confirme sua senha: *</p>
-                    <input id="input_senha_confirmacao" type="password" oninput="senhaConf()"> <br> <br>
+                    <input id="confirmacao_senha_input" type="password" oninput="senhaConf()"> <br> <br>
                     <span id="span_senhaConfirm"></span>
 
                     <button class="button-lc" onclick="cadastrar()">Cadastre-se</button>
@@ -84,8 +85,8 @@
     <p>Rua Haddock Lobo, 595 - São Paulo / SP</p>
     <p>© 2025 SMF. Todos os direitos reservados.</p>
 </footer>
-
 </html>
+
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
@@ -96,54 +97,42 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = input_nome.value;
-    var nomeValid = false;
-    var emailVar = input_email.value;
-    var emailValid = false;
-    var senhaVar = input_senha.value;
-    var senhaValid = false;
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = input_codigo.value;
-    var codigoValid = false;
-    var idEmpresaVincular;
+    var codigoVar = codigo_input.value;
+    var telefoneVar = tel_input.value
+    var idMercado
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ){
+      codigoVar == "" ||
+      telefoneVar == ""
+    ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "Existem campos em branco!";
+        "(Mensagem de erro para todos os campos em branco)";
 
       finalizarAguardar();
       return false;
-    } else if(
-      nomeValid == false || 
-      emailValid == false || 
-      senhaValid == false || 
-      codigoValid == false
-    ){
-        cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Existem campos com formatação inválida!";
-
-      finalizarAguardar();
-    } else{
+    } else {
       setInterval(sumirMensagem, 5000);
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+      if (listaEmpresasCadastradas[i].codigo_verificacao == codigoVar) {
+        idMercado = listaEmpresasCadastradas[i].codigo_verificacao
         console.log("Código de ativação válido.");
         break;
       } else {
         cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Código inválido";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
         finalizarAguardar();
       }
     }
@@ -160,7 +149,8 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        telefoneServer: telefoneVar,
+        idMercadoServer: idMercado
       }),
     })
       .then(function (resposta) {
@@ -197,11 +187,11 @@
     })
       .then(function (resposta) {
         resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+          empresas.forEach((Mercado) => {
+            listaEmpresasCadastradas.push(Mercado);
 
             console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            console.log(listaEmpresasCadastradas[0].codigo_verificacao)
           });
         });
       })
