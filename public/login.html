@@ -40,10 +40,10 @@
 
         <div class="filhol_login">
             <p class="subtitulo">Digite seu email:</p>
-            <input id="input_email_or_cnpj" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
+            <input id="email_input" type="text" placeholder="Email@gmail.com" class="input input"> <br> <br>
 
             <p class="subtitulo">Digite sua senha:</p>
-            <input id="input_senha" type="password" placeholder="********" class="input input"> <br>
+            <input id="senha_input" type="password" placeholder="********" class="input input"> <br>
             <div class="links">
                 <div class="caixa-checkbox">
                     <p class="link">Lembrar de mim</p>
@@ -71,10 +71,9 @@
 
 
     function entrar() {
-        aguardar();
 
         var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var senhaVar = senha_input.value
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
@@ -110,7 +109,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
