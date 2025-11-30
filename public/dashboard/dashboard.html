@@ -44,15 +44,15 @@
     
     <div class="cardsD">
       <div class="cardD">
-        <h2>1.250</h2>
-        <p>Total de Clientes (1h)</p>
+        <h2 id="kpi_total_clientes"></h2>
+        <p>Total de Clientes (30 minutos)</p>
       </div>
       <div class="cardD">
-        <h2>Corredor 3</h2>
+        <h2 id="kpi_mais"></h2>
         <p>Mais Movimentado</p>
       </div>
       <div class="cardD">
-        <h2>Corredor 5</h2>
+        <h2 id="kpi_menos"></h2>
         <p>Menos Movimentado</p>
       </div>
     </div>
@@ -74,36 +74,119 @@
 <script>
     //b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-   // Dados fictícios de exemplo
-      const corredores = ["Corredor 1", "Corredor 2", "Corredor 3", "Corredor 4", "Corredor 5"];
-      const clientesPorCorredor = [300, 250, 400, 200, 100];
+ const ctx = document.getElementById('lineChart'); 
+    const configSensor1 = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Fluxo Sensor 1',
+                data: [],
+                fill: false,
+                tension: 0.2
+            }]
+        }
+    };
 
-    // Gráfico de Barras - Clientes por corredor
-    new Chart(document.getElementById("barChart"), {
-      type: "bar",
-      data: {
-        labels: corredores,
-        datasets: [{
-          label: "Clientes por Corredor (1h)",
-          data: clientesPorCorredor,
-          backgroundColor: ["#0e34a0", "#0b6caf", "#08a4bd", "#52fffc", "#003559"]
-        }]
-      }
-    });
+    const graficoSensor1 = new Chart(ctx, configSensor1);
 
-    // Gráfico de Linha - Fluxo ao longo do tempo (exemplo 5 horas)
-    new Chart(document.getElementById("lineChart"), {
-      type: "line",
-      data: {
-        labels: ["08h", "09h", "10h", "11h", "12h"],
+    function obterDadosGraficoSensor1() {
+        fetch('/medidas/ultimas/1')
+            .then(function (resposta) {
+                if (!resposta.ok) {
+                    throw "Erro ao buscar dados do gráfico";
+                }
+                return resposta.json();
+            })
+            .then(function (dados) {
+                let labels = [];
+                let valores = [];
+
+                for (let i = 0; i < dados.length; i++) {
+                    const registro = dados[i];
+
+                    labels.push(registro.momento_grafico);
+                    valores.push(registro.leitura);
+                }
+
+                graficoSensor1.data.labels = labels;
+                graficoSensor1.data.datasets[0].data = valores;
+                graficoSensor1.update();
+
+                if(dados.length > 0){
+                  var total30min = dados[0].leitura
+                  document.getElementById('kpi_total_clientes').innerText = total30min;
+                }
+            })
+            .catch(function (erro) {
+                console.error(erro);
+            });
+    }
+
+    obterDadosGraficoSensor1();
+
+ const ctxBar = document.getElementById('barChart');
+
+const configCorredores = {
+    type: 'bar',
+    data: {
+        labels: [],
         datasets: [{
-          label: "Fluxo total de clientes",
-          data: [500, 800, 1250, 1000, 900],
-          borderColor: "#08a4bd",
-          backgroundColor: "rgba(59,130,246,0.2)",
-          tension: 0.3,
-          fill: true
+            label: 'Clientes por corredor',
+            data: [],
+            backgroundColor: '#08a4bd'
         }]
-      }
-    });
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+const graficoCorredores = new Chart(ctxBar, configCorredores);
+
+
+const idMercado = 1;
+
+function obterFluxoPorCorredor() {
+    fetch(`/medidas/corredores/${idMercado}`)
+        .then(function (resposta) {
+            if (!resposta.ok) {
+                throw "Erro ao buscar dados de corredores";
+            }
+            return resposta.json();
+        })
+        .then(function (dados) {
+            let labels = [];
+            let valores = [];
+
+            dados.forEach(function (registro) {
+                labels.push(registro.corredor);       
+                valores.push(registro.totalClientes);  
+            });
+
+            graficoCorredores.data.labels = labels;
+            graficoCorredores.data.datasets[0].data = valores;
+            graficoCorredores.update();
+
+           
+            if (dados.length > 0) {
+               
+                var mais = dados[0].corredor;
+                document.getElementById('kpi_mais').innerText = mais;
+               
+                var menos = dados[dados.length - 1].corredor;
+                document.getElementById('kpi_menos').innerText = menos;
+
+        }})
+        .catch(function (erro) {
+            console.error(erro);
+        });
+}
+
+
+obterFluxoPorCorredor();
 </script>
