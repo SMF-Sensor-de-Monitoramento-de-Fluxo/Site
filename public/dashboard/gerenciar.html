@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.html">
+     <link rel="stylesheet" href="./../css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+
+<body class="dash_body">
+    <aside>
+        <a href="../"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
+        <h2>Seja bem vindo, Brandão!</h2>
+        <li>
+            <ul><a class="aside_buttons" href="dashboard.html">
+                    <p>Graficos Gerais</p>
+                </a></ul>
+            <ul><a class="aside_buttons" href="sensorindividual.html">
+                    <p>Sensores Individuais</p>
+                </a></ul>
+            <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
+                    <p>Gerencie sua Conta</p>
+                </a></ul>
+            <ul><a class="aside_buttons" href="../index.html">
+                    <p>Voltar para Tela inicial</p>
+                </a></ul>
+            <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html">
+                    <p>Sair da conta</p>
+                </a></ul>
+        </li>
+
+    </aside>
+    <main>
+        <h1 class="titulo_dash">Gerencie sua conta</h1>
+        <div class="pai_dash">
+            <div class="filho">
+                <p class="subtitulo">Nome Completo: *</p>
+                <input id="input_nome_responsavel" type="text" value="Fernando Brandão">
+
+                <p class="subtitulo">Nome Empresa: *</p>
+                <input id="input_nome_empresa" type="text" value="SpTech Varejos">
+
+                <p class="subtitulo">E-mail 1: *</p>
+                <input id="input_email1" type="text" value="ferBrandao@spTech.Varejos"><br>
+                <select id="select_tipoEmail1">
+                    <option value="#" selected disabled>Selecione um tipo de E-mail</option>
+                    <option>Pessoal</option>
+                    <option selected>Corporativo</option>
+                </select> &nbsp
+                <span id="span_email1"></span>
+
+                <p class="subtitulo">E-mail 2 (opcional):</p>
+                <div class="select">
+                    <input id="input_email2" type="text"><br>
+                    <select id="select_tipoEmail2">
+                        <option value="#" selected disabled>Selecione um tipo de E-mail</option>
+                        <option>Pessoal</option>
+                        <option>Corporativo</option>
+                    </select> &nbsp
+                    <span id="span_email2"></span>
+                </div>
+
+                <p class="subtitulo"> Cargo do Usuário: *</p>
+                <select id="select_cargo">
+                    <option value="#" selected disabled>Selecione uma opção</option>
+                    <option>Funcionário</option>
+                    <option>Gerente</option>
+                    <option selected>Colaborador</option>
+                    <option>Administrador</option>
+                </select>
+
+                <p class="subtitulo">CEP: *</p>
+                <input id="input_CEP" type="number" value="09423532" placeholder="Digite sem o traço">
+                <span id="span_cep"></span>
+            </div>
+
+            <div class="filho">
+                <p class="subtitulo">CNPJ: *</p>
+                <input id="input_CNPJ" type="number" placeholder="Digite sem os pontos e traço" value="12312421412212">
+                <span id="span_cnpj"></span>
+
+                <p class="subtitulo">Telefone 1: *</p>
+                <input id="input_tel_1" type="number" value="11923132451" placeholder="Digite com o DDD e sem espaço e traço "
+                    oninput="anaTel1()">
+                <select id="select_tipoTel1">
+                    <option value="#" selected disabled>Selecione um tipo de telefone</option>
+                    <option>Pessoal</option>
+                    <option selected>Corporativo</option>
+                </select> &nbsp
+                <span id="span_tel1"></span>
+
+                <p class="subtitulo">Telefone 2 (opcional):</p>
+                <input id="input_tel_2" type="number" value="11916132967" placeholder="Digite com o DDD e sem espaço e traço"
+                    oninput="anaTel2()"> <br>
+                <select id="select_tipoTel2">
+                    <option value="#" selected disabled>Selecione um tipo de telefone</option>
+                    <option selected>Pessoal</option>
+                    <option>Corporativo</option>
+                </select> &nbsp
+                <span id="span_tel2"></span>
+
+                <p class="subtitulo">Insira sua senha atual:</p>
+                <input id="input_senha" type="password" value="sPt3chV@reJ0s">
+                
+
+                <p class="subtitulo">Insira sua nova senha:</p>
+                <input id="input_senha_confirmacao" type="password">
+                <span id="span_senhaConfirm"></span>
+                <p>
+                    <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
+                    <span id="span_num">Utilize números</span> <br>
+                    <span id="span_caracEsp">Utilize caractéres especiais: <br>
+                        <span id="span_caracESP" style="color: gray; font-size: 12px;">Ex: ! % * . & # $</span>
+                </p>
+            </div>
+        </div>
+        <button class="button-dash" onclick="cadastrar()">Salvar Alterações</button>
+    </main>
+</body>
+
+</html>
