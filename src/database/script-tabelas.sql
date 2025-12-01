@@ -82,48 +82,12 @@ CREATE TABLE SensorLeitura (
     dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO SensorLeitura (fkSensor, leitura, dataLeitura) VALUES
-	(1, 23, '2025-10-27 08:30:00'),
-	(1, 25, '2025-10-27 09:00:00'),
-	(1, 27, '2025-10-27 09:30:00'),
-
-	(2, 18, '2025-10-27 08:45:00'),
-	(2, 20, '2025-10-27 09:15:00'),
-	(2, 19, '2025-10-27 09:45:00'),
-
-	(3, 30, '2025-10-27 08:00:00'),
-	(3, 31, '2025-10-27 08:30:00'),
-	(3, 29, '2025-10-27 09:00:00');
-
 CREATE TABLE Usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nomeCompleto VARCHAR(45) NOT NULL,
-    email VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
     FK_codigo_verificacao char(5),
     foreign key (FK_codigo_verificacao) references Mercado (codigo_verificacao),
     telefone char(11),
 	senha VARCHAR(45) NOT NULL
 );
-
-
-INSERT INTO Usuario (nomeCompleto, email, FK_codigo_verificacao, telefone, senha) VALUES
-	('Lucas Almeida da Silva','Lucas@mercado.com','HU47S','11942378945', 'LuAS123'),
-	('Vagner Souza','vagner@mercado.com','KS9V4','11934578943', 'szVag1'),
-	('Roberto Assis','roberto@mercado.com','XPB94','11917894567', 'roAssis06');
-    
-select * from Usuario;
-
-SELECT codigo_verificacao FROM Mercado WHERE codigo_verificacao = 'HU47S';
-    
-    INSERT INTO SensorLeitura (fkSensor, leitura, dataLeitura) VALUES
-    (1, 21, '2025-11-30 18:40:00'),
-    (1, 24, '2025-11-30 18:50:00'),
-    (1, 26, '2025-11-30 18:55:00'),
-
-    (2, 17, '2025-11-30 18:50:00'),
-    (2, 19, '2025-11-30 18:58:00'),
-    (2, 18, '2025-11-30 18:59:00'),
-
-    (3, 28, '2025-11-30 19:20:00'),
-    (3, 30, '2025-11-30 19:25:00'),
-    (3, 32, '2025-11-30 19:30:00');
