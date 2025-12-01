@@ -124,17 +124,17 @@
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_verificacao == codigoVar) {
-        idMercado = listaEmpresasCadastradas[i].codigo_verificacao
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
+    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    //   if (listaEmpresasCadastradas[i].codigo_verificacao == codigoVar) {
+    //     idMercado = listaEmpresasCadastradas[i].codigo_verificacao
+    //     console.log("Código de ativação válido.");
+    //     break;
+    //   } else {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+    //     finalizarAguardar();
+    //   }
+    // }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -149,7 +149,7 @@
         emailServer: emailVar,
         senhaServer: senhaVar,
         telefoneServer: telefoneVar,
-        idMercadoServer: idMercado
+        idMercadoServer: codigoVar
       }),
     })
       .then(function (resposta) {
