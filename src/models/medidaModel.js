@@ -9,7 +9,7 @@ function buscarUltimasLeituras(idSensor, limite_linhas) {
         FROM SensorLeitura
         WHERE fkSensor = ${idSensor}
         ORDER BY dataLeitura DESC
-        LIMIT ${limite_linhas};
+        LIMIT ${limite_linhas}; 
     `;
 
     console.log("Executando SQL:\n" + instrucaoSql);
