@@ -113,28 +113,28 @@
       codigoVar == "" ||
       telefoneVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
+      // cardErro.style.display = "block";
+      // mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
-      return false;
+      // finalizarAguardar();
+      // return false;
     } else {
-      setInterval(sumirMensagem, 5000);
+      // setInterval(sumirMensagem, 5000);
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_verificacao == codigoVar) {
-    //     idMercado = listaEmpresasCadastradas[i].codigo_verificacao
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idMercado = listaEmpresasCadastradas[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        // cardErro.style.display = "block";
+        console.log("Mensagem de erro para código inválido");
+        // finalizarAguardar();
+      }
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -149,14 +149,14 @@
         emailServer: emailVar,
         senhaServer: senhaVar,
         telefoneServer: telefoneVar,
-        idMercadoServer: codigoVar
+        codigoServer: codigoVar
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          // cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -186,20 +186,16 @@
     })
       .then(function (resposta) {
         resposta.json().then((empresas) => {
-          empresas.forEach((Mercado) => {
-            listaEmpresasCadastradas.push(Mercado);
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
 
             console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_verificacao)
+            console.log(listaEmpresasCadastradas)
           });
         });
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
   }
 </script>

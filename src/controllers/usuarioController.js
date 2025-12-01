@@ -53,7 +53,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkCodigo = req.body.idMercadoServer;
+    var fkCodigo = req.body.codigoServer;
     var telefone = req.body.telefoneServer;
 
     // Faça as validações dos valores
