@@ -2,28 +2,29 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="/icon/logo.ico">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <link rel="stylesheet" href="/icon/logo.ico">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
 
-    
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/style.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <link rel="stylesheet" href="./../css/dashboards.css">
+  <link rel="stylesheet" href="./../css/style.css" />
+  <link rel="icon" href="../assets/icon/logo.ico" />
+  <script src="../js/sessao.js"></script>
+  <script src="./../js/alerta.js"></script>
 
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
-    <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+  <!-- scripts do Chart.js - 2022-1 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!--FONT AWESOME-->
+  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="dash_body">
@@ -31,17 +32,30 @@
     <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
     <h2>Seja bem vindo, Brandão!</h2>
     <li>
-      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href=""><p>Graficos Gerais</p></a></ul>
-      <ul><a class="aside_buttons" href="../dashboard/sensorIndividual.html"><p>Sensores Individuais</p></a></ul>
-      <ul><a class="aside_buttons" href="../dashboard/gerenciar.html"><p>Gerencie sua Conta</p></a></ul>
-      <ul><a class="aside_buttons" href="../index.html"><p>Voltar para Tela inicial</p></a></ul>
-      <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html"><p>Sair da conta</p></a></ul>
+      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
+          <p>Graficos Gerais</p>
+        </a></ul>
+      <ul><a class="aside_buttons" href="../dashboard/sensorIndividual.html">
+          <p>Sensores Individuais</p>
+        </a></ul>
+      <ul><a class="aside_buttons" href="./heatMapSMF.html">
+          <p>Mapa de calor dos setores</p>
+        </a></ul>
+      <ul><a class="aside_buttons" href="../dashboard/gerenciar.html">
+          <p>Gerencie sua Conta</p>
+        </a></ul>
+      <ul><a class="aside_buttons" href="../index.html">
+          <p>Voltar para Tela inicial</p>
+        </a></ul>
+      <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html">
+          <p>Sair da conta</p>
+        </a></ul>
     </li>
 
   </aside>
   <main>
     <h1 class="titulo_dash">Fluxo de Clientes</h1>
-    
+
     <div class="cardsD">
       <div class="cardD">
         <h2 id="kpi_total_clientes"></h2>
@@ -56,7 +70,7 @@
         <p>Menos Movimentado</p>
       </div>
     </div>
-    
+
     <div class="graficos">
       <div class="chart">
         <canvas id="barChart"></canvas>
@@ -64,129 +78,130 @@
       <div class="chart">
         <canvas id="lineChart"></canvas>
       </div>
-      
-      
-    </main>
-  </body>
+
+
+  </main>
+</body>
 
 </html>
 
 <script>
-    //b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  //b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
- const ctx = document.getElementById('lineChart'); 
-    const configSensor1 = {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Fluxo Sensor 1',
-                data: [],
-                fill: false,
-                tension: 0.2
-            }]
-        }
-    };
-
-    const graficoSensor1 = new Chart(ctx, configSensor1);
-
-    function obterDadosGraficoSensor1() {
-        fetch('/medidas/ultimas/1')
-            .then(function (resposta) {
-                if (!resposta.ok) {
-                    throw "Erro ao buscar dados do gráfico";
-                }
-                return resposta.json();
-            })
-            .then(function (dados) {
-                let labels = [];
-                let valores = [];
-
-                for (let i = 0; i < dados.length; i++) {
-                    const registro = dados[i];
-
-                    labels.push(registro.momento_grafico);
-                    valores.push(registro.leitura);
-                }
-
-                graficoSensor1.data.labels = labels;
-                graficoSensor1.data.datasets[0].data = valores;
-                graficoSensor1.update();
-
-                if(dados.length > 0){
-                  var total30min = dados[0].leitura
-                  document.getElementById('kpi_total_clientes').innerText = total30min;
-                }
-            })
-            .catch(function (erro) {
-                console.error(erro);
-            });
+  const ctx = document.getElementById('lineChart');
+  const configSensor1 = {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Fluxo Sensor 1',
+        data: [],
+        fill: false,
+        tension: 0.2
+      }]
     }
+  };
 
-    obterDadosGraficoSensor1();
+  const graficoSensor1 = new Chart(ctx, configSensor1);
 
- const ctxBar = document.getElementById('barChart');
+  function obterDadosGraficoSensor1() {
+    fetch('/medidas/ultimas/1')
+      .then(function (resposta) {
+        if (!resposta.ok) {
+          throw "Erro ao buscar dados do gráfico";
+        }
+        return resposta.json();
+      })
+      .then(function (dados) {
+        let labels = [];
+        let valores = [];
 
-const configCorredores = {
+        for (let i = 0; i < dados.length; i++) {
+          const registro = dados[i];
+
+          labels.push(registro.momento_grafico);
+          valores.push(registro.leitura);
+        }
+
+        graficoSensor1.data.labels = labels;
+        graficoSensor1.data.datasets[0].data = valores;
+        graficoSensor1.update();
+
+        if (dados.length > 0) {
+          var total30min = dados[0].leitura
+          document.getElementById('kpi_total_clientes').innerText = total30min;
+        }
+      })
+      .catch(function (erro) {
+        console.error(erro);
+      });
+  }
+
+  obterDadosGraficoSensor1();
+
+  const ctxBar = document.getElementById('barChart');
+
+  const configCorredores = {
     type: 'bar',
     data: {
-        labels: [],
-        datasets: [{
-            label: 'Clientes por corredor',
-            data: [],
-            backgroundColor: '#08a4bd'
-        }]
+      labels: [],
+      datasets: [{
+        label: 'Clientes por corredor',
+        data: [],
+        backgroundColor: '#08a4bd'
+      }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          beginAtZero: true
         }
+      }
     }
-};
+  };
 
-const graficoCorredores = new Chart(ctxBar, configCorredores);
+  const graficoCorredores = new Chart(ctxBar, configCorredores);
 
 
-const idMercado = 1;
+  const idMercado = 1;
 
-function obterFluxoPorCorredor() {
+  function obterFluxoPorCorredor() {
     fetch(`/medidas/corredores/${idMercado}`)
-        .then(function (resposta) {
-            if (!resposta.ok) {
-                throw "Erro ao buscar dados de corredores";
-            }
-            return resposta.json();
-        })
-        .then(function (dados) {
-            let labels = [];
-            let valores = [];
+      .then(function (resposta) {
+        if (!resposta.ok) {
+          throw "Erro ao buscar dados de corredores";
+        }
+        return resposta.json();
+      })
+      .then(function (dados) {
+        let labels = [];
+        let valores = [];
 
-            dados.forEach(function (registro) {
-                labels.push(registro.corredor);       
-                valores.push(registro.totalClientes);  
-            });
-
-            graficoCorredores.data.labels = labels;
-            graficoCorredores.data.datasets[0].data = valores;
-            graficoCorredores.update();
-
-           
-            if (dados.length > 0) {
-               
-                var mais = dados[0].corredor;
-                document.getElementById('kpi_mais').innerText = mais;
-               
-                var menos = dados[dados.length - 1].corredor;
-                document.getElementById('kpi_menos').innerText = menos;
-
-        }})
-        .catch(function (erro) {
-            console.error(erro);
+        dados.forEach(function (registro) {
+          labels.push(registro.corredor);
+          valores.push(registro.totalClientes);
         });
-}
+
+        graficoCorredores.data.labels = labels;
+        graficoCorredores.data.datasets[0].data = valores;
+        graficoCorredores.update();
 
 
-obterFluxoPorCorredor();
+        if (dados.length > 0) {
+
+          var mais = dados[0].corredor;
+          document.getElementById('kpi_mais').innerText = mais;
+
+          var menos = dados[dados.length - 1].corredor;
+          document.getElementById('kpi_menos').innerText = menos;
+
+        }
+      })
+      .catch(function (erro) {
+        console.error(erro);
+      });
+  }
+
+
+  obterFluxoPorCorredor();
 </script>

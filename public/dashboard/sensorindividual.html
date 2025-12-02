@@ -1,71 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensor Individual</title>
-    <link rel="stylesheet" href="../index.html">
-     <link rel="stylesheet" href="./../css/style.css" />
-    <link rel="shortcut icon" href="./assets/imgs/logo_png.png" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensores Individuais</title>
+
+  <link rel="stylesheet" href="./../css/style.css" />
+  <link rel="icon" href="../assets/icon/logo.ico" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 <body class="dash_body">
-    <aside>
+
+  <aside>
     <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
     <h2>Seja bem vindo, Brandão!</h2>
     <li>
       <ul><a class="aside_buttons" href="./dashboard.html"><p>Graficos Gerais</p></a></ul>
       <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="./sensorIndividual.html"><p>Sensores Individuais</p></a></ul>
+      <ul><a class="aside_buttons" href="./heatMapSMF.html"><p>Mapa de calor dos setores</p></a></ul>
       <ul><a class="aside_buttons" href="./gerenciar.html"><p>Gerencie sua Conta</p></a></ul>
       <ul><a class="aside_buttons" href="../"><p>Voltar para Tela inicial</p></a></ul>
       <ul class="bt_vermelho"><a class="aside_buttons" href="../LoginCadastro/login.html"><p>Sair da conta</p></a></ul>
     </li>
-
   </aside>
-  
+
   <main>
     <h2 id="titulo_dash">Sensores Individuais</h2>
-    <div class="graficos">
-        <canvas class="chart" id="graficoSensor1" width="50%" height="20vw"></canvas>
-      
-        <canvas class="chart" id="graficoSensor2" width="50%" height="20vw"></canvas>
-    </div>
-    
-  <div>
-    <button onclick="carregaManha()">Visualizar período da manhã</button>
-    <button onclick="carregaTarde()">Visualizar período da tarde</button>
-  </div>
-</main>
-  <script>
-    new Chart(document.getElementById("graficoSensor1"), {
-      type: "line",
-      data: {
-        labels: ["08h", "09h", "10h", "11h", "12h"],
-        datasets: [{
-          label: "Fluxo total de clientes",
-          data: [8, 17, 29, 47, 82],
-          borderColor: "#08a4bd",
-          backgroundColor: "rgba(59,130,246,0.2)",
-          tension: 0.3,
-          fill: true
-        }]
-      }
-    });
 
-    new Chart(document.getElementById("graficoSensor2"), {
-      type: "line",
-      data: {
-        labels: ["13h", "14h", "15h", "16h", "17h"],
-        datasets: [{
-          label: "Tarde",
-          data: [12, 23, 34, 79, 99],
-          borderColor: "#08a4bd",
-          backgroundColor: "rgba(59,130,246,0.2)",
-          tension: 0.3,
-          fill: true
-        }]
-      }
-    });
+    <!-- 🔵 SETORES QUE O USUÁRIO CLICA -->
+    <div class="setores">
+      <div class="setor" onclick="carregarSetor('acougue')">Açougue</div>
+      <div class="setor" onclick="carregarSetor('padaria')">Padaria</div>
+      <div class="setor" onclick="carregarSetor('hortifruti')">Hortifruti</div>
+    </div>
+
+    <!-- 🔵 ÁREA DOS GRÁFICOS (ESCONDIDA ATÉ CLICAR) -->
+    <div id="areaGraficos">
+      <h3 id="tituloSetor"></h3>
+
+      <div class="graficos">
+        <canvas id="grafico1"></canvas>
+        <canvas id="grafico2"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let grafico1;
+    let grafico2;
+
+    function carregarSetor(nome) {
+      document.getElementById("areaGraficos").style.display = "block";
+      document.getElementById("tituloSetor").innerText = `Setor selecionado: ${nome.charAt(0).toUpperCase() + nome.slice(1)}`;
+
+      if (grafico1) grafico1.destroy();
+      if (grafico2) grafico2.destroy();
+
+      const ctx1 = document.getElementById("grafico1");
+      const ctx2 = document.getElementById("grafico2");
+
+      let dados = {
+        acougue: {
+          manha: [5, 12, 19, 33, 40],
+          tarde: [22, 35, 44, 51, 68]
+        },
+        padaria: {
+          manha: [10, 20, 29, 40, 62],
+          tarde: [15, 26, 39, 52, 70]
+        },
+        hortifruti: {
+          manha: [7, 14, 25, 31, 45],
+          tarde: [12, 30, 48, 53, 80]
+        }
+      };
+
+      let setor = dados[nome];
+
+      grafico1 = new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: ["08h", "09h", "10h", "11h", "12h"],
+          datasets: [{
+            label: "Fluxo (Manhã)",
+            data: setor.manha,
+            borderColor: "#08a4bd",
+            backgroundColor: "rgba(8, 164, 189, 0.3)",
+            tension: 0.3,
+            fill: true
+          }]
+        }
+      });
+
+      grafico2 = new Chart(ctx2, {
+        type: "line",
+        data: {
+          labels: ["13h", "14h", "15h", "16h", "17h"],
+          datasets: [{
+            label: "Fluxo (Tarde)",
+            data: setor.tarde,
+            borderColor: "#08a4bd",
+            backgroundColor: "rgba(8, 164, 189, 0.3)",
+            tension: 0.3,
+            fill: true
+          }]
+        }
+      });
+    }
   </script>
+
 </body>
 </html>

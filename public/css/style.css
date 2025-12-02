@@ -906,3 +906,30 @@ input::placeholder {
     transition: all 0.3s ease;
     font-size: 1.1vw;
 }
+
+    .setores {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .setor {
+      background: #045064;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .2s;
+      font-size: 18px;
+    }
+
+    .setor:hover {
+      background: #067a92;
+    }
+
+    #areaGraficos {
+      display: none;
+      margin-top: 30px;
+    }
+    

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../index.html">
-     <link rel="stylesheet" href="./../css/style.css" />
-    <link rel="shortcut icon" href="./assets/imgs/logo_png.png" type="image/x-icon">
+    <link rel="stylesheet" href="./../css/style.css" />
+    <link rel="icon" href="../assets/icon/logo.ico" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Gerenciar conta</title>
 </head>
@@ -21,6 +21,9 @@
                 </a></ul>
             <ul><a class="aside_buttons" href="sensorindividual.html">
                     <p>Sensores Individuais</p>
+                </a></ul>
+            <ul><a class="aside_buttons" href="./heatMapSMF.html">
+                    <p>Mapa de calor dos setores</p>
                 </a></ul>
             <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
                     <p>Gerencie sua Conta</p>
@@ -84,8 +87,8 @@
                 <span id="span_cnpj"></span>
 
                 <p class="subtitulo">Telefone 1: *</p>
-                <input id="input_tel_1" type="number" value="11923132451" placeholder="Digite com o DDD e sem espaço e traço "
-                    oninput="anaTel1()">
+                <input id="input_tel_1" type="number" value="11923132451"
+                    placeholder="Digite com o DDD e sem espaço e traço " oninput="anaTel1()">
                 <select id="select_tipoTel1">
                     <option value="#" selected disabled>Selecione um tipo de telefone</option>
                     <option>Pessoal</option>
@@ -94,8 +97,8 @@
                 <span id="span_tel1"></span>
 
                 <p class="subtitulo">Telefone 2 (opcional):</p>
-                <input id="input_tel_2" type="number" value="11916132967" placeholder="Digite com o DDD e sem espaço e traço"
-                    oninput="anaTel2()"> <br>
+                <input id="input_tel_2" type="number" value="11916132967"
+                    placeholder="Digite com o DDD e sem espaço e traço" oninput="anaTel2()"> <br>
                 <select id="select_tipoTel2">
                     <option value="#" selected disabled>Selecione um tipo de telefone</option>
                     <option selected>Pessoal</option>
@@ -105,7 +108,7 @@
 
                 <p class="subtitulo">Insira sua senha atual:</p>
                 <input id="input_senha" type="password" value="sPt3chV@reJ0s">
-                
+
 
                 <p class="subtitulo">Insira sua nova senha:</p>
                 <input id="input_senha_confirmacao" type="password">
