@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #63B1BC;
+    background-color: #2596be;
     margin: 0;
     padding: 0;
 }
@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-    color: #1F2A44;
+    color: #FFF;
 }
 
 textarea[type="text"] {
@@ -31,13 +31,26 @@ button {
 }
 
 button {
-    background-color: #ED145B;
-    color: #FFFFFF;
+    background-color: #08a5bd;
+    color: antiquewhite;
     border: none;
+    border-radius: 5px;
+    padding: .5vw .9vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: .7vw;
 }
 
 button:hover {
-    background-color: #EFB661;
+    background-color: #005a75e5;
+    border: solid 1px;
+    border-color: antiquewhite;
+    color: none;
+    scale: 1.05;
+    font-weight: 700;
 }
 
 #resposta {

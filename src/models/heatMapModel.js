@@ -2,15 +2,7 @@ var database = require("../database/config");
 
 function buscarFluxoPorCorredor(idSensor){
     var instrucaoSql = `
-    SELECT 
-            s.nome AS corredor,
-            SUM(sl.leitura) AS totalClientes
-        FROM SensorLeitura sl
-        JOIN Sensor se ON se.idSensor = sl.fkSensor
-        JOIN Setor  s ON s.idSetor = se.fkSetor
-        WHERE se.fkMercado = ${idSensor}
-        GROUP BY s.idSetor, s.nome
-        ORDER BY totalClientes DESC;`
+    select fkSensor idSensor, count(leitura) movimento from sensorLeitura where date(dataLeitura) between '${dtInicio}' and '${dtFim}' and time(dataLeitura) between '${hrInicio}' and ''${hrFim}`
 
     console.log("Executando SQL (fluxo por corredor):\n" + instrucaoSql);
 
