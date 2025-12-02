@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarFluxoPorCorredor(idSensor){
+function buscarIntervalo(idSensor){
     var instrucaoSql = `
     select fkSensor idSensor, count(leitura) movimento from sensorLeitura where date(dataLeitura) between '${dtInicio}' and '${dtFim}' and time(dataLeitura) between '${hrInicio}' and ''${hrFim}`
 
@@ -10,5 +10,5 @@ function buscarFluxoPorCorredor(idSensor){
 }
 
 module.exports = {
-    buscarFluxoPorCorredor
+    buscarIntervalo
 }

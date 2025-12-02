@@ -3,8 +3,8 @@ var router = express.Router();
 
 var medidaController = require("../controllers/heatMapController");
 
-router.get("/ultimas/:idSensor", function (req, res) {
-    medidaController.buscarUltimasLeituras(req, res);
+router.get("/buscarIntervalo", function (req, res) {
+    heatMapController.buscarIntervalo(req, res);
 });
 
 
