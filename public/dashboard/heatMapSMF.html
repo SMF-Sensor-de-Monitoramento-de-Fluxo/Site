@@ -238,11 +238,9 @@
             return;
         } else {
 
-            const urlBusca = `/heatMap/buscarIntervalo?hrInicio=${horaInicioIntervalo}&hrFim=${horaFinalIntervalo}&dtInicio=${dataInicial}&dtFim=${dataFinal}`;
-
-            fetch(urlBusca, {
+            fetch("/heatMap/buscarIntervalo", {
                 method: "GET",
-                //headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 
             }).then(function (resposta) {
                 if (resposta.ok) {
@@ -251,8 +249,6 @@
                     resposta.json().then(json => {
                         console.log(json);
                         console.log(JSON.stringify(json));
-
-                        renderizarHeatmap(json)
 
 
                     });
