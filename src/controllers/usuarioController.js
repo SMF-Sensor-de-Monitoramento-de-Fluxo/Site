@@ -25,6 +25,7 @@ function autenticar(req, res) {
                         idUsuario: usuario.idUsuario,
                         nome: usuario.nomeCompleto,
                         email: usuario.email,
+                        senha: usuario.senha,
                         idMercado: usuario.empresaId 
                     });
 

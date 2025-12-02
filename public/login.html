@@ -84,7 +84,7 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            // setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -103,7 +103,9 @@
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
+                console.log("jason da resposta")
                 console.log(resposta);
+                console.log('------------------------------------------------------------------')
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -112,10 +114,19 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
 
+                    if (json.email == 'suporte@smf.com' && json.senha == 'Suporte@123') {
+                        console.log("bob")
+                        setTimeout(function () {
+                            window.location = "bobIa.html";
+                        },  1000); // apenas para exibir o loading                    }
+                    } else {
+                        console.log("dash")
+                        setTimeout(function () {
+                            window.location = "./dashboard/dashboard.html";
+                        },  1000); // apenas para exibir o loading
+                    }
+                    
                 });
 
             } else {
@@ -135,8 +146,8 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
 
 </script>
