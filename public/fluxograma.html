@@ -12,12 +12,12 @@
 <body class="dash_body">
   <aside>
     <a href="../index.html"><img src="./assets/imgs/SMFlogoFull.png" alt=""></a>
-    <h2>Seja bem vindo, N3!</h2>
+    <h2>Seja bem vindo, N3</h2>
     <li>
-      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
+      <ul><a class="aside_button" href="./bobIa.html">
           <p>Assistente de IA - BobIA</p>
         </a></ul>
-      <ul><a class="aside_buttons" href="./fluxograma.html">
+      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons"><a class="aside_buttons" href="">
           <p>Fluxograma</p>
         </a></ul>
       <ul><a class="aside_buttons" download="SMF.pdf" href="./assets/SMF.pdf">
@@ -36,35 +36,5 @@
 
   </aside>
 
-    <div id="container">
-        <h1>BobIA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
-    </div>
-
-    <script>
-        
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
-
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
-            });
-
-            const data = await response.json();
-
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
-        }
-
-    </script>
-    
 </body>
 </html>
