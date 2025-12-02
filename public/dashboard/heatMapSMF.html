@@ -204,19 +204,28 @@
             { x: 700, y: 265, value: 80, radius: 130 },
             { x: 700, y: 265, value: 40, radius: 130 },
             { x: 700, y: 265, value: 50, radius: 130 }
+        ],
+        local7: [
+            { x: 700, y: 265, value: 80, radius: 130 },
+            { x: 700, y: 265, value: 40, radius: 130 },
+            { x: 700, y: 265, value: 50, radius: 130 }
+        ],
+        local8: [
+            { x: 700, y: 265, value: 80, radius: 130 },
+            { x: 700, y: 265, value: 40, radius: 130 },
+            { x: 700, y: 265, value: 50, radius: 130 }
+        ],
+        local9: [
+            { x: 700, y: 265, value: 80, radius: 130 },
+            { x: 700, y: 265, value: 40, radius: 130 },
+            { x: 700, y: 265, value: 50, radius: 130 }
         ]
     };
-
-    // Função para converter data e hora em um objeto Date
-    function converterParaDataCompleta(data, hora) {
-        return new Date(`${data}T${hora}`);
-    }
 
     // Função para aplicar o filtro de intervalo de data e hora e adicionar os dados ao heatmap
     function filtrarDadosPorDataHora() {
         var horaInicioIntervalo = document.getElementById('hora1').value;
         var horaFinalIntervalo = document.getElementById('hora2').value;
-
         var dataInicial = document.getElementById('data-inicial').value;
         var dataFinal = document.getElementById('data-final').value;
         console.log(dataFinal);
@@ -230,6 +239,7 @@
         } else {
 
             fetch("heatMap/buscarIntervalo", {
+                method: "GET",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     hrInicio: horaInicioIntervalo,
@@ -244,6 +254,7 @@
                     resposta.json().then(json => {
                         console.log(json);
                         console.log(JSON.stringify(json));
+
 
                     });
 

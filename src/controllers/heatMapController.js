@@ -1,7 +1,6 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarIntervalo(req, res) {
-    var idMercado = req.params.idMercado; 
+function buscarIntervalo(req, res) { 
 
     console.log(`Buscando dados por sensor.`);
 

@@ -7,16 +7,14 @@
 /*----- GERAL -----*/
 
 html{
+    background-image: url('./assets/imgs/mercado_fundo.PNG');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    min-height: 100vh;
 }
 
 body {
-    background-image: url(/assets/imgs/mercado_fundo.PNG);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     margin: 0;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
