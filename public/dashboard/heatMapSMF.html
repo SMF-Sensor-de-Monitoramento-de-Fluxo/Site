@@ -238,15 +238,12 @@
             return;
         } else {
 
-            fetch("heatMap/buscarIntervalo", {
+            const urlBusca = `/heatMap/buscarIntervalo?hrInicio=${horaInicioIntervalo}&hrFim=${horaFinalIntervalo}&dtInicio=${dataInicial}&dtFim=${dataFinal}`;
+
+            fetch(urlBusca, {
                 method: "GET",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    hrInicio: horaInicioIntervalo,
-                    hrFim: horaFinalIntervalo,
-                    dtInicio: dataInicial,
-                    dtInicio: dataFinal
-                })
+                //headers: { "Content-Type": "application/json" },
+                
             }).then(function (resposta) {
                 if (resposta.ok) {
                     console.log("Busca realizada com sucesso")
@@ -255,11 +252,14 @@
                         console.log(json);
                         console.log(JSON.stringify(json));
 
+                        renderizarHeatmap(json)
+
 
                     });
 
                 } else {
-                    console.log("Houve um erro ao trazer a resposta da busca")
+                    console.log("Houve um erro ao trazer a resposta da busca");
+                    console.log(resposta);
                 }
 
             }).catch(function (erro) {
@@ -267,24 +267,24 @@
             })
 
             // Limpar o heatmap antes de adicionar novos dados
-            instanciaHeatmap.setData({ max: 0, data: [] });
+            // instanciaHeatmap.setData({ max: 0, data: [] });
 
             // Percorrer todos os locais
-            for (var local in dadosPorLocal) {
-                var dadosDoLocal = dadosPorLocal[local];
+            // for (var local in dadosPorLocal) {
+            //     var dadosDoLocal = dadosPorLocal[local];
 
-                // Percorrer cada ponto de dados dentro de um local
-                for (var i = 0; i < dadosDoLocal.length; i++) {
-                    var ponto = dadosDoLocal[i];
-                    var dataHoraPonto = new Date(ponto.dataHora);
+            //     // Percorrer cada ponto de dados dentro de um local
+            //     // for (var i = 0; i < dadosDoLocal.length; i++) {
+            //     //     var ponto = dadosDoLocal[i];
+            //     //     var dataHoraPonto = new Date(ponto.dataHora);
 
-                    // Verificar se o ponto de dados está dentro do intervalo de data e hora
-                    if (dataHoraPonto >= dataHoraInicial && dataHoraPonto <= dataHoraFinal) {
-                        // Usando addData para adicionar os pontos ao heatmap
-                        instanciaHeatmap.addData(ponto);
-                    }
-                }
-            }
+            //     //     // Verificar se o ponto de dados está dentro do intervalo de data e hora
+            //     //     if (dataHoraPonto >= dataHoraInicial && dataHoraPonto <= dataHoraFinal) {
+            //     //         // Usando addData para adicionar os pontos ao heatmap
+            //     //         instanciaHeatmap.addData(ponto);
+            //     //     }
+            //     // }
+            // }
         }
     }
 

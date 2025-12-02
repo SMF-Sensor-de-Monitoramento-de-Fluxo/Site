@@ -1,12 +1,14 @@
 var database = require("../database/config");
 
-function buscarIntervalo(idSensor){
+function buscarIntervalo(dataFinal, dataInicial, horaFinalIntervalo, horaInicioIntervalo){
     var instrucaoSql = `
-    select fkSensor idSensor, count(leitura) movimento from sensorLeitura where date(dataLeitura) between '${dtInicio}' and '${dtFim}' and time(dataLeitura) between '${hrInicio}' and ''${hrFim}`
+    select fkSensor idSensor, count(leitura) movimento from SensorLeitura where date(dataLeitura) between '${dataInicial}' and '${dataFinal}' and time(dataLeitura) between '${horaInicioIntervalo}' and '${horaFinalIntervalo}' group by idSensor;`
 
     console.log("Executando SQL (fluxo por corredor):\n" + instrucaoSql);
 
-    return database.executar(instrucaoSql);
+    
+    return database.executar(instrucaoSql); 
+    
 }
 
 module.exports = {
