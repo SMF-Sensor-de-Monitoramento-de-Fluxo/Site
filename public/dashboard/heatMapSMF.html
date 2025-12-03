@@ -238,28 +238,38 @@
             return;
         } else {
 
-            fetch("/heatMap/buscarIntervalo", {
-                headers: { "Content-Type": "application/json" },
-                
-            }).then(function (resposta) {
-                if (resposta.ok) {
-                    console.log("Busca realizada com sucesso")
+            function obterDadosGraficoSensor1() {
+            fetch('/medidas/ultimas/1')
+            .then(function (resposta) {
+                if (!resposta.ok) {
+                throw "Erro ao buscar dados do gráfico";
+                }
+                return resposta.json();
+            })
+            .then(function (dados) {
+                let labels = [];
+                let valores = [];
 
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
+                for (let i = 0; i < dados.length; i++) {
+                const registro = dados[i];
 
-
-                    });
-
-                } else {
-                    console.log("Houve um erro ao trazer a resposta da busca");
-                    console.log(resposta);
+                labels.push(registro.momento_grafico);
+                valores.push(registro.leitura);
                 }
 
-            }).catch(function (erro) {
-                console.log(erro);
+                graficoSensor1.data.labels = labels;
+                graficoSensor1.data.datasets[0].data = valores;
+                graficoSensor1.update();
+
+                if (dados.length > 0) {
+                var total30min = dados[0].leitura
+                document.getElementById('kpi_total_clientes').innerText = total30min;
+                }
             })
+            .catch(function (erro) {
+                console.error(erro);
+            });
+        }
 
             // Limpar o heatmap antes de adicionar novos dados
             // instanciaHeatmap.setData({ max: 0, data: [] });

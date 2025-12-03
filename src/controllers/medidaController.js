@@ -4,11 +4,11 @@ function buscarUltimasLeituras(req, res) {
 
     const limite_linhas = 7;
 
-    var idSensor = req.params.idSensor;
 
     console.log(`Recuperando as ultimas ${limite_linhas} leituras`);
 
-    medidaModel.buscarUltimasLeituras(idSensor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasLeituras(limite_linhas)
+    .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

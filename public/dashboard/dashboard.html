@@ -106,21 +106,84 @@
   const graficoSensor1 = new Chart(ctx, configSensor1);
 
   function obterDadosGraficoSensor1() {
+
+
+    // fetch(`/medidas/ultimas`, { cache: "no-store"})
+    // .then(function (response){
+    //   if(response.ok){
+    //     response.json().then(function (resposta){
+    //       console.log(`dados recebidos ${JSON.stringify(resposta)}`);
+    //       resposta.reverse();
+
+
+        //   let labels = [];
+        // let valores = [];
+
+        // console.log('Dado =>',resposta)
+        // for (let i = 0; i < dados.length; i++) {
+        //   const registro = dados[i];
+
+        //   labels.push(registro.hora);
+        //   valores.push(registro.leitura);
+        // }
+
+        // graficoSensor1.data.labels = labels;
+        // graficoSensor1.data.datasets[0].data = valores;
+        // graficoSensor1.update();
+
+        // if (dados.length > 0) {
+        //   var total30min = dados[0].leitura
+        //   document.getElementById('kpi_total_clientes').innerText = total30min;
+        // }
+
+          
+    //     })
+    //   }
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+
     fetch('/medidas/ultimas/1')
       .then(function (resposta) {
-        if (!resposta.ok) {
+        console.log(resposta)
+        if (resposta.ok) {
+             console.log('AAAAAA')
+
+             resposta.json().then(function(json){
+
+              console.log(JSON.stringify(json));
+
+             })
+
+           resposta.json().then((json) => {
+            console.log(r)
+           
+           })
           throw "Erro ao buscar dados do gráfico";
+        }else{
+          console.log('erro')
         }
-        return resposta.json();
+        
       })
-      .then(function (dados) {
+      .then(function (resposta) {
         let labels = [];
         let valores = [];
 
+        console.log('Dado =>',resposta)
         for (let i = 0; i < dados.length; i++) {
           const registro = dados[i];
 
-          labels.push(registro.momento_grafico);
+          labels.push(registro.hora);
           valores.push(registro.leitura);
         }
 
