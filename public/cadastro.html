@@ -46,23 +46,23 @@
                     <input id="nome_input" type="text">
 
                     <p class="subtitulo">E-mail: *</p>
-                    <input id="email_input" type="text" oninput="anaEmail1()"><br>
+                    <input id="email_input" type="email"><br>
                     
                     <span id="span_email1"></span>
 
                     <p class="subtitulo">Código de Verificação:</p>
-                    <input id="codigo_input" type="text" oninput="anaCodigo()"><br>
+                    <input id="codigo_input" type="text"><br>
                        
                     <span id="span_codigo"></span>
                 
                     <p class="subtitulo">Telefone : *</p>
                     <input id="tel_input" type="number" placeholder="Digite com o DDD e sem espaço e traço"
-                        oninput="anaTel1()">
+                      >
                    
                     <span id="span_tel1"></span>
                     
                     <p class="subtitulo">Senha: *</p>
-                    <input id="senha_input" type="password" oninput="anaSenha()">
+                    <input id="senha_input" type="password">
                     <p>
                         <span id="span_tamanho">Deve conter mais de 8 caractéres</span> <br>
                         <span id="span_num">Utilize números</span> <br>
@@ -71,7 +71,7 @@
                     </p>
 
                     <p class="subtitulo">Confirme sua senha: *</p>
-                    <input id="confirmacao_senha_input" type="password" oninput="senhaConf()"> <br> <br>
+                    <input id="confirmacao_senha_input" type="password"> <br> <br>
                     <span id="span_senhaConfirm"></span>
 
                     <button class="button-lc" onclick="cadastrar()">Cadastre-se</button>
@@ -178,6 +178,7 @@
         finalizarAguardar();
       });
 
+    window.location = "./login.html";
     return false;
   }
 
