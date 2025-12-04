@@ -1,5 +1,4 @@
 CREATE DATABASE smf;
-
 USE smf;
 
 CREATE TABLE Mercado (
@@ -48,7 +47,17 @@ CREATE TABLE Setor (
 INSERT INTO Setor (fkMercado, nome) VALUES
 	(1, 'Bebidas'),
 	(1, 'Açougue'),
-	(3,'Bebidas');
+	(1,'Bebidas'),
+    (1, 'limpeza'),
+    (1, 'hortifruti'),
+    (1, 'higiene pessoal'),
+    (1, 'frios e laticinios'),
+    (1, 'padaria'),
+    (1, 'congelados');
+    
+    update Setor set nome = 'Mercearia' where idSetor = 3;
+    
+    select * from Setor; 
 
 CREATE TABLE Sensor (
 	idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -68,7 +77,17 @@ CREATE TABLE Sensor (
 INSERT INTO Sensor (fkSetor, fkMercado, statusSensor) VALUES
 	(1, 1, 'Ligado'),
 	(2, 1, 'Ligado'),
-	(3, 2, 'Ligado');
+	(3, 1, 'Ligado'),
+    (4, 1,'ligado'),
+    (5, 1,'ligado'),
+    (6, 1,'ligado'),
+    (7, 1,'ligado'),
+    (8, 1, 'ligado'),
+    (9, 1, 'ligado');
+    
+    select * from Setor;
+    
+    select * from Sensor;
 
 CREATE TABLE SensorLeitura (
 	idSensorLeitura INT AUTO_INCREMENT,
@@ -91,3 +110,61 @@ CREATE TABLE Usuario (
     telefone char(11),
 	senha VARCHAR(45) NOT NULL
 );
+
+INSERT INTO Usuario VALUES 
+	(DEFAULT, 'Suporte SMF', 'suporte@smf.com', NULL, NULL, 'Suporte@123');
+    
+CREATE VIEW totalclientes_vw AS 
+	SELECT 
+    SUM(leitura) AS 'total de Clientes na Ultima Hora'
+FROM SensorLeitura
+WHERE dataLeitura >= DATE_SUB(NOW(), INTERVAL 1 HOUR);
+
+CREATE VIEW maiorfluxo_vw AS
+SELECT 
+    s.idSensor AS Corredor,
+    SUM(sl.leitura) AS Total
+FROM SensorLeitura sl
+JOIN Sensor s ON sl.fkSensor = s.idSensor
+WHERE sl.dataLeitura >= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+GROUP BY s.idSensor
+ORDER BY total DESC
+LIMIT 1;
+
+CREATE VIEW menorfluxo_vw AS
+SELECT 
+    s.idSensor AS corredor,
+    SUM(sl.leitura) AS total
+FROM SensorLeitura sl
+JOIN Sensor s ON sl.fkSensor = s.idSensor
+WHERE sl.dataLeitura >= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+GROUP BY s.idSensor
+ORDER BY total ASC
+LIMIT 1;
+
+CREATE VIEW clienteporcorredor_vw AS
+SELECT 
+    s.idSensor AS corredor,
+    SUM(sl.leitura) AS totalClientes
+FROM SensorLeitura sl
+JOIN Sensor s ON sl.fkSensor = s.idSensor
+WHERE sl.dataLeitura >= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+GROUP BY s.idSensor
+ORDER BY s.idSensor;
+
+CREATE VIEW clienteporhora_vw AS
+SELECT 
+    HOUR(sl.dataLeitura) AS hora,
+    SUM(sl.leitura) AS totalClientes
+FROM SensorLeitura sl
+GROUP BY hora
+ORDER BY hora;
+
+CREATE VIEW clienteporhoranodia_vw AS
+SELECT 
+    HOUR(sl.dataLeitura) AS hora,
+    SUM(sl.leitura) AS totalClientes
+FROM SensorLeitura sl
+WHERE DATE(sl.dataLeitura) = CURDATE()
+GROUP BY hora
+ORDER BY hora;

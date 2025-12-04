@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasLeituras() {
+function ultimas() {
     var instrucaoSql = `
         SELECT DATE_FORMAT(dataLeitura, '%H') AS hora, FLOOR(MINUTE(dataLeitura)/10)*10 AS dezena_minuto, 
 	    SUM(leitura) as leitura FROM SensorLeitura where date_format(dataLeitura, '%H') = (select date_format(dataLeitura,'%H')
@@ -30,6 +30,6 @@ function buscarFluxoPorCorredor(idMercado){
 }
 
 module.exports = {
-    buscarUltimasLeituras,
+    ultimas,
     buscarFluxoPorCorredor
 }

@@ -228,38 +228,42 @@
         var horaFinalIntervalo = document.getElementById('hora2').value;
         var dataInicial = document.getElementById('data-inicial').value;
         var dataFinal = document.getElementById('data-final').value;
-        console.log(dataFinal);
-
-
+        console.log("Entrei na função")
         // Converter os dados e horários em objetos Date
 
         if (horaFinalIntervalo < horaInicioIntervalo) {
             alert("A data e hora final devem ser maiores ou iguais à data e hora inicial.");
             return;
         } else {
-
-            function obterDadosGraficoSensor1() {
-            fetch('/medidas/ultimas/1')
+            console.log("Entrei no fecth")
+            fetch(`/heatMap/buscarIntervalo/${
+    encodeURIComponent(horaFinalIntervalo)
+}/${
+    encodeURIComponent(horaInicioIntervalo)
+}/${
+    encodeURIComponent(dataFinal)
+}/${
+    encodeURIComponent(dataInicial)
+}`)
             .then(function (resposta) {
                 if (!resposta.ok) {
                 throw "Erro ao buscar dados do gráfico";
                 }
                 return resposta.json();
             })
-            .then(function (dados) {
+            .then(function (resposta) {
+                
+                console.log(resposta);
+
                 let labels = [];
                 let valores = [];
 
-                for (let i = 0; i < dados.length; i++) {
-                const registro = dados[i];
+                for (let i = 0; i < resposta.length; i++) {
+                const registro = resposta[i];
 
                 labels.push(registro.momento_grafico);
                 valores.push(registro.leitura);
                 }
-
-                graficoSensor1.data.labels = labels;
-                graficoSensor1.data.datasets[0].data = valores;
-                graficoSensor1.update();
 
                 if (dados.length > 0) {
                 var total30min = dados[0].leitura
@@ -269,7 +273,6 @@
             .catch(function (erro) {
                 console.error(erro);
             });
-        }
 
             // Limpar o heatmap antes de adicionar novos dados
             // instanciaHeatmap.setData({ max: 0, data: [] });

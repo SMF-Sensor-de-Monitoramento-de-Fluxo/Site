@@ -1,7 +1,18 @@
 var heatMapModel = require("../models/medidaModel");
 
+
+
 function buscarDados(req, res) {
-    heatMapModel.buscarIntervalo()
+
+    var dataFinal = req.params.dtFinal;
+    var dataInicial = req.params.dtInicial;
+    var horaFinalIntervalo = req.params.hrFinalIntervalo;
+    var horaInicioIntervalo = req.params.hrInicioIntervalo;
+    console.log("------------------------------------")
+    console.log(dataFinal)
+    console.log("------------------------------------")
+
+    heatMapModel.buscarIntervalo(dataFinal, dataInicial, horaFinalIntervalo, horaInicioIntervalo)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

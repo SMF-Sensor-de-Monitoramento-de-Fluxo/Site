@@ -3,7 +3,7 @@ var router = express.Router();
 
 var heatMapController = require("../controllers/heatMapController");
 
-router.get("/buscarIntervalo", function (req, res) {
+router.get("/buscarIntervalo/:horaFinalIntervalo/:horaInicioIntervalo/:dataFinal/:dataInicial", function (req, res) {
     heatMapController.buscarIntervalo(req, res);
 });
 

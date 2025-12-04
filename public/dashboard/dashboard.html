@@ -107,92 +107,34 @@
 
   function obterDadosGraficoSensor1() {
 
-
-    // fetch(`/medidas/ultimas`, { cache: "no-store"})
-    // .then(function (response){
-    //   if(response.ok){
-    //     response.json().then(function (resposta){
-    //       console.log(`dados recebidos ${JSON.stringify(resposta)}`);
-    //       resposta.reverse();
-
-
-        //   let labels = [];
-        // let valores = [];
-
-        // console.log('Dado =>',resposta)
-        // for (let i = 0; i < dados.length; i++) {
-        //   const registro = dados[i];
-
-        //   labels.push(registro.hora);
-        //   valores.push(registro.leitura);
-        // }
-
-        // graficoSensor1.data.labels = labels;
-        // graficoSensor1.data.datasets[0].data = valores;
-        // graficoSensor1.update();
-
-        // if (dados.length > 0) {
-        //   var total30min = dados[0].leitura
-        //   document.getElementById('kpi_total_clientes').innerText = total30min;
-        // }
-
+    fetch('/medidas/ultimas')
+      .then(function (resultados) {
+        console.log(resultados)
+        if (!resultados.ok) {
           
-    //     })
-    //   }
-    // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-    fetch('/medidas/ultimas/1')
-      .then(function (resposta) {
-        console.log(resposta)
-        if (resposta.ok) {
-             console.log('AAAAAA')
-
-             resposta.json().then(function(json){
-
-              console.log(JSON.stringify(json));
-
-             })
-
-           resposta.json().then((json) => {
-            console.log(r)
-           
-           })
           throw "Erro ao buscar dados do gráfico";
-        }else{
           console.log('erro')
         }
+        return resultados.json(); 
         
       })
-      .then(function (resposta) {
+      .then(function (resultados) {
         let labels = [];
         let valores = [];
 
-        console.log('Dado =>',resposta)
-        for (let i = 0; i < dados.length; i++) {
-          const registro = dados[i];
+        console.log('Dado =>',resultados)
+        for (let i = 0; i < resultados.length; i++) {
 
-          labels.push(registro.hora);
-          valores.push(registro.leitura);
+          labels.push(resultados[i].hora);
+          valores.push(resultados[i].leitura);
         }
 
         graficoSensor1.data.labels = labels;
         graficoSensor1.data.datasets[0].data = valores;
         graficoSensor1.update();
 
-        if (dados.length > 0) {
-          var total30min = dados[0].leitura
+        if (resultados.length > 0) {
+          var total30min = resultados[0].leitura
           document.getElementById('kpi_total_clientes').innerText = total30min;
         }
       })
@@ -231,11 +173,11 @@
 
   function obterFluxoPorCorredor() {
     fetch(`/medidas/corredores/${idMercado}`)
-      .then(function (resposta) {
-        if (!resposta.ok) {
+      .then(function (resultados) {
+        if (!resultados.ok) {
           throw "Erro ao buscar dados de corredores";
         }
-        return resposta.json();
+        return resultados.json();
       })
       .then(function (dados) {
         let labels = [];

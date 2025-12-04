@@ -4,7 +4,7 @@ var router = express.Router();
 var medidaController = require("../controllers/medidaController");
 
 router.get("/ultimas", function (req, res) {
-    medidaController.buscarUltimasLeituras(req, res);
+    medidaController.ultimas(req, res);
 });
 router.get("/corredores/:idMercado", function (req, res) {
     medidaController.buscarFluxoPorCorredor(req, res);

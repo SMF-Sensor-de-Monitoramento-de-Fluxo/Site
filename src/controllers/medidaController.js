@@ -1,18 +1,15 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasLeituras(req, res) {
+function ultimas(req, res) {
 
-    const limite_linhas = 7;
+    console.log(`Recuperando as ultimas leituras`);
 
-
-    console.log(`Recuperando as ultimas ${limite_linhas} leituras`);
-
-    medidaModel.buscarUltimasLeituras(limite_linhas)
-    .then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
+    medidaModel.ultimas()
+    .then(function (resultados) {
+        if (resultados.length > 0) {
+            res.status(200).json(resultados);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(204).send("Nenhum resultados encontrado!")
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -27,11 +24,11 @@ function buscarFluxoPorCorredor(req, res) {
     console.log(`Buscando fluxo por corredor do mercado ${idMercado}`);
 
     medidaModel.buscarFluxoPorCorredor(idMercado)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
+        .then(function (resultados) {
+            if (resultados.length > 0) {
+                res.status(200).json(resultados);
             } else {
-                res.status(204).send("Nenhum resultado encontrado!");
+                res.status(204).send("Nenhum resultados encontrado!");
             }
         })
         .catch(function (erro) {
@@ -42,6 +39,6 @@ function buscarFluxoPorCorredor(req, res) {
 }
 
 module.exports = {
-    buscarUltimasLeituras,
+    ultimas,
     buscarFluxoPorCorredor
 };
