@@ -26,31 +26,31 @@
 </head>
 
 <aside>
-    <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
-    <h2>Seja bem vindo, Brandão!</h2>
-    <li>
-      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
-          <p>Graficos Gerais</p>
-        </a></ul>
-      <ul><a class="aside_buttons" href="../dashboard/sensorIndividual.html">
-          <p>Sensores Individuais</p>
-        </a></ul>
-      <ul><a class="aside_buttons" href="./heatMapSMF.html">
-          <p>Mapa de calor dos setores</p>
-        </a></ul>
-      <ul><a class="aside_buttons" href="../dashboard/gerenciar.html">
-          <p>Gerencie sua Conta</p>
-        </a></ul>
-      <ul><a class="aside_buttons" href="../index.html">
-          <p>Voltar para Tela inicial</p>
-        </a></ul>
-      <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html">
-          <p>Sair da conta</p>
-        </a></ul>
-    </li>
+  <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
+  <h2>Seja bem vindo, Brandão!</h2>
+  <li>
+    <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
+        <p>Graficos Gerais</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="../dashboard/sensorIndividual.html">
+        <p>Sensores Individuais</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="./heatMapSMF.html">
+        <p>Mapa de calor dos setores</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="../dashboard/gerenciar.html">
+        <p>Gerencie sua Conta</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="../index.html">
+        <p>Voltar para Tela inicial</p>
+      </a></ul>
+    <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html">
+        <p>Sair da conta</p>
+      </a></ul>
+  </li>
 
-  </aside>
-  
+</aside>
+
 
 <body class="dash_body">
 
@@ -60,7 +60,7 @@
     <div class="cardsD">
       <div class="cardD">
         <h2 id="kpi_total_clientes"></h2>
-        <p>Total de Clientes (30 minutos)</p>
+        <p>Total de Clientes</p>
       </div>
       <div class="cardD">
         <h2 id="kpi_mais"></h2>
@@ -95,7 +95,7 @@
     data: {
       labels: [],
       datasets: [{
-        label: 'Fluxo Sensor 1',
+        label: 'Fluxo Sensores gerais:',
         data: [],
         fill: false,
         tension: 0.2
@@ -111,21 +111,30 @@
       .then(function (resultados) {
         console.log(resultados)
         if (!resultados.ok) {
-          
+
           throw "Erro ao buscar dados do gráfico";
           console.log('erro')
         }
-        return resultados.json(); 
-        
+        return resultados.json();
+
       })
       .then(function (resultados) {
         let labels = [];
         let valores = [];
 
-        console.log('Dado =>',resultados)
+        console.log('Dado =>', resultados)
         for (let i = 0; i < resultados.length; i++) {
+          var hora = resultados[i].hora;
+          var dezena = resultados[i].dezena_minuto;  
+          var minuto;
 
-          labels.push(resultados[i].hora);
+          if (dezena < 10) {
+            minuto = '0' + dezena;   
+          } else {
+            minuto = '' + dezena;   
+          }
+
+          labels.push(hora + ':' + minuto);      
           valores.push(resultados[i].leitura);
         }
 
@@ -134,8 +143,8 @@
         graficoSensor1.update();
 
         if (resultados.length > 0) {
-          var total30min = resultados[0].leitura
-          document.getElementById('kpi_total_clientes').innerText = total30min;
+          var totalmin = resultados[0].leitura
+          document.getElementById('kpi_total_clientes').innerText = totalmin;
         }
       })
       .catch(function (erro) {
