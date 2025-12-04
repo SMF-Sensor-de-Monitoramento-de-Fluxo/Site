@@ -112,7 +112,7 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
 
                     if (json.email == 'suporte@smf.com' && json.senha == 'Suporte@123') {
@@ -130,12 +130,12 @@
                 });
 
             } else {
+                alert('Email e/ou senha inválido(s)')
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 

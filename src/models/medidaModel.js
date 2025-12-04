@@ -29,7 +29,26 @@ function buscarFluxoPorCorredor(idMercado){
     return database.executar(instrucaoSql);
 }
 
+function buscarDadosSensor(idSensorFunc){
+    var instrucaoSql = `
+    SELECT sum(leitura) as leitura, date_format(dataLeitura, '%H:00') as hora FROM SensorLeitura WHERE fkSensor = ${idSensorFunc} GROUP BY hora LIMIT 10;`
+
+    console.log("Executando SQL (buscando dados do sensor individual):\n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarDadosSensoreTempoReal(idSensorFunc) {
+
+    var instrucaoSql = `SELECT sum(leitura) as leitura, date_format(dataLeitura, '%H:00') as hora FROM SensorLeitura WHERE fkSensor = ${idSensorFunc} GROUP BY hora ORDER BY hora DESC LIMIT 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     ultimas,
-    buscarFluxoPorCorredor
+    buscarFluxoPorCorredor,
+    buscarDadosSensor,
+    buscarDadosSensoreTempoReal
 }

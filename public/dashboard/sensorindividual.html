@@ -13,118 +13,229 @@
 </head>
 
 <aside>
-    <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
-    <h2>Seja bem vindo, Brandão!</h2>
-    <li>
-      <ul><a class="aside_buttons" href="./dashboard.html"><p>Graficos Gerais</p></a></ul>
-      <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="./sensorIndividual.html"><p>Sensores Individuais</p></a></ul>
-      <ul><a class="aside_buttons" href="./heatMapSMF.html"><p>Mapa de calor dos setores</p></a></ul>
-      <ul><a class="aside_buttons" href="./gerenciar.html"><p>Gerencie sua Conta</p></a></ul>
-      <ul><a class="aside_buttons" href="../"><p>Voltar para Tela inicial</p></a></ul>
-      <ul class="bt_vermelho"><a class="aside_buttons" href="../LoginCadastro/login.html"><p>Sair da conta</p></a></ul>
-    </li>
-  </aside>
+  <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
+  <h2>Seja bem vindo, Brandão!</h2>
+  <li>
+    <ul><a class="aside_buttons" href="./dashboard.html">
+        <p>Graficos Gerais</p>
+      </a></ul>
+    <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="./sensorIndividual.html">
+        <p>Sensores Individuais</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="./heatMapSMF.html">
+        <p>Mapa de calor dos setores</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="./gerenciar.html">
+        <p>Gerencie sua Conta</p>
+      </a></ul>
+    <ul><a class="aside_buttons" href="../">
+        <p>Voltar para Tela inicial</p>
+      </a></ul>
+    <ul class="bt_vermelho"><a class="aside_buttons" href="../LoginCadastro/login.html">
+        <p>Sair da conta</p>
+      </a></ul>
+  </li>
+</aside>
 
 
 <body class="dash_body">
   <main>
     <h2 id="titulo_dash">Sensores Individuais</h2>
 
-    <!-- 🔵 SETORES QUE O USUÁRIO CLICA -->
-    <div class="setores">
-      
-      <div class="layout"> <img width="100%" src="https://atribunanews.com.br/wp-content/uploads/2023/02/proton-tl-carne.jpg" alt=""><h3>Açougue</h3></div>
+    <!-- SETORES QUE O USUÁRIO CLICA -->
+    <div id="setores" class="setores">
 
-      <div class="layout"> <img width="100%" src="https://invexo.com.br/blog/wp-content/uploads/2022/10/paes-padarias-copacabana-rio-de-janeiro.jpg" alt=""><h3>Padaria</h3></div>
-      
-      <div class="layout"> <img width="100%" src="https://images.ctfassets.net/qfxflpv0atz9/CzEYLNqLg4zfuBpkDBV90/66f4d8b752e76356240b86bf3b1b39df/thumb-Lista-de-produtos-de-limpeza-que-nao-podem-faltar-na-sua-casa.jpg?fm=webp&q=90" alt=""><h3>Limpeza</h3></div>
+      <div value="acougue" onclick="buscar(1)" class="layout"> <img
+          src="https://atribunanews.com.br/wp-content/uploads/2023/02/proton-tl-carne.jpg" alt="">
+        <h3>Açougue</h3>
+      </div>
 
-      <div class="layout"> <img width="100%" src="https://thumbs.dreamstime.com/z/refrescos-e-bebidas-no-supermercado-31947595.jpg" alt=""><h3>Bebidas</h3></div>
-    
-      <div class="layout"> <img width="100%" src="https://trzfood.com.br/wp-content/uploads/2022/08/trz-food-02.jpg" alt=""><h3>Frios e Laticinios</h3></div>
+      <div value="padaria" onclick="buscar(17)" class="layout"> <img
+          src="https://invexo.com.br/blog/wp-content/uploads/2022/10/paes-padarias-copacabana-rio-de-janeiro.jpg"
+          alt="">
+        <h3>Padaria</h3>
+      </div>
 
-      <div class="layout"> <img width="100%" src="https://www.enfoquems.com.br/wp-content/uploads/media/images/944/58288//5cc1909f5f511ca797f3536de1bf1f802e7c3ae4150ce.jpg" alt=""><h3>Higiene Pessoal</h3></div>
+      <div value="limpeza" onclick="buscar(13)" class="layout"> <img
+          src="https://images.ctfassets.net/qfxflpv0atz9/CzEYLNqLg4zfuBpkDBV90/66f4d8b752e76356240b86bf3b1b39df/thumb-Lista-de-produtos-de-limpeza-que-nao-podem-faltar-na-sua-casa.jpg?fm=webp&q=90"
+          alt="">
+        <h3>Limpeza</h3>
+      </div>
 
-      <div class="layout"> <img width="100%" src="https://elementusconsultoria.com/wp-content/uploads/2023/11/frozen-food-aisle.jpg" alt=""><h3>Congelados</h3></div>
+      <div value="bebidas" onclick="buscar(10)" class="layout"> <img
+          src="https://s2-valor.glbimg.com/Dg7uwMmR2vz8RHNmfkuqBehj-b8=/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2021/F/s/lFAPvYROSlp8vIBjhycw/foto02emp-301-refri-b5.jpg"
+          alt="">
+        <h3>Bebidas</h3>
+      </div>
 
-      <div class="layout"> <img width="100%" src="https://s2.glbimg.com/HwE5c_U6IdAoUi-9Xgpytj8lxFk=/e.glbimg.com/og/ed/f/original/2020/12/22/800px-fruit_stand_246046301.jpeg" alt=""><h3>Hortifruti</h3></div>
+      <div value="frios" onclick="buscar(16)" class="layout"> <img
+          src="https://trzfood.com.br/wp-content/uploads/2022/08/trz-food-02.jpg" alt="">
+        <h3>Frios e Laticinios</h3>
+      </div>
 
-      <div class="layout"> <img width="100%" src="https://sennda.com.br/wp-content/uploads/2021/03/pexels-mehrad-vosoughi-3687999-scaled.jpg" alt=""><h3>Mercearia</h3></div>
+      <div value="higiene" onclick="buscar(15)" class="layout"> <img
+          src="https://www.enfoquems.com.br/wp-content/uploads/media/images/944/58288//5cc1909f5f511ca797f3536de1bf1f802e7c3ae4150ce.jpg"
+          alt="">
+        <h3>Higiene Pessoal</h3>
+      </div>
+
+      <div value="congelados" onclick="buscar(18)" class="layout"> <img
+          src="https://elementusconsultoria.com/wp-content/uploads/2023/11/frozen-food-aisle.jpg" alt="">
+        <h3>Congelados</h3>
+      </div>
+
+      <div value="frutas" onclick="buscar(14)" class="layout"> <img
+          src="https://s2.glbimg.com/HwE5c_U6IdAoUi-9Xgpytj8lxFk=/e.glbimg.com/og/ed/f/original/2020/12/22/800px-fruit_stand_246046301.jpeg"
+          alt="">
+        <h3>Hortifruti</h3>
+      </div>
+
+      <div value="mercearia" onclick="buscar(12)" class="layout"> <img
+          src="https://sennda.com.br/wp-content/uploads/2021/03/pexels-mehrad-vosoughi-3687999-scaled.jpg" alt="">
+        <h3>Mercearia</h3>
+      </div>
+
     </div>
 
-    <!-- 🔵 ÁREA DOS GRÁFICOS (ESCONDIDA ATÉ CLICAR) -->
-    <div id="areaGraficos">
-      <h3 id="tituloSetor"></h3>
-
-      <div class="graficos">
-        <canvas id="grafico1"></canvas>
-        <canvas id="grafico2"></canvas>
-      </div>
+    <div id="setorEsp" style="display: none;" class="setores">
+      <canvas id="grafico"></canvas>
     </div>
   </main>
 
   <script>
-    let grafico1;
-    let grafico2;
+    const ctx = document.getElementById("grafico");
+    let labels_horas = [];
+    let valores_leitura = [];
 
-    function carregarSetor(nome) {
-      document.getElementById("areaGraficos").style.display = "block";
-      document.getElementById("tituloSetor").innerText = `Setor selecionado: ${nome.charAt(0).toUpperCase() + nome.slice(1)}`;
+    function buscarDadosSensor() {
+      fetch(`/medidas/setor/${idSensorFunc}`)
+        .then(function (resposta) {
+          if (!resposta.ok) {
+            throw "Erro ao buscar os dados de cada sensor";
+            // return resposta.json();
+          }
+          console.log(resposta);
+          // respostaJson = resposta.json();
+          // console.log(respostaJson);
+          return resposta.json();
+        })
+        .then(function (dados) {
+          console.log("O que veio do banco:", dados[0]);
 
-      if (grafico1) grafico1.destroy();
-      if (grafico2) grafico2.destroy();
+          for (let i = 0; i < dados.length; i++) {
+            const registro = dados[i];
 
-      const ctx1 = document.getElementById("grafico1");
-      const ctx2 = document.getElementById("grafico2");
 
-      let dados = {
-        acougue: {
-          manha: [5, 12, 19, 33, 40],
-          tarde: [22, 35, 44, 51, 68]
-        },
-        padaria: {
-          manha: [10, 20, 29, 40, 62],
-          tarde: [15, 26, 39, 52, 70]
-        },
-        hortifruti: {
-          manha: [7, 14, 25, 31, 45],
-          tarde: [12, 30, 48, 53, 80]
-        }
-      };
+            labels_horas.push(registro.hora);
+            valores_leitura.push(Number(registro.leitura));
+          }
 
-      let setor = dados[nome];
+          plotarGraficoSensorIndividual()
 
-      grafico1 = new Chart(ctx1, {
+        })
+        .catch(function (erro) {
+          console.error(erro);
+        });
+    }
+
+    let grafico;
+    var idSensorFunc = 1;
+
+    function buscar(a) {
+      idSensorFunc = a;
+      setorEsp.style.display = 'block';
+      buscarDadosSensor()
+    }
+
+    function plotarGraficoSensorIndividual() {
+      if (grafico) grafico.destroy();
+
+      grafico = new Chart(ctx, {
         type: "line",
         data: {
-          labels: ["08h", "09h", "10h", "11h", "12h"],
+          labels: [], // -----------------------------------------------------
           datasets: [{
             label: "Fluxo (Manhã)",
-            data: setor.manha,
+            data: [],
             borderColor: "#08a4bd",
             backgroundColor: "rgba(8, 164, 189, 0.3)",
             tension: 0.3,
-            fill: true
+            fill: false
           }]
+        },
+        options: {
+          scales: {
+            y: {
+              suggestedMin: 0
+            }
+          }
         }
       });
+      console.log(labels_horas)
+      console.log(valores_leitura)
+      grafico.data.labels = labels_horas;
+      grafico.data.datasets[0].data = valores_leitura;
+      grafico.update();
 
-      grafico2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: ["13h", "14h", "15h", "16h", "17h"],
-          datasets: [{
-            label: "Fluxo (Tarde)",
-            data: setor.tarde,
-            borderColor: "#08a4bd",
-            backgroundColor: "rgba(8, 164, 189, 0.3)",
-            tension: 0.3,
-            fill: true
-          }]
-        }
-      });
+     setTimeout(() => {
+      atualizarGrafico(idSensorFunc)
+     }, 2000); 
     }
+
+    function atualizarGrafico(idSensorFunc) {
+
+      fetch(`/medidas/tempo-real/${idSensorFunc}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+
+            obterdados(idSensorFunc);
+            // alertar(novoRegistro, idAquario);
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico:`);
+            console.log(dados);
+
+            let avisoCaptura = document.getElementById(`avisoCaptura${idSensorFunc}`)
+            avisoCaptura.innerHTML = ""
+
+
+            if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+              console.log("---------------------------------------------------------------")
+              console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+              avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+              console.log("Horário do novo dado capturado:")
+              console.log(novoRegistro[0].momento_grafico)
+              console.log("Horário do último dado capturado:")
+              console.log(dados.labels[dados.labels.length - 1])
+              console.log("---------------------------------------------------------------")
+            } else {
+              // tirando e colocando valores no gráfico
+              dados.labels.shift(); // apagar o primeiro
+              dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+              dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+              dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+              dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+              dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+              myChart.update();
+            }
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensorFunc), 2000);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensorFunc), 2000);
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
   </script>
 
 </body>
+
 </html>
