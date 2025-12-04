@@ -4,7 +4,7 @@ function ultimas() {
     var instrucaoSql = `
         SELECT DATE_FORMAT(dataLeitura, '%H') AS hora, FLOOR(MINUTE(dataLeitura)/10)*10 AS dezena_minuto, 
 	    SUM(leitura) as leitura FROM SensorLeitura where date_format(dataLeitura, '%H') = (select date_format(dataLeitura,'%H')
-        from SensorLeitura order by dataLeitura desc limit 1 offset 1) GROUP BY hora, dezena_minuto ORDER BY hora, dezena_minuto desc; 
+        from SensorLeitura order by dataLeitura desc limit 1 offset 1) GROUP BY hora, dezena_minuto ORDER BY hora, dezena_minuto ASC; 
     `;
 
     console.log("Executando SQL:\n" + instrucaoSql);

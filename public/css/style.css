@@ -869,7 +869,8 @@ input::placeholder {
     }
 
     .cardD p {
-        font-size: 14px;
+        font-size: 16px;
+        font-weight: 600 !important;
         color: #777;
     }
 
@@ -959,12 +960,43 @@ input::placeholder {
 
     }
 
+    #alerta_popup{
+        display: none;
+        top: 100px;
+        justify-self: center;
+        align-self: center;
+        height: fit-content;
+        width: fit-content;
+        position: fixed;
+        margin: auto;
+        background-color: #9b0000;
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        justify-content: flex-end;  
+    }
+
     #btCloseCanvas{
         border: none;
         padding: 0;
         margin: 0;
-        color: #003f51;
         left: 100%;
+    }
+    #btCloseCanvas2 {
+        background-color: transparent; 
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    #alerta_popup img:nth-of-type(2) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     #ggIconHide{
         font-variation-settings:

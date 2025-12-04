@@ -27,7 +27,7 @@
 
 <aside>
   <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
-  <h2>Seja bem vindo, Brandão!</h2>
+  <h2>Seja bem vindo, <span id="b_usuario"></span> !</h2>
   <li>
     <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="">
         <p>Graficos Gerais</p>
@@ -35,14 +35,8 @@
     <ul><a class="aside_buttons" href="../dashboard/sensorIndividual.html">
         <p>Sensores Individuais</p>
       </a></ul>
-    <ul><a class="aside_buttons" href="./heatMapSMF.html">
-        <p>Mapa de calor dos setores</p>
-      </a></ul>
-    <ul><a class="aside_buttons" href="../dashboard/gerenciar.html">
-        <p>Gerencie sua Conta</p>
-      </a></ul>
-    <ul><a class="aside_buttons" href="../index.html">
-        <p>Voltar para Tela inicial</p>
+    <ul><a class="aside_buttons" href="https://smf-projeto.atlassian.net/servicedesk/customer/portals">
+        <p>Central de atendimento</p>
       </a></ul>
     <ul class="bt_vermelho"><a class="aside_buttons" href="../login.html">
         <p>Sair da conta</p>
@@ -52,23 +46,27 @@
 </aside>
 
 
-<body class="dash_body">
+<body class="dash_body" onload="alertaPopUp()">
 
   <main>
     <h1 class="titulo_dash">Fluxo de Clientes</h1>
 
     <div class="cardsD">
       <div class="cardD">
-        <h2 id="kpi_total_clientes"></h2>
         <p>Total de Clientes</p>
+        <h2 id="kpi_total_clientes"></h2>
+      </div>
+      <div style="color: rgba(104, 1, 1, 0.562);" class="cardD">
+        <p>Cuidado com valores acima de:</p>
+        <h2 style="color: rgb(170, 0, 0);">100</h2>
       </div>
       <div class="cardD">
-        <h2 id="kpi_mais"></h2>
         <p>Mais Movimentado</p>
+        <h2 id="kpi_mais"></h2>
       </div>
       <div class="cardD">
-        <h2 id="kpi_menos"></h2>
         <p>Menos Movimentado</p>
+        <h2 id="kpi_menos"></h2>
       </div>
     </div>
 
@@ -79,7 +77,14 @@
       <div class="chart">
         <canvas id="lineChart"></canvas>
       </div>
+    </div>  
 
+    <div id="alerta_popup"  class="setores" style="display: none;">
+      <button id="btCloseCanvas2" onclick="escondeAlerta()"><img height="30px" src="../assets/imgs/x_do_alerta.png" alt=""></button>
+      <img height="60px" src="../assets/imgs/feedback_alerta.png" alt="">
+      <h3 id="titulo-alerta">ALERTA:</h3>
+      <p id="mensagem_alerta"></p>
+    </div>
 
   </main>
 </body>
@@ -87,7 +92,7 @@
 </html>
 
 <script>
-  //b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   const ctx = document.getElementById('lineChart');
   const configSensor1 = {
@@ -145,6 +150,8 @@
         if (resultados.length > 0) {
           var totalmin = resultados[0].leitura
           document.getElementById('kpi_total_clientes').innerText = totalmin;
+
+
         }
       })
       .catch(function (erro) {
@@ -174,6 +181,21 @@
       }
     }
   };
+
+  function alertaPopUp(){
+    if(Number(kpi_total_clientes.innerHTML) >= 100){
+           var mensagem = `Valores de movimentação acima do ideal de 100 pessoas por hora`
+
+            alerta_popup.style.display = 'flex';
+            mensagem_alerta.innerHTML = mensagem;
+          
+        }
+        setTimeout(alertaPopUp, 10000)
+  }
+
+  function escondeAlerta(){
+      alerta_popup.style.display = 'none';
+  }
 
   const graficoCorredores = new Chart(ctxBar, configCorredores);
 
@@ -210,7 +232,10 @@
           var menos = dados[dados.length - 1].corredor;
           document.getElementById('kpi_menos').innerText = menos;
 
+
         }
+
+
       })
       .catch(function (erro) {
         console.error(erro);

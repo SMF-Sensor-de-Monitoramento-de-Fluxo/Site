@@ -15,7 +15,7 @@
 
 <aside>
   <a href="../index.html"><img src="../assets/imgs/SMFlogoFull.png" alt=""></a>
-  <h2>Seja bem vindo, Brandão!</h2>
+  <h2>Seja bem vindo, <span id="b_usuario"></span> !</h2>
   <li>
     <ul><a class="aside_buttons" href="./dashboard.html">
         <p>Graficos Gerais</p>
@@ -23,14 +23,8 @@
     <ul style="background-color: #045064; color: #08a4bd;"><a class="aside_buttons" href="./sensorIndividual.html">
         <p>Sensores Individuais</p>
       </a></ul>
-    <ul><a class="aside_buttons" href="./heatMapSMF.html">
-        <p>Mapa de calor dos setores</p>
-      </a></ul>
-    <ul><a class="aside_buttons" href="./gerenciar.html">
-        <p>Gerencie sua Conta</p>
-      </a></ul>
-    <ul><a class="aside_buttons" href="../">
-        <p>Voltar para Tela inicial</p>
+    <a class="aside_buttons" href="https://smf-projeto.atlassian.net/servicedesk/customer/portals">
+        <p>Central de atendimento</p>
       </a></ul>
     <ul class="bt_vermelho"><a class="aside_buttons" href="../LoginCadastro/login.html">
         <p>Sair da conta</p>
@@ -101,9 +95,13 @@
     <div id="setorEsp" style="display: none;" class="setores"><button id="btCloseCanvas" onclick="escondeCanvas()"><img height="30px" src="../assets/imgs/hide.png" alt=""></button>
       <canvas id="grafico"></canvas>
     </div>
+    
   </main>
 
   <script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
     const ctx = document.getElementById("grafico");
     let labels_horas = [];
     let valores_leitura = [];
@@ -126,6 +124,8 @@
         })
         .then(function (dados) {
           console.log("O que veio do banco:", dados[0]);
+          
+          var mensagem = "";
 
           for (let i = 0; i < dados.length; i++) {
             const registro = dados[i];
@@ -133,6 +133,11 @@
 
             labels_horas.push(registro.hora);
             valores_leitura.push(Number(registro.leitura));
+
+          }
+          if(mensagem != ""){
+            mensagem_alerta.innerHTML = mensagem;
+            alerta_popup.style.display = 'flex';
           }
 
           plotarGraficoSensorIndividual()
@@ -144,7 +149,6 @@
     }
 
     let grafico;
-    var idSensorFunc = 1;
 
     function buscar(a) {
       idSensorFunc = a;
