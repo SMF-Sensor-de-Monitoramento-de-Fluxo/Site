@@ -46,15 +46,7 @@
 
             <p class="subtitulo">Digite sua senha:</p>
             <input id="senha_input" type="password" placeholder="********" class="input input"> <br>
-            <div class="links">
-                <div class="caixa-checkbox">
-                    <p class="link">Lembrar de mim</p>
-                    <input class="caixa-checkagem" type="checkbox">
-                </div>
-                <div class="caixa-link">
-                    <p class="link"><a href="">Esqueci minha senha</a></p>
-                </div>
-            </div>
+
             <button onclick="entrar()" class="button-lc">Entrar</button> <br>
             <p class="link">Novo por aqui? &nbsp <a href="cadastro.html"> Crie uma conta</a></p>
         </div>
@@ -82,9 +74,6 @@
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
             return false;
-        }
-        else {
-            // setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);

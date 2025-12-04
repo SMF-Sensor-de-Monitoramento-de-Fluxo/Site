@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./../css/style.css" />
   <link rel="icon" href="../assets/icon/logo.ico" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=hide" />
 
 </head>
 
@@ -45,7 +46,7 @@
     <!-- SETORES QUE O USUÁRIO CLICA -->
     <div id="setores" class="setores">
 
-      <div value="acougue" onclick="buscar(1)" class="layout"> <img
+      <div value="acougue" onclick="buscar(11)" class="layout"> <img
           src="https://atribunanews.com.br/wp-content/uploads/2023/02/proton-tl-carne.jpg" alt="">
         <h3>Açougue</h3>
       </div>
@@ -97,7 +98,7 @@
 
     </div>
 
-    <div id="setorEsp" style="display: none;" class="setores">
+    <div id="setorEsp" style="display: none;" class="setores"><button id="btCloseCanvas" onclick="escondeCanvas()"><img height="30px" src="../assets/imgs/hide.png" alt=""></button>
       <canvas id="grafico"></canvas>
     </div>
   </main>
@@ -107,16 +108,20 @@
     let labels_horas = [];
     let valores_leitura = [];
 
+    function escondeCanvas(){
+      setorEsp.style.display = 'none';
+    }
+
     function buscarDadosSensor() {
+      labels_horas = [];
+      valores_leitura = [];
+
       fetch(`/medidas/setor/${idSensorFunc}`)
         .then(function (resposta) {
           if (!resposta.ok) {
             throw "Erro ao buscar os dados de cada sensor";
-            // return resposta.json();
           }
           console.log(resposta);
-          // respostaJson = resposta.json();
-          // console.log(respostaJson);
           return resposta.json();
         })
         .then(function (dados) {
@@ -143,7 +148,7 @@
 
     function buscar(a) {
       idSensorFunc = a;
-      setorEsp.style.display = 'block';
+      setorEsp.style.display = 'flex';
       buscarDadosSensor()
     }
 
@@ -179,7 +184,7 @@
 
      setTimeout(() => {
       atualizarGrafico(idSensorFunc)
-     }, 2000); 
+     }, 3600000); 
     }
 
     function atualizarGrafico(idSensorFunc) {
